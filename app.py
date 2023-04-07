@@ -5,5 +5,10 @@ app = Flask(__name__)
 def index() -> str:
     return render_template('index.html')
 
+# I think this is how it would be set up for other pages but not entirely sure -Fish
+# @app.route('/myfood')
+# def myfood() -> str:
+#     return render_template('myfood.html')
+
 if __name__ == '__main__':
     index()
