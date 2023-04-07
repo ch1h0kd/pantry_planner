@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index() -> str:
-    return render_template('index.html')
+    return render_template('homepage.html')
 
 # I think this is how it would be set up for other pages but not entirely sure -Fish
 # @app.route('/myfood')
