@@ -8,7 +8,7 @@
     left: 0;
     background-color: #43ccd6; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
+    padding-top: 0px;
   }
 
   /* The navigation menu links */
@@ -21,7 +21,8 @@
     background: lightgreen
   }
   
-  .sidenav b {
+  /* The settings link at the bottom of the navigation menu*/
+  .sidenav a2 {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size:  25px;
@@ -29,8 +30,7 @@
     display: block;
     background: lightgreen;
     position: absolute;
-    bottom: 5%;
-    left: 0;
+    bottom: 0%;
   }
 
   /* When you mouse over the navigation links, change their color */
@@ -39,9 +39,9 @@
     background-color: rgb(255, 244, 48); /* background highlight color*/
   }
 
-  .sidenav b:hover {
+  .sidenav a2:hover {
     color: #7d5411;
-    background-color: rgb(255, 244, 48); /* background highlight color*/
+    background-color: rgb(255, 244, 48);
   }
   
   /* Style page content */
@@ -52,6 +52,7 @@
   
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
+    .sidenav {padding-top: 0px;}
     .sidenav a {font-size: 18px;}
+    .sidenav a2 {font-size: 18px;}
   } 
