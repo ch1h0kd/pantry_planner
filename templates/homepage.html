@@ -23,7 +23,31 @@
     <homeText> Home </homeText>
     <div class ="sortBy">Sort by...</div>
     <div class ="textBox">close to expiring</div>
-    <scrollBox> this is where the list of food would go if I had one</scrollBox>
+    <form>
+      <label for="item-input">Enter an item:</label>
+      <input type="text" id="item-input" name="item-input">
+      <button type="button" onclick="addItem()">Add to List</button>
+    </form>
+
+
+
+    <scrollBox> 
+      <ol id="list"></ol>
+    </scrollBox>
+
+    <script>
+      function addItem() {
+        const input = document.getElementById("item-input");
+        const item = input.value;
+        input.value = "";
+        const list = document.getElementById("list");
+        const listItem = document.createElement("li");
+        listItem.appendChild(document.createTextNode(item));
+        list.appendChild(listItem);
+      }
+    </script>
+
+
     </div>
     <div class ="homeCol">
       <div class ="sortBy">Sort by...</div>

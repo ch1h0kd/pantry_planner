@@ -69,6 +69,7 @@
     margin-top: 5%;
     text-align: center;
     float: left;
+    font-weight: bold;
   }
 
   .sortBy{
@@ -78,11 +79,17 @@
     margin-top: 5%;
     text-align: center;
     float:left;
+    font-weight: bold;
   }
 
   .textBox:hover {
-    color: #7d5411;
-    background-color: rgb(48, 155, 255); /* background highlight color*/
+    color: #242424;
+    background-color: rgb(131, 186, 236); /* background highlight color*/
+  }
+
+  .sortBy:hover {
+    color: #242424;
+    background-color: rgb(141, 194, 174); /* background highlight color*/
   }
 
   .main scrollBox{
