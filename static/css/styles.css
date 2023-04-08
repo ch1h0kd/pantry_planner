@@ -46,8 +46,33 @@
   
   /* Style page content */
   .main {
-    margin-left: 160px; /* Same as the width of the sidebar */
-    padding: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%; /* 140p Longer than sidebar to leave a small gap */
+    padding:  10px 10px 10px 10px;
+  }
+
+  .main homeText{
+    font-size: 90px;
+    
+  }
+
+  .main textBox{
+    width: 200px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin-top: 5%;
+    text-align: center;
+  }
+
+  .main scrollBox{
+    height:600px;
+    width:250px;
+    padding: 10px;
+    margin-top: 10px;
+    border:1px solid #ccc;
+    font:16px/26px Georgia, Garamond, Serif;
+    overflow:auto;
   }
   
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
