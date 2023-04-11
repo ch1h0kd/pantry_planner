@@ -7,7 +7,7 @@ var sidebar_shopping_list = document.getElementById("shopping_list");
 var ourURL = 'https://airfishi-bug-free-space-lamp-pgwj4rjxwrpf5vq-5000.preview.app.github.dev';
 
 sidebar_pantry_planner.addEventListener("click", function() {
-  window.location.href = ourURL + "/";
+  window.location.href = ourURL + "/pantry_planner";
 });
 
 sidebar_my_food.addEventListener("click", function() {

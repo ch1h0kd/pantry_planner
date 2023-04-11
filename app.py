@@ -10,6 +10,11 @@ def index() -> str:
 # def myfood() -> str:
 #     return render_template('myfood.html')
 
+# this is a temporary fix hopefully for the button not working
+@app.route('/pantry_planner')
+def pantryplanner() -> str:
+    return render_template('homepage.html')
+
 @app.route('/settings')
 def settings() -> str:
     return render_template('settings.html')
