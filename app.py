@@ -14,5 +14,17 @@ def index() -> str:
 def settings() -> str:
     return render_template('settings.html')
 
+@app.route('/myfood')
+def myfood() -> str:
+    return render_template('myfood.html')
+
+@app.route('/shoppinglist')
+def shoppinglist() -> str:
+    return render_template('shoppinglist.html')
+
+@app.route('recipes')
+def shoppinglist() -> str:
+    return render_template('recipes.html')
+
 if __name__ == '__main__':
     index()
