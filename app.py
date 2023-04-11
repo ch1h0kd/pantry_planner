@@ -10,5 +10,9 @@ def index() -> str:
 # def myfood() -> str:
 #     return render_template('myfood.html')
 
+@app.route('/settings')
+def settings() -> str:
+    return render_template('settings.html')
+
 if __name__ == '__main__':
     index()
