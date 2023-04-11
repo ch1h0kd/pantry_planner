@@ -19,11 +19,11 @@ def myfood() -> str:
     return render_template('my_food.html')
 
 @app.route('/shopping_list')
-def shoppinglist() -> str:
+def shopping_list() -> str:
     return render_template('shopping_list.html')
 
 @app.route('/recipes')
-def shoppinglist() -> str:
+def recipes() -> str:
     return render_template('recipes.html')
 
 if __name__ == '__main__':
