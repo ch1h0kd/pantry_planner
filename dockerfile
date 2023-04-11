@@ -13,4 +13,5 @@ RUN python3 -m pip install -r requirements.txt && \
     curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && \
     echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | tee /etc/apt/sources.list.d/ngrok.list && \
     apt update && \
-    apt install ngrok
+    apt install ngrok && \
+    ngrok config add add-authtoken `${{ secrets.NGROK_AUTH_TOKEN}}`
