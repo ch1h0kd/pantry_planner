@@ -16,13 +16,13 @@ def settings() -> str:
 
 @app.route('/myfood')
 def myfood() -> str:
-    return render_template('myfood.html')
+    return render_template('my_food.html')
 
-@app.route('/shoppinglist')
+@app.route('/shopping_list')
 def shoppinglist() -> str:
-    return render_template('shoppinglist.html')
+    return render_template('shopping_list.html')
 
-@app.route('recipes')
+@app.route('/recipes')
 def shoppinglist() -> str:
     return render_template('recipes.html')
 
