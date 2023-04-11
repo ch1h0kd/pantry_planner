@@ -21,7 +21,7 @@
     background: lightgreen
   }
   
-  .sidenav b {
+  .sidenav a2 {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size:  25px;
@@ -39,7 +39,7 @@
     background-color: rgb(255, 244, 48); /* background highlight color*/
   }
 
-  .sidenav b:hover {
+  .sidenav a2:hover {
     color: #7d5411;
     background-color: rgb(255, 244, 48); /* background highlight color*/
   }
@@ -54,4 +54,5 @@
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
-  } 
+    .sidenav a2 {font-size: 18px;}
+  }
