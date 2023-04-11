@@ -14,7 +14,7 @@ def index() -> str:
 def settings() -> str:
     return render_template('settings.html')
 
-@app.route('/myfood')
+@app.route('/my_food')
 def myfood() -> str:
     return render_template('my_food.html')
 
