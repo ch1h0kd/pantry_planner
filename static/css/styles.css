@@ -118,7 +118,7 @@
   }
 
 /* Style page content */
-.myFoodmain {
+.myFoodTop {
   height: 20%; /* Full-height: remove this if you want "auto" height */
   margin-left: 10px; /* Same as the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
@@ -127,7 +127,7 @@
   left: 15%;
 }
   /* The page title */
-  .myFoodmain t {
+  .myFoodTop t {
     text-decoration: none;
     top: 0; /* Stay at the top */
     font-size:  60px;
@@ -136,14 +136,14 @@
     position: absolute;
   }
 
-  .myFoodmain .search-container {
+  .myFoodTop .search-container {
     margin-top: 60px;
     padding: 2px 2px;
     height: 40%;
     top: 30%;
   }
   
-  .myFoodmain input[type=text] {
+  .myFoodTop input[type=text] {
     padding: 6px;
     margin-top: 15px;
     width: 75%;
@@ -152,12 +152,20 @@
     border: 2px solid #000000;
   }
   
-  .myFoodmain .search-container button {
+  .myFoodTop .search-container button {
     width: 8%;
     height: 35px;
     font-size: 20px;
-    border: 2px solid #000000;;
+    border: 2px solid #000000;
     cursor: pointer;
+  }
+
+  .mainContent{
+    border: 2px solid #000;
+    margin-top: 100px;
+    margin-left: 230px;
+    margin-right: 180px;
+    height: 649px;
   }
 
   .rightcol{
