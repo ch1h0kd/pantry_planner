@@ -19,8 +19,42 @@
   </div>
   <!-- Page content -->
   <div class="main">
-    ...
+    <div class ="homeCol">
+    <homeText> Home </homeText>
+    <div class ="sortBy">Sort by...</div>
+    <div class ="textBox">close to expiring</div>
+   
+    <form>
+      <div class ="input">
+        <label for="item-input">Food:</label>
+        <input type="text" id="item-input" name="item-input">
+      
+        <label for="exp-input">Expiration date:</label>
+        <input type="date" id="exp-input" name="exp-input">
+      
+        <button type="button" onclick="addItemExp()">Add to List</button>
+      </div>
+    </form>
+
+    <scrollBox> 
+      <ul id="expList"></ul>
+    </scrollBox>
+
+    </div>
+    <div class ="homeCol">
+      <div class ="sortBy">Sort by...</div>
+      <div class ="textBox">My Shopping list</div>
+      <form>
+        <div class ="input">
+          <label for="shop-input">Item Name:</label>
+          <input type="text" id="shop-input" name="shop-input">
+          <button type="button" onclick="addItemShop()">Add to List</button>
+        </div>
+      </form>
+      <scrollBox><ul id="shopList"></ul></scrollBox>
+      </div>
   </div> 
+ 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
   <script type="module">
 
