@@ -19,27 +19,6 @@
   </div>
   <!-- Page content -->
   <div class="main">
-    <div class ="homeCol">
-    <homeText> Home </homeText>
-    <div class ="sortBy">Sort by...</div>
-    <div class ="textBox">close to expiring</div>
-   
-    <form>
-      <div class ="input">
-        <label for="item-input">Food:</label>
-        <input type="text" id="item-input" name="item-input">
-      
-        <label for="exp-input">Expiration date:</label>
-        <input type="date" id="exp-input" name="exp-input">
-      
-        <button type="button" onclick="addItemExp()">Add to List</button>
-      </div>
-    </form>
-
-    <scrollBox> 
-      <ul id="expList"></ul>
-    </scrollBox>
-
     </div>
     <div class ="homeCol">
       <div class ="sortBy">Sort by...</div>
@@ -54,45 +33,5 @@
       <scrollBox><ul id="shopList"></ul></scrollBox>
       </div>
   </div> 
- 
-  <!-- import all the firebase stuff, put in body before using any firebase stuff-->
-  <script type="module">
-
-      // Import the functions you need from the SDKs you need
-    
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-      import { getDatabases } from "firebase/database";
-      // TODO: Add SDKs for Firebase products that you want to use
-    
-      // https://firebase.google.com/docs/web/setup#available-libraries
-    
-    
-      // Your web app's Firebase configuration
-    
-      const firebaseConfig = {
-    
-        apiKey: "AIzaSyA3RzxLT0P7Vu_ne5bwfcSS2jFGXRV91YI",
-    
-        authDomain: "pantry-planner-c34aa.firebaseapp.com",
-    
-        projectId: "pantry-planner-c34aa",
-    
-        storageBucket: "pantry-planner-c34aa.appspot.com",
-    
-        messagingSenderId: "718999300893",
-    
-        appId: "1:718999300893:web:04b1ef888d8bc0b3074ff4",
-
-        // The value of `databaseURL` depends on the location of the database
-        //TODO: replace with database name
-        databaseURL: "https://DATABASE_NAME.firebaseio.com",
-
-    
-      };
-    
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-    
-    </script>
 </body>
 </html>
