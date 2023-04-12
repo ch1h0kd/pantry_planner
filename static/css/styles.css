@@ -116,7 +116,96 @@
   ul li{
     border: 1px solid #000;
   }
+
+/* Style page content */
+.myFoodmain {
+  height: 20%; /* Full-height: remove this if you want "auto" height */
+  margin-left: 10px; /* Same as the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  padding: 0px 10px;
+  width: 70%; /* Set the width of the sidebar */
+  left: 15%;
+}
+  /* The page title */
+  .myFoodmain t {
+    text-decoration: none;
+    top: 0; /* Stay at the top */
+    font-size:  60px;
+    color: #000000;
+    display: block;
+    position: absolute;
+  }
+
+  .myFoodmain .search-container {
+    margin-top: 60px;
+    padding: 2px 2px;
+    height: 40%;
+    top: 30%;
+  }
   
+  .myFoodmain input[type=text] {
+    padding: 6px;
+    margin-top: 15px;
+    width: 75%;
+    height: 15px;
+    font-size: 20px;
+    border: 2px solid #000000;
+  }
+  
+  .myFoodmain .search-container button {
+    width: 8%;
+    height: 35px;
+    font-size: 20px;
+    border: 2px solid #000000;;
+    cursor: pointer;
+  }
+
+  .rightcol{
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    border: #43ccd6;
+    overflow-x: hidden;
+    /* padding-top: 5%;*/
+  }
+
+  .login{
+    width: 136px;
+    height: 32px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin-top: 10%;
+    margin-left: 40%;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    background: #ffff89;
+  }
+
+  .login:hover {
+    color: #242424;
+    background-color: rgb(135, 143, 64); /* background highlight color*/
+  }
+
+  .box{
+    width: 127px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin-top: 46px;
+    margin-left: 40%;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .box:hover {
+    color: #242424;
+    background-color: rgb(131, 186, 236); /* background highlight color*/
+  }
+
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 0px;}
