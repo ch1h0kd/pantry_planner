@@ -1,5 +1,4 @@
 document.getElementById("shopping-list-input").addEventListener("keypress", function(event) {
-  console.log("pickels");
   if (event.key === "Enter") {
     event.preventDefault();
     addItem();
@@ -7,7 +6,6 @@ document.getElementById("shopping-list-input").addEventListener("keypress", func
 });
 
 function addItem() {
-    console.log("fire");
     //create item from the search bar
     const itemInput = document.getElementById("shopping-list-input");
     const list = document.getElementById("shopping-list");
