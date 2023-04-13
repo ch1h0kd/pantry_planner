@@ -7,6 +7,7 @@ document.getElementById("shopping-list-input").addEventListener("keypress", func
 });
 
 function addItem() {
+    console.log("fire");
     //create item from the search bar
     const itemInput = document.getElementById("shopping-list-input");
     const list = document.getElementById("shopping-list");
