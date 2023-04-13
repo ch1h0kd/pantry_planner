@@ -4,7 +4,6 @@ var sidebar_my_food = document.getElementById("my_food");
 var sidebar_recipes = document.getElementById("recipes");
 var sidebar_settings = document.getElementById("settings");
 var sidebar_shopping_list = document.getElementById("shopping_list");
-
 var ourURL = 'https://airfishi-bug-free-space-lamp-pgwj4rjxwrpf5vq-5000.preview.app.github.dev';
 
 sidebar_pantry_planner.addEventListener("click", function() {
@@ -31,52 +30,20 @@ document.getElementById("shopping-list-input").addEventListener("keypress", func
   console.log("pickels");
   if (event.key === "Enter") {
     event.preventDefault();
-    document.getElementById("add-item-button").click();
+    addItem();
   }
 });
 
-document.getElementById("shopping-list-input").addEventListener("click", function() {
-    console.log("fried");
+function addItem() {
+    //create item from the search bar
     const itemInput = document.getElementById("shopping-list-input");
-    const item = itemInput.value;
-
-    const list = document.getElementById("shopping-list");
-    const listItem = document.createElement("li");
-    const itemHeading = document.createElement("h2");
-
-    itemHeading.appendChild(document.createTextNode(item));
-    listItem.appendChild(itemHeading);
-    list.appendChild(listItem);
-
-    itemInput.value = "";
-});
-
-function addItemShop() {
-    const itemInput = document.getElementById("shop-input");
-    const item = itemInput.value;
-    itemInput.value = "";
     const list = document.getElementById("shopList");
+    const item = itemInput.value;
+    itemInput.value = "";
     const listItem = document.createElement("li");
     const itemHeading = document.createElement("h2");
+    //add item to the list
     itemHeading.appendChild(document.createTextNode(item));
     listItem.appendChild(itemHeading);
     list.appendChild(listItem);
   }
-
-function addItemExp() {
-        const itemInput = document.getElementById("item-input");
-        const expInput = document.getElementById("exp-input");
-        const item = itemInput.value;
-        const exp = expInput.value;
-        itemInput.value = "";
-        expInput.value = "";
-        const list = document.getElementById("expList");
-        const listItem = document.createElement("li");
-        const itemHeading = document.createElement("h2");
-        itemHeading.appendChild(document.createTextNode(item));
-        const expPara = document.createElement("p");
-        expPara.appendChild(document.createTextNode(exp));
-        listItem.appendChild(itemHeading);
-        listItem.appendChild(expPara);
-        list.appendChild(listItem);
-      }

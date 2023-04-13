@@ -26,17 +26,8 @@
         <div class ="addItemButtonClass">
           <label for="label">Item Name:</label>
           <input type="text" id="shopping-list-input" name="shop-input">
-          <button id="add-item-button" type="button" onclick="addItemShop()">Add to List</button>
+          <button id="add-item-button" type="button" onclick="addItem()">Add to List</button>
         </div>
-        <script>
-          var input = document.getElementById("shopping-list-input");
-          input.addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-              event.preventDefault();
-              document.getElementById("add-item-button").click();
-            }
-          });
-        </script>
       </form>
       <scrollBox><ul id="shopping-list"></ul></scrollBox>
       </div>
