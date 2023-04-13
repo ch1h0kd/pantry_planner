@@ -27,6 +27,42 @@ sidebar_shopping_list.addEventListener("click", function() {
   window.location.href = ourURL + "/shopping_list"
 });
 
+document.getElementById("shopping-list-input").addEventListener("keypress", function(event) {
+  console.log("pickels");
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("add-item-button").click();
+  }
+});
+
+document.getElementById("shopping-list-input").addEventListener("click", function() {
+    console.log("fried");
+    const itemInput = document.getElementById("shopping-list-input");
+    const item = itemInput.value;
+
+    const list = document.getElementById("shopping-list");
+    const listItem = document.createElement("li");
+    const itemHeading = document.createElement("h2");
+
+    itemHeading.appendChild(document.createTextNode(item));
+    listItem.appendChild(itemHeading);
+    list.appendChild(listItem);
+
+    itemInput.value = "";
+});
+
+function addItemShop() {
+    const itemInput = document.getElementById("shop-input");
+    const item = itemInput.value;
+    itemInput.value = "";
+    const list = document.getElementById("shopList");
+    const listItem = document.createElement("li");
+    const itemHeading = document.createElement("h2");
+    itemHeading.appendChild(document.createTextNode(item));
+    listItem.appendChild(itemHeading);
+    list.appendChild(listItem);
+  }
+
 function addItemExp() {
         const itemInput = document.getElementById("item-input");
         const expInput = document.getElementById("exp-input");
@@ -44,23 +80,3 @@ function addItemExp() {
         listItem.appendChild(expPara);
         list.appendChild(listItem);
       }
-
-
-
-function addItemShop() {
-        const itemInput = document.getElementById("shop-input");
-        const item = itemInput.value;
-        itemInput.value = "";
-        const list = document.getElementById("shopList");
-        const listItem = document.createElement("li");
-        const itemHeading = document.createElement("h2");
-        itemHeading.appendChild(document.createTextNode(item));
-        listItem.appendChild(itemHeading);
-        list.appendChild(listItem);
-      }
-
-      
-
-
-
-
