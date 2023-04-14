@@ -31,5 +31,9 @@ def shopping_list() -> str:
 def recipes() -> str:
     return render_template('recipes.html')
 
+@app.route('/login')
+def recipes() -> str:
+    return render_template('login.html')
+
 if __name__ == '__main__':
     index()
