@@ -33,7 +33,7 @@
     bottom: 0%;
     width: 100%;
   }
-
+  
   /* When you mouse over the navigation links, change their color */
   .sidenav a:hover {
     color: #7d5411;
@@ -121,8 +121,7 @@
 /* Style page content */
 .myFoodTop {
   height: 20%; /* Full-height: remove this if you want "auto" height */
-  margin-left: 10px; /* Same as the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  margin-left: 206px; /* Same as the width of the sidebar */
   padding: 0px 10px;
   width: 70%; /* Set the width of the sidebar */
   left: 15%;
@@ -163,22 +162,20 @@
 
   .mainContent{
     border: 2px solid #000;
-    margin-top: 100px;
-    margin-left: 230px;
+    margin-top: -11px;
+    margin-left: 218px;
     margin-right: 180px;
-    height: 649px;
+    /* overflow: auto; */
+    height: 660px;
   }
 
   .rightcol{
-    height: 100%;
+    height: 100%; 
+    position: absolute;
     width: 20%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
     right: 0;
-    border: #43ccd6;
+    top: 0;
     overflow-x: hidden;
-    /* padding-top: 5%;*/
   }
 
   .login{
@@ -208,6 +205,7 @@
     font-size: 20px;
     text-align: center;
     font-weight: bold;
+    cursor: pointer;
   }
 
   .box:hover {
