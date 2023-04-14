@@ -1,5 +1,4 @@
 document.getElementById("shopping-list-input").addEventListener("keypress", function(event) {
-  console.log("pickels");
   if (event.key === "Enter") {
     event.preventDefault();
     addItem();
