@@ -11,12 +11,13 @@
 <body>
   <!-- Side navigation -->
   <div class="sidenav">
-    <a href="pantry_planner">Pantry Planner</a>
-    <a href="my_food">My Food</a>
-    <a href="shopping_list">Shopping List</a>
-    <a href="recipes">Recipes</a>
-    <a2 href="settings">Settings</a2>
+    <a id="pantry_planner" href="pantry_planner">Pantry Planner</a>
+    <a id="my_food" href="my_food">My Food</a>
+    <a id="shopping_list" href="shopping_list">Shopping List</a>
+    <a id="recipes" href="recipes">Recipes</a>
+    <a2 id="settings" href="settings">Settings</a2>
   </div>
+  <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
   <!-- Page content -->
   <div class="main">
     <div class ="homeCol">
@@ -105,5 +106,6 @@
       
     
     </script>
+    <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
 </body>
 </html>
