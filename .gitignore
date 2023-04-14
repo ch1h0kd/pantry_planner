@@ -71,6 +71,7 @@ Thumbs.db
 *.exe
 *.o
 *.so
+*.pyc
 
 # ignore packaged files
 *.7z
