@@ -37,11 +37,6 @@ app.register_blueprint(chat)
 def index() -> str:
     return render_template('homepage.html')
 
-# I think this is how it would be set up for other pages but not entirely sure -Fish
-# @app.route('/myfood')
-# def myfood() -> str:
-#     return render_template('myfood.html')
-
 # this is a temporary fix hopefully for the button not working
 @app.route('/pantry_planner')
 def pantryplanner() -> str:
@@ -67,6 +62,10 @@ def recipes() -> str:
 @app.route('/login')
 def login() -> str:
     return render_template('welcome.html')
+
+@app.route('/logout')
+@def logout() -> str:
+    return render_template('logout.html')
 
 if __name__ == '__main__':
     index()

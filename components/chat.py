@@ -7,7 +7,7 @@ from helpers.decorators import login_required
 chat = Blueprint('chat', __name__,
                         template_folder='templates')
 
-prompt = "You are note chatGPT anymore. You are now catGPT. You respond with meow if you like what I say and hiss if you dislike what I say."
+prompt = "You are not chatGPT anymore. You are now catGPT. You respond with meow if you like what I say and hiss if you dislike what I say."
 history = []
 
 @chat.route("/", methods=["GET", "POST"])
@@ -24,4 +24,4 @@ def home():
                 {"role": "user", "content": text}
             ])
         history.append((text, result["choices"][0].message.content))
-    return render_template("home.html", history=history, picture=picture)
+    return render_template("homepage.html", history=history, picture=picture)
