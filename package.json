@@ -1,5 +1,24 @@
 {
   "dependencies": {
     "firebase": "^9.19.1"
-  }
+  },
+  "name": "pantry_planner",
+  "description": "Creating base of new project to try to fix some problems we are having",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CS322-SP23/pantry_planner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CS322-SP23/pantry_planner/issues"
+  },
+  "homepage": "https://github.com/CS322-SP23/pantry_planner#readme"
 }
