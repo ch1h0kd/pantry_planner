@@ -64,7 +64,8 @@ def login() -> str:
     return render_template('welcome.html')
 
 @app.route('/logout')
-@def logout() -> str:
+@login_required()
+def logout() -> str:
     return render_template('logout.html')
 
 if __name__ == '__main__':
