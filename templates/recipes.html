@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recipes.css') }}">
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,8 +19,26 @@
   </div>
   <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
   <!-- Page content -->
-  <div class="main">
-    ...
+  <div class="myFoodmain">
+    <t href="#">My Food</t>
+    <!-- Search box -->
+    <div class="search-container">
+      <form action="/action_page.php">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit">Go</button>
+      </form>
+    </div>
+  </div>
+    <!-- Right columns -->
+  <div class="rightcol">
+    <div class ="login" href="login">Sign up/Login</div>
+    <div class ="box">Add foods by name</div>
+    <div class ="box">Add foods by picture</div>
+    <div class ="box">Add foods from list</div>
+    <div class ="box">Remove by name</div>
+    <div class ="box">Remove using recipes</div>
+    <div class ="box">Show expiring</div>
+   </div>
   </div> 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
   <script type="module">
