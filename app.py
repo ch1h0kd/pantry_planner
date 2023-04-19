@@ -6,7 +6,6 @@ from dotenv import find_dotenv, load_dotenv
 from flask import Flask, redirect, render_template, url_for, flash
 
 from components.authentication import create_auth_blueprint
-from components.chat import chat
 
 from helpers.decorators import login_required
 
@@ -31,7 +30,6 @@ oauth.register(
 )
 
 app.register_blueprint(create_auth_blueprint(oauth))
-app.register_blueprint(chat)
 
 @app.route('/')
 def index() -> str:
