@@ -1,0 +1,226 @@
+ /* The sidebar menu */ 
+ .sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 15%; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #43ccd6; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 0px;
+  }
+
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #000000;
+    display: block;
+    background: lightgreen
+  }
+  
+  /* The settings link at the bottom of the navigation menu*/
+  .sidenav a2 {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size:  25px;
+    color: #000000;
+    display: block;
+    background: lightgreen;
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+  }
+
+  .sidenav a3 {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size:  25px;
+    color: #000000;
+    display: block;
+    background: lightgreen;
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+  }
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #7d5411;
+    background-color: rgb(255, 244, 48); /* background highlight color*/
+  }
+
+  .sidenav a2:hover {
+    color: #7d5411;
+    background-color: rgb(255, 244, 48);
+  }
+  
+  /* Style page content */
+  .main {
+    padding:  10px 10px 10px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items:end;
+  }
+  .homeCol{
+  margin-left: 15%;
+  display: flex;
+  flex-direction: column;
+  float: left;
+  }
+
+  .main homeText{
+    font-size: 90px;
+  }
+
+  .textBox{
+    width: 200px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin-top: 5%;
+    text-align: center;
+    float: left;
+    font-weight: bold;
+  }
+
+  .sortBy{
+    width: 100px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin-top: 5%;
+    text-align: center;
+    float:left;
+    font-weight: bold;
+  }
+
+  .textBox:hover {
+    color: #242424;
+    background-color: rgb(131, 186, 236); /* background highlight color*/
+  }
+
+  .sortBy:hover {
+    color: #242424;
+    background-color: rgb(141, 194, 174); /* background highlight color*/
+  }
+
+  .main scrollBox{
+    height:550px;
+    width:400px;
+    padding: 10px;
+    margin-top: 10px;
+    border:1px solid #ccc;
+    overflow:auto;
+  }
+
+  .input{
+    padding: 10px;
+  }
+
+  .input item-input{
+    width: 100px;
+  }
+  ul{
+    list-style-type: none;
+    padding: 0;
+  }
+
+  ul li{
+    border: 1px solid #000;
+  }
+
+/* Style page content */
+.myFoodmain {
+  height: 20%; /* Full-height: remove this if you want "auto" height */
+  margin-left: 10px; /* Same as the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  padding: 0px 10px;
+  width: 70%; /* Set the width of the sidebar */
+  left: 15%;
+}
+  /* The page title */
+  .myFoodmain t {
+    text-decoration: none;
+    top: 0; /* Stay at the top */
+    font-size:  60px;
+    color: #000000;
+    display: block;
+    position: absolute;
+  }
+
+  .myFoodmain .search-container {
+    margin-top: 60px;
+    padding: 2px 2px;
+    height: 40%;
+    top: 30%;
+  }
+  
+  .myFoodmain input[type=text] {
+    padding: 6px;
+    margin-top: 15px;
+    width: 75%;
+    height: 15px;
+    font-size: 20px;
+    border: 2px solid #000000;
+  }
+  
+  .myFoodmain .search-container button {
+    width: 8%;
+    height: 35px;
+    font-size: 20px;
+    border: 2px solid #000000;;
+    cursor: pointer;
+  }
+
+  .rightcol{
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    border: #43ccd6;
+    overflow-x: hidden;
+    /* padding-top: 5%;*/
+  }
+
+  .login{
+    width: 136px;
+    height: 32px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin-top: 10%;
+    margin-left: 40%;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    background: #ffff89;
+  }
+
+  .login:hover {
+    color: #242424;
+    background-color: rgb(135, 143, 64); /* background highlight color*/
+  }
+
+  .box{
+    width: 127px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin-top: 46px;
+    margin-left: 40%;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .box:hover {
+    color: #242424;
+    background-color: rgb(131, 186, 236); /* background highlight color*/
+  }
+
+  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 0px;}
+    .sidenav a {font-size: 18px;}
+    .sidenav a2 {font-size: 18px;}
+  }
