@@ -29,9 +29,3 @@ function addItemShop() {
         listItem.appendChild(itemHeading);
         list.appendChild(listItem);
       }
-
-      
-
-
-
-

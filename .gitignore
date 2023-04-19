@@ -29,6 +29,8 @@
 
 #ignore pw file
 pws.txt
+.env
+__pycache__/
 
 # ignore all files starting with . or ~
 .*
