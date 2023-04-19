@@ -19,8 +19,9 @@
   </div>
   <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
   <!-- Page content -->
-  <div class="myFoodmain">
-    <t href="#">My Food</t>
+  <div class="myFoodTop">
+    <h1>My Food</h1>
+    <button class = "add-food">Add food</button>
     <!-- Search box -->
     <div class="search-container">
       <form action="/action_page.php">
@@ -31,14 +32,20 @@
   </div>
     <!-- Right columns -->
   <div class="rightcol">
-    <div class ="login" href="login">Sign up/Login</div>
-    <div class ="box">Add foods by name</div>
-    <div class ="box">Add foods by picture</div>
-    <div class ="box">Add foods from list</div>
-    <div class ="box">Remove by name</div>
-    <div class ="box">Remove using recipes</div>
-    <div class ="box">Show expiring</div>
-   </div>
+    <button id="Sign-up" class ="login">Sign up/Login</button>
+    <div class="sort-col">
+      <button id="Sort-foods-by-name" class ="box">Sort foods by name</button>
+      <button id="Add-foods-by-picture" class ="box">Add foods by picture</button>
+      <button id="Add-foods-from-list" class ="box">Add foods from list</button>
+      <button id="Remove-by-name" class ="box">Remove by name</button>
+      <button id="Remove-using-recipes" class ="box">Remove using recipes</button>
+      <button id="Show-expiring" class ="box">Show expiring</button>
+    </div>
+    ...
+  </div> 
+
+  <div class="mainContent">
+    main content
   </div> 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
   <script type="module">
