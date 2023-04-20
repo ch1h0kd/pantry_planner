@@ -3,11 +3,13 @@ from os import environ as env
 from authlib.integrations.flask_client import OAuth
 
 from dotenv import find_dotenv, load_dotenv
-from flask import Flask, redirect, render_template, url_for, flash
+from flask import Flask, redirect, render_template, url_for, flash, request, jsonify
 
 from components.authentication import create_auth_blueprint
 
 from helpers.decorators import login_required
+
+import requests
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
@@ -65,6 +67,30 @@ def login() -> str:
 @login_required()
 def logout() -> str:
     return render_template('logout.html')
+
+@app.route('/api_endpoint', methods=['GET'])
+def api_endpoint():
+    url = "https://tasty.p.rapidapi.com/recipes/list"
+
+    # Retrieve the query parameters from the request
+    input1 = request.args.get('input1')
+
+    querystring = {"from":"0","size":"20","tags":"under_30_minutes","q":input1}
+
+    headers = {
+        "X-RapidAPI-Key":env.get("API_KEY"),
+        "X-RapidAPI-Host":env.get("API_HOST")
+    }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+
+    print(response.text)
+    # Process the response and return the result
+    if response.status_code == 200:
+        result = response.json()
+        return jsonify(result)
+    else:
+        return "API request failed with status code: " + str(response.status_code)
 
 if __name__ == '__main__':
     index()

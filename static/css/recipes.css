@@ -1,261 +1,251 @@
  /* The sidebar menu */ 
  .sidenav {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 15%; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-    left: 0;
-    background-color: #43ccd6; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 0px;
-  }
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 15%; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #43ccd6; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 0px;
+}
 
-  /* The navigation menu links */
-  .sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #000000;
-    display: block;
-    background: lightgreen
-  }
-  
-  /* The settings link at the bottom of the navigation menu*/
-  .sidenav a2 {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size:  25px;
-    color: #000000;
-    display: block;
-    background: lightgreen;
-    position: absolute;
-    bottom: 0%;
-    width: 100%;
-  }
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #000000;
+  display: block;
+  background: lightgreen
+}
 
-  .sidenav a3 {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size:  25px;
-    color: #000000;
-    display: block;
-    background: lightgreen;
-    position: absolute;
-    bottom: 10%;
-    width: 100%;
-  }
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-    color: #7d5411;
-    background-color: rgb(255, 244, 48); /* background highlight color*/
-  }
+/* The settings link at the bottom of the navigation menu*/
+.sidenav a2 {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size:  25px;
+  color: #000000;
+  display: block;
+  background: lightgreen;
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+}
 
-  .sidenav a2:hover {
-    color: #7d5411;
-    background-color: rgb(255, 244, 48);
-  }
-  
-  /* Style page content */
-  .main {
-    padding:  10px 10px 10px 10px;
-    display: flex;
-    flex-direction: row;
-    align-items:end;
-  }
-  .homeCol{
-  margin-left: 15%;
-  display: flex;
-  flex-direction: column;
-  float: left;
-  }
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #7d5411;
+  background-color: rgb(255, 244, 48); /* background highlight color*/
+}
 
-  .main homeText{
-    font-size: 90px;
-  }
-
-  .textBox{
-    width: 200px;
-    padding: 10px;
-    border: 2px solid gray;
-    margin-top: 5%;
-    text-align: center;
-    float: left;
-    font-weight: bold;
-  }
-
-  .sortBy{
-    width: 100px;
-    padding: 10px;
-    border: 2px solid gray;
-    margin-top: 5%;
-    text-align: center;
-    float:left;
-    font-weight: bold;
-  }
-
-  .textBox:hover {
-    color: #242424;
-    background-color: rgb(131, 186, 236); /* background highlight color*/
-  }
-
-  .sortBy:hover {
-    color: #242424;
-    background-color: rgb(141, 194, 174); /* background highlight color*/
-  }
-
-  .main scrollBox{
-    height:550px;
-    width:400px;
-    padding: 10px;
-    margin-top: 10px;
-    border:1px solid #ccc;
-    overflow:auto;
-  }
-
-  .input{
-    padding: 10px;
-  }
-
-  .input item-input{
-    width: 100px;
-  }
-  ul{
-    list-style-type: none;
-    padding: 0;
-  }
-
-  ul li{
-    border: 1px solid #000;
-  }
+.sidenav a2:hover {
+  color: #7d5411;
+  background-color: rgb(255, 244, 48);
+}
 
 /* Style page content */
-.myFoodTop {
-  height: 15%;
-  margin-left: 8px;
-  padding: 0px 10px;
-  width: 72%;
-  top: 0;
-  position: absolute;
-  left: 15%;
+.main {
+  padding:  10px 10px 10px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items:end;
+}
+.homeCol{
+margin-left: 15%;
+display: flex;
+flex-direction: column;
+float: left;
 }
 
-.myFoodTop h1{
-  font-size: 55px;
-  margin: 0.5%;
+.main homeText{
+  font-size: 90px;
 }
-.myFoodTop .add-food{
-  margin-right: 3%;
-  position: absolute;
-  right: 0;
-  border: 2px solid black;
-  width: 13%;
-  height: 60px;
-  top: 38%;
-  font-size: 20px;
+
+.textBox{
+  width: 200px;
+  padding: 10px;
+  border: 2px solid gray;
+  margin-top: 5%;
   text-align: center;
-  bottom: 6%;
+  float: left;
+  font-weight: bold;
 }
-.add-food:hover {
+
+.sortBy{
+  width: 100px;
+  padding: 10px;
+  border: 2px solid gray;
+  margin-top: 5%;
+  text-align: center;
+  float:left;
+  font-weight: bold;
+}
+
+.textBox:hover {
   color: #242424;
   background-color: rgb(131, 186, 236); /* background highlight color*/
 }
-.myFoodTop .search-container {
-  margin-left: 0.5%;
-  top: 50%;
-  width: 95%;
-  position: absolute;
+
+.sortBy:hover {
+  color: #242424;
+  background-color: rgb(141, 194, 174); /* background highlight color*/
 }
 
-.myFoodTop input[type=text] {
-  padding: 6px;
-  margin-top: 2%;
-  width: 75%;
-  height: 15px;
-  font-size: 20px;
-  border: 2px solid #000000;
+.main scrollBox{
+  height:550px;
+  width:400px;
+  padding: 10px;
+  margin-top: 10px;
+  border:1px solid #ccc;
+  overflow:auto;
 }
-  
-.myFoodTop .search-container button {
-  width: 8%;
-  height: 65%;
-  margin-top: 2%;
-  border: 2px solid #000000;
-  cursor: pointer;
-  position: absolute;
-  margin-left: 0.5%;
-  font-size: 20px;
+
+.input{
+  padding: 10px;
+}
+
+.input item-input{
+  width: 100px;
+}
+ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li{
+  border: 1px solid #000;
+}
+
+/* Style page content */
+.recipesTop {
+height: 15%;
+margin-left: 8px;
+padding: 0px 10px;
+width: 72%;
+top: 0;
+position: absolute;
+left: 15%;
+}
+
+.recipesTop h1{
+font-size: 55px;
+margin: 0.5%;
+}
+.recipesTop .filter{
+margin-right: 3%;
+position: absolute;
+right: 0;
+border: 2px solid black;
+width: 13%;
+height: 60px;
+top: 38%;
+font-size: 20px;
+text-align: center;
+bottom: 6%;
+cursor: pointer;
+}
+.filter:hover {
+color: #242424;
+background-color: rgb(131, 186, 236); /* background highlight color*/
+}
+.recipesTop .search-container {
+margin-left: 0.5%;
+top: 50%;
+width: 95%;
+position: absolute;
+}
+
+.recipesTop input[type=text] {
+padding: 6px;
+margin-top: 2%;
+width: 75%;
+height: 15px;
+font-size: 18px;
+border: 2px solid #000000;
+}
+
+.recipesTop .search-container button {
+width: 8%;
+height: 65%;
+margin-top: 2%;
+border: 2px solid #000000;
+cursor: pointer;
+position: absolute;
+margin-left: 0.5%;
+font-size: 20px;
 }
 
 .mainContent{
-  border: 2px solid #000;
-  margin-top: 8%;
-  margin-left: 15%;
-  margin-bottom: 5%;
-  height: 650px;
-  width: 72%;
-  position: absolute;
+border: 2px solid #000;
+margin-top: 8%;
+margin-left: 15%;
+margin-bottom: 5%;
+height: 650px;
+width: 72%;
+position: absolute;
 }
 
 .rightcol{
-  height: 100%;
-  position: absolute;
-  width: 15%;
-  right: 0;
-  top: 0;
-  overflow-x: hidden;
+height: 100%;
+position: absolute;
+width: 15%;
+right: 0;
+top: 0;
+overflow-x: hidden;
 }
 
 .rightcol .login{
-  width: 70%;
-  height: 10%;
-  border: 2px solid gray;
-  margin-top: 10%;
-  font-size: 17px;
-  right: 10%;
-  text-align: center;
-  font-weight: bold;
-  background: #ffff89;
-  position: absolute;
+width: 70%;
+height: 10%;
+border: 2px solid gray;
+margin-top: 10%;
+font-size: 17px;
+right: 10%;
+text-align: center;
+font-weight: bold;
+background: #ffff89;
+position: absolute;
 }
 
 .rightcol .login:hover {
-  color: #242424;
-  background-color: rgb(135, 143, 64); /* background highlight color*/
+color: #242424;
+background-color: rgb(135, 143, 64); /* background highlight color*/
 }
 
 .rightcol .sort-col{
-  position: absolute;
-  top: 15%;
+position: absolute;
+top: 15%;
 }
 .rightcol .sort-col button{
-  width: 135px;
-  padding: 10px;
-  border: 2px solid gray;
-  margin-top: 12%;
-  margin-left: 25%;
-  font-size: 20px;
-  text-align: center;
-  font-weight: bold;
-  cursor: pointer;
+width: 135px;
+padding: 10px;
+border: 2px solid gray;
+margin-top: 12%;
+margin-left: 25%;
+font-size: 20px;
+text-align: center;
+font-weight: bold;
+cursor: pointer;
 }
 .rightcol .sort-col button:hover {
-  color: #242424;
-  background-color: rgb(131, 186, 236); /* background highlight color*/
+color: #242424;
+background-color: rgb(131, 186, 236); /* background highlight color*/
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 0px;}
-  .sidenav a {font-size: 18px;}
-  .sidenav a2 {font-size: 18px;}
+.sidenav {padding-top: 0px;}
+.sidenav a {font-size: 18px;}
+.sidenav a2 {font-size: 18px;}
 }
 
 @media screen and (max-height: 650px) {
-  .myFoodTop input {margin-top: 20px;}
-  .myFoodTop h1 {font-size: 35px;}
+.myFoodTop input {margin-top: 20px;}
+.myFoodTop h1 {font-size: 35px;}
 }
 @media screen and (max-height: 650px) {
-  .rightcol .sort-col button {margin-top: 5px;}
-  .myFoodTop h1 {font-size: 35px;}
+.rightcol .sort-col button {margin-top: 5px;}
+.myFoodTop h1 {font-size: 35px;}
 }
