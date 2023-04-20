@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 
 const app = initializeApp({
@@ -14,6 +14,7 @@ const app = initializeApp({
 });
 
 const db = getDatabase(app);
+const username = "garrett";
 
 
 export function addItemExp() {    
@@ -34,9 +35,10 @@ export function addItemExp() {
     list.appendChild(listItem);
 
     
-    set(ref(db, item), {
+    push(ref(db, username), {
+        item: item,
         exp: exp
       });
   }
   
-  window.addItemExp = addItemExp;
+  window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
