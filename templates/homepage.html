@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <!--<script type="module" src="static/js/index.js"></script>-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pantry Planner</title>
 </head>
 <body>
+
   <!-- Side navigation -->
   <div class="sidenav">
     <a id="pantry_planner" href="pantry_planner">Pantry Planner</a>
@@ -18,6 +20,7 @@
     <a2 id="settings" href="settings">Settings</a2>
   </div>
   <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+
   <!-- Page content -->
   <div class="main">
     <div class ="homeCol">
@@ -26,13 +29,15 @@
     <div class ="textBox">close to expiring</div>
    
     <form>
+      
       <div class ="input">
         <label for="item-input">Food:</label>
         <input type="text" id="item-input" name="item-input">
       
         <label for="exp-input">Expiration date:</label>
         <input type="date" id="exp-input" name="exp-input">
-      
+
+        
         <button type="button" onclick="addItemExp()">Add to List</button>
       </div>
     </form>
@@ -41,30 +46,6 @@
       <ul id="expList"></ul>
     </scrollBox>
 
-    <script>
-      function addItemExp() {
-        const itemInput = document.getElementById("item-input");
-        const expInput = document.getElementById("exp-input");
-        const item = itemInput.value;
-        const exp = expInput.value;
-        itemInput.value = "";
-        expInput.value = "";
-        const list = document.getElementById("expList");
-        const listItem = document.createElement("li");
-        const itemHeading = document.createElement("h2");
-        itemHeading.appendChild(document.createTextNode(item));
-        const expPara = document.createElement("p");
-        expPara.appendChild(document.createTextNode(exp));
-        listItem.appendChild(itemHeading);
-        listItem.appendChild(expPara);
-        list.appendChild(listItem);
-
-      database.ref('users').push({
-      item: itemInput,
-      expiration: expInput
-      });
-      }
-    </script>
 
 
     </div>
@@ -75,37 +56,6 @@
       </div>
   </div> 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
-  <script type="module">
-
-      // Import the functions you need from the SDKs you need
-    
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-      import { getDatabases } from "firebase/database";
-      // TODO: Add SDKs for Firebase products that you want to use
-    
-      // https://firebase.google.com/docs/web/setup#available-libraries
-    
-    
-      // Your web app's Firebase configuration
-    
-      const firebaseConfig = {
-    
-        apiKey: "AIzaSyB2DuI-rqRSZYiiEzvBasH4CUeppxX_FoY",
-        authDomain: "pantryplanner-5d480.firebaseapp.com",
-        databaseURL: "https://pantryplanner-5d480-default-rtdb.firebaseio.com",
-        projectId: "pantryplanner-5d480",
-        storageBucket: "pantryplanner-5d480.appspot.com",
-        messagingSenderId: "407621335990",
-        appId: "1:407621335990:web:c6ef5ac9f60b5ba09e9f17",
-        measurementId: "G-56LV409GVC",
-      };
-    
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      var database = firebase.database();
-      
-    
-    </script>
     <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
 </body>
 </html>

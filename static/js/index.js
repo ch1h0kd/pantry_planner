@@ -15,9 +15,28 @@ const app = initializeApp({
 
 const db = getDatabase(app);
 
-const usersRef = ref(db, 'users');
-set(ref(db, 'users'), {
-    username: 'name',
-    email: 'email',
-    profile_picture : 'imageUrl'
-  });
+
+export function addItemExp() {    
+    const itemInput = document.getElementById("item-input");
+    const expInput = document.getElementById("exp-input");
+    const item = itemInput.value;
+    const exp = expInput.value;
+    itemInput.value = "";
+    expInput.value = "";
+    const list = document.getElementById("expList");
+    const listItem = document.createElement("li");
+    const itemHeading = document.createElement("h2");
+    itemHeading.appendChild(document.createTextNode(item));
+    const expPara = document.createElement("p");
+    expPara.appendChild(document.createTextNode(exp));
+    listItem.appendChild(itemHeading);
+    listItem.appendChild(expPara);
+    list.appendChild(listItem);
+
+    
+    set(ref(db, item), {
+        exp: exp
+      });
+  }
+  
+  window.addItemExp = addItemExp;
