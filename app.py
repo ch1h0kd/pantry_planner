@@ -29,7 +29,7 @@ oauth.register(
     server_metadata_url=f'https://{env.get("AUTH0_DOMAIN")}/.well-known/openid-configuration'
 )
 
-app.register_blueprint(create_auth_blueprint(oauth)) 
+app.register_blueprint(create_auth_blueprint(oauth))
 
 @app.route('/')
 def index() -> str:
