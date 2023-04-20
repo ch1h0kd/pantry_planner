@@ -20,7 +20,7 @@ def create_auth_blueprint(oauth):
     def callback():
         token = oauth.auth0.authorize_access_token()
         session["user"] = token
-        return redirect("https://airfishi-bug-free-space-lamp-pgwj4rjxwrpf5vq-5000.preview.app.github.dev")
+        return redirect("https://airfishi-bug-free-space-lamp-pgwj4rjxwrpf5vq-5000.preview.app.github.dev/login")
 
     @auth.route('/logout')
     def logout():
