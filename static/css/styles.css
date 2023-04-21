@@ -33,18 +33,7 @@
     bottom: 0%;
     width: 100%;
   }
-
-  .sidenav a3 {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size:  25px;
-    color: #000000;
-    display: block;
-    background: lightgreen;
-    position: absolute;
-    bottom: 10%;
-    width: 100%;
-  }
+  
   /* When you mouse over the navigation links, change their color */
   .sidenav a:hover {
     color: #7d5411;
@@ -69,7 +58,7 @@
   flex-direction: column;
   float: left;
   }
-
+  
   .main homeText{
     font-size: 90px;
   }
@@ -133,7 +122,14 @@
 .myFoodTop {
   height: 15%;
   margin-left: 8px;
+}
+.myFoodTop {
+  height: 15%;
+  margin-left: 8px;
   padding: 0px 10px;
+  width: 72%;
+  top: 0;
+  position: absolute;
   width: 72%;
   top: 0;
   position: absolute;
