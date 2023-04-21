@@ -15,6 +15,7 @@ if ENV_FILE:
     
 app = Flask(__name__)
 app.secret_key = env.get("APP_SECRET_KEY")
+app.server_name = env.get("BASE_URL")
 
 # initialize OAuth registry with this fetch_token function
 oauth = OAuth(app)

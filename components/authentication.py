@@ -12,15 +12,18 @@ def create_auth_blueprint(oauth):
 
     @auth.route('/login')
     def login():
+        print("went through login")
+        print(url_for("auth.callback", _external=True))
         return oauth.auth0.authorize_redirect(
             redirect_uri=url_for("auth.callback", _external=True)
         )
 
     @auth.route('/callback', methods=["GET", "POST"])
     def callback():
+        print("went to /callback")
         token = oauth.auth0.authorize_access_token()
         session["user"] = token
-        return redirect("https://airfishi-bug-free-space-lamp-pgwj4rjxwrpf5vq-5000.preview.app.github.dev/login")
+        return redirect("/login")
 
     @auth.route('/logout')
     def logout():

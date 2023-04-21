@@ -21,7 +21,7 @@
     background: lightgreen
   }
   
-  /* The settings link at the bottom of the navigation menu*/
+  /* For the settings link at the bottom of the navigation menu*/
   .sidenav a2 {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
@@ -34,17 +34,6 @@
     width: 100%;
   }
 
-  .sidenav a3 {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size:  25px;
-    color: #000000;
-    display: block;
-    background: lightgreen;
-    position: absolute;
-    bottom: 10%;
-    width: 100%;
-  }
   /* When you mouse over the navigation links, change their color */
   .sidenav a:hover {
     color: #7d5411;
