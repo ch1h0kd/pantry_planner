@@ -49,12 +49,14 @@ export function addItemExp() {
   onValue(userRef, (snapshot) => {
     console.log(snapshot.val());
     var items = snapshot.val();
+    console.log(items.exp);
     //const list = document.getElementById("expList");
-    //items.forEach((item) => {
+  //  items.forEach((item) => {
+  //    console.log(item)
     //  let li = document.createElement("li");
     //  li.innerText = item;
     //  list.appendChild(li);
-   // });
+  //  });
   }, (errorObject) => {
     console.log('The read failed: ' + errorObject.name);
   }); 
