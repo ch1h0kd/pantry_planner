@@ -1,6 +1,6 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-import { doc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
 
 
 const app = initializeApp({
@@ -26,6 +26,8 @@ export function addItemExp() {
     const exp = expInput.value;
     itemInput.value = "";
     expInput.value = "";
+
+    //implementation that just throws it in the html
     const list = document.getElementById("expList");
     const listItem = document.createElement("li");
     const itemHeading = document.createElement("h2");
@@ -43,8 +45,18 @@ export function addItemExp() {
       });
   }
   
-  onSnapshot(userRef, () => {
-    console.log("hi from firebase");
-})
+
+  onValue(userRef, (snapshot) => {
+    console.log(snapshot.val());
+    var items = snapshot.val();
+    //const list = document.getElementById("expList");
+    //items.forEach((item) => {
+    //  let li = document.createElement("li");
+    //  li.innerText = item;
+    //  list.appendChild(li);
+   // });
+  }, (errorObject) => {
+    console.log('The read failed: ' + errorObject.name);
+  }); 
   
   window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
