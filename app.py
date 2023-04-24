@@ -68,9 +68,21 @@ def login() -> str:
 def logout() -> str:
     return render_template('logout.html')
 
-@app.route('/api_endpoint', methods=['GET'])
+@app.route("/")
+def recipes():
+    return render_template('recipes.html');
+
+# @app.route("/request/", methods=['POST'])
+# def request():
+#     #Moving forward code
+#     forward_message = "Moving Forward..."
+#     return render_template('index.html', forward_message=forward_message);
+
+@app.route("/request/", methods=['GET'])
 def api_endpoint():
     url = "https://tasty.p.rapidapi.com/recipes/list"
+
+    print("here")
 
     # Retrieve the query parameters from the request
     input1 = request.args.get('input1')
@@ -84,11 +96,11 @@ def api_endpoint():
 
     response = requests.request("GET", url, headers=headers, params=querystring)
 
-    print(response.text)
+    #print(response.text)
     # Process the response and return the result
     if response.status_code == 200:
         result = response.json()
-        return jsonify(result)
+        return render_template('recipes.html');
     else:
         return "API request failed with status code: " + str(response.status_code)
 

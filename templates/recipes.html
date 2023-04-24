@@ -18,19 +18,22 @@
     <a2 id="settings" href="settings">Settings</a2>
   </div>
   <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+  
   <!-- Page content -->
   <div class="recipesTop">
     <h1>Recipes</h1>
     <button class = "filter">Filter</button>
+
     <!-- Search box -->
     <div class="search-container">
-      <form action="/api_endpoint">
-        <input type="text" placeholder="Add keywords..." name="input1">
-        <button type="submit">Go</button>
+      <form action="/request/" method="get">
+      <input type="text" placeholder="Add keywords..." name="input1"></input>
+      <button id="submit" type="button">Go</button>
       </form>
     </div>
   </div>
-    <!-- Right columns -->
+
+  <!-- Right columns -->
   <div class="rightcol">
     <button id="Sign-up" class ="login">Sign up/Login</button>
     <div class="sort-col">
@@ -44,7 +47,38 @@
   </div> 
 
   <div class="mainContent">
-    main content
+    <div id="myData"></div>
+    <script>
+      var name = document.getElementsByName('input1');
+      fetch("/api_endpoint?from=0&size=20&tags=under_30_minutes&q=${name}")
+      .then((response) =>  {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("NETWORK RESPONSE NOT OK");
+        }
+      })
+      .then(function (data) {
+        console.log(data); 
+        show(data);
+      })
+      .catch((error) => {
+        console.log('error: ' + err);
+      });
+      
+      // function show(data) {
+      //   var mainContainer = document.getElementById("myData");
+      //   headers = {
+      //     "X-RapidAPI-Key":env.get("API_KEY"),
+      //     "X-RapidAPI-Host":env.get("API_HOST")
+      //   }
+      //   //const searchBtn = document.getElementById("submit");
+      //     for (var i = 0; i < data.length; i++) {
+      //       var div = document.createElement("div");
+      //       div.innerHTML = 'Name: ' + data[i].name;
+      //       mainContainer.appendChild(div);
+      //     }
+    </script>
   </div> 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
   <script type="module">
