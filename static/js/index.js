@@ -25,21 +25,25 @@ export function addItemExp() {
     const expInput = document.getElementById("exp-input");
     const item = itemInput.value;
     const exp = expInput.value;
-    itemInput.value = "";
-    expInput.value = "";
-    push(foodRef, {
+    if(item != "" && exp != ""){
+      itemInput.value = "";
+      expInput.value = "";
+      push(foodRef, {
         item: item,
         exp: exp
       });
+    }
 }
 
 export function addItemShop() {    
   const itemInput = document.getElementById("shop-input");
   const item = itemInput.value;
-  itemInput.value = "";
-  push(shoppingRef, {
+  if(item != ""){
+    itemInput.value = "";
+    push(shoppingRef, {
       item: item
     });
+  }
 }
   
   /*
