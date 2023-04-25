@@ -46,13 +46,16 @@
       <ul id="expList"></ul>
     </scrollBox>
 
-
-
     </div>
     <div class ="homeCol">
       <div class ="sortBy">Sort by...</div>
       <div class ="textBox">My Shopping list</div>
-      <scrollBox> this is where the shopping list would go if I had one</scrollBox>
+        <label for="item-input">Food:</label>
+        <input type="text" id="shop-input" name="item-input">
+        <button type="button" onclick="addItemShop()">Add to List</button>
+      <scrollBox> 
+        <ul id="shopList"></ul>
+      </scrollBox>
       </div>
   </div> 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
