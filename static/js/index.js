@@ -28,15 +28,15 @@ export function addItemExp() {
     expInput.value = "";
 
     //implementation that just throws it in the html
-    const list = document.getElementById("expList");
-    const listItem = document.createElement("li");
-    const itemHeading = document.createElement("h2");
-    itemHeading.appendChild(document.createTextNode(item));
-    const expPara = document.createElement("p");
-    expPara.appendChild(document.createTextNode(exp));
-    listItem.appendChild(itemHeading);
-    listItem.appendChild(expPara);
-    list.appendChild(listItem);
+    //const list = document.getElementById("expList");
+    //const listItem = document.createElement("li");
+    //const itemHeading = document.createElement("h2");
+    //itemHeading.appendChild(document.createTextNode(item));
+    //const expPara = document.createElement("p");
+    //expPara.appendChild(document.createTextNode(exp));
+    //listItem.appendChild(itemHeading);
+    //listItem.appendChild(expPara);
+    //list.appendChild(listItem);
 
     
     push(foodRef, {
@@ -47,7 +47,23 @@ export function addItemExp() {
   
 
   onValue(foodRef, (snapshot) => {
-    console.log(snapshot.val());
+    const trip = Object.values(snapshot.val())
+      trip.forEach(element => {
+
+
+
+        
+      const list = document.getElementById("expList");
+      const listItem = document.createElement("li");
+      const itemHeading = document.createElement("h2");
+      itemHeading.appendChild(document.createTextNode(element.item));
+      const expPara = document.createElement("p");
+      expPara.appendChild(document.createTextNode(element.exp));
+      listItem.appendChild(itemHeading);
+      listItem.appendChild(expPara);
+      list.appendChild(listItem);
+    });
+
   }); 
   
   window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
