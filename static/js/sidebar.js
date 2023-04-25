@@ -3,6 +3,7 @@ var sidebar_my_food = document.getElementById("my_food");
 var sidebar_recipes = document.getElementById("recipes");
 var sidebar_settings = document.getElementById("settings");
 var sidebar_shopping_list = document.getElementById("shopping_list");
+var sidebar_shopping_list = document.getElementById("login");
 var ourURL = 'https://airfishi-bug-free-space-lamp-pgwj4rjxwrpf5vq-5000.preview.app.github.dev';
 
 sidebar_pantry_planner.addEventListener("click", function() {
@@ -23,4 +24,8 @@ sidebar_settings.addEventListener("click", function() {
 
 sidebar_shopping_list.addEventListener("click", function() {
   window.location.href = ourURL + "/shopping_list"
+});
+
+login.addEventListener("click", function() {
+  window.location.href = ourURL + "/login";
 });

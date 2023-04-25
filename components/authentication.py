@@ -5,7 +5,11 @@ from urllib.parse import quote_plus, urlencode
 from authlib.integrations.flask_client import OAuth
 from authlib.oauth2.rfc6750 import BearerTokenValidator
 
-from flask import redirect, session, url_for
+from flask import redirect, session, url_for as _url_for
+
+SERVER_NAME = "airfishi-bug-free-space-lamp-pgwj4rjxwrpf5vq-5000.preview.app.github.dev"
+def url_for(endpoint, _external=False):
+    return _url_for(endpoint, _external=_external).replace("localhost", SERVER_NAME)
 
 def create_auth_blueprint(oauth):
     auth = Blueprint('auth', __name__, template_folder='templates')
