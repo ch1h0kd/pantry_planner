@@ -16,7 +16,7 @@ const app = initializeApp({
 
 const db = getDatabase(app);
 const username = "garrett";
-const userRef = ref(db, username);
+const foodRef = ref(db, username + "/food");
 
 
 export function addItemExp() {    
@@ -39,26 +39,15 @@ export function addItemExp() {
     list.appendChild(listItem);
 
     
-    push(userRef, {
+    push(foodRef, {
         item: item,
         exp: exp
       });
   }
   
 
-  onValue(userRef, (snapshot) => {
+  onValue(foodRef, (snapshot) => {
     console.log(snapshot.val());
-    var items = snapshot.val();
-    console.log(items.exp);
-    //const list = document.getElementById("expList");
-  //  items.forEach((item) => {
-  //    console.log(item)
-    //  let li = document.createElement("li");
-    //  li.innerText = item;
-    //  list.appendChild(li);
-  //  });
-  }, (errorObject) => {
-    console.log('The read failed: ' + errorObject.name);
   }); 
   
   window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
