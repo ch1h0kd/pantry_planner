@@ -1,8 +1,8 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { getDatabase, ref, push, onValue, get } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
 
-
+var i = 0;
 const app = initializeApp({
     apiKey: "AIzaSyB2DuI-rqRSZYiiEzvBasH4CUeppxX_FoY",
     authDomain: "pantryplanner-5d480.firebaseapp.com",
@@ -45,10 +45,33 @@ export function addItemExp() {
       });
   }
   
+  get(foodRef).then((snapshot) => {
 
-  onValue(foodRef, (snapshot) => {
-    const trip = Object.values(snapshot.val())
+    const trip = Object.values(snapshot.val());
+    console.log(snapshot.val());
       trip.forEach(element => {        
+        const list = document.getElementById("expList");
+        const listItem = document.createElement("li");
+        const itemHeading = document.createElement("h2");
+        itemHeading.appendChild(document.createTextNode(element.item));
+        const expPara = document.createElement("p");
+        expPara.appendChild(document.createTextNode(element.exp));
+        listItem.appendChild(itemHeading);
+        listItem.appendChild(expPara);
+        list.appendChild(listItem);
+      });
+});
+
+
+  
+  onValue(foodRef, (snapshot) => { //update the list whenever a new food is added 
+    if(i == 0){
+      i++;
+    }
+    else{
+    const trip = Object.values(snapshot.val());
+    const element = trip[trip.length -1];
+      //trip.forEach(element => {        
       const list = document.getElementById("expList");
       const listItem = document.createElement("li");
       const itemHeading = document.createElement("h2");
@@ -58,8 +81,7 @@ export function addItemExp() {
       listItem.appendChild(itemHeading);
       listItem.appendChild(expPara);
       list.appendChild(listItem);
-    });
-
+    }
   }); 
   
   window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
