@@ -1,4 +1,4 @@
-from flask import flash, redirect, url_for, session
+from flask import flash, redirect, url_for as _url_for, session
 from functools import wraps
 
 def login_required(status=None):
@@ -12,3 +12,7 @@ def login_required(status=None):
                 return redirect(url_for("welcome"))
         return wrapper
     return login_decorator
+
+SERVER_NAME = "airfishi-bug-free-space-lamp-pgwj4rjxwrpf5vq-5000.preview.app.github.dev"
+def url_for(endpoint, _external=False):
+    return _url_for(endpoint, _external=_external).replace("localhost", SERVER_NAME)
