@@ -48,11 +48,7 @@ export function addItemExp() {
 
   onValue(foodRef, (snapshot) => {
     const trip = Object.values(snapshot.val())
-      trip.forEach(element => {
-
-
-
-        
+      trip.forEach(element => {        
       const list = document.getElementById("expList");
       const listItem = document.createElement("li");
       const itemHeading = document.createElement("h2");
