@@ -75,7 +75,7 @@
   flex-direction: column;
   float: left;
   }
-
+  
   .main homeText{
     font-size: 90px;
   }
@@ -136,97 +136,139 @@
   }
 
 /* Style page content */
-.myFoodmain {
-  height: 20%; /* Full-height: remove this if you want "auto" height */
-  margin-left: 10px; /* Same as the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+.myFoodTop {
+  height: 15%;
+  margin-left: 8px;
+}
+.myFoodTop {
+  height: 15%;
+  margin-left: 8px;
   padding: 0px 10px;
-  width: 70%; /* Set the width of the sidebar */
+  width: 72%;
+  top: 0;
+  position: absolute;
+  width: 72%;
+  top: 0;
+  position: absolute;
   left: 15%;
 }
-  /* The page title */
-  .myFoodmain t {
-    text-decoration: none;
-    top: 0; /* Stay at the top */
-    font-size:  60px;
-    color: #000000;
-    display: block;
-    position: absolute;
-  }
 
-  .myFoodmain .search-container {
-    margin-top: 60px;
-    padding: 2px 2px;
-    height: 40%;
-    top: 30%;
-  }
+.myFoodTop h1{
+  font-size: 55px;
+  margin: 0.5%;
+}
+.myFoodTop .add-food{
+  margin-right: 3%;
+  position: absolute;
+  right: 0;
+  border: 2px solid black;
+  width: 13%;
+  height: 60px;
+  top: 38%;
+  font-size: 20px;
+  text-align: center;
+  bottom: 6%;
+}
+.add-food:hover {
+  color: #242424;
+  background-color: rgb(131, 186, 236); /* background highlight color*/
+}
+.myFoodTop .search-container {
+  margin-left: 0.5%;
+  top: 50%;
+  width: 95%;
+  position: absolute;
+}
+
+.myFoodTop input[type=text] {
+  padding: 6px;
+  margin-top: 2%;
+  width: 75%;
+  height: 15px;
+  font-size: 20px;
+  border: 2px solid #000000;
+}
   
-  .myFoodmain input[type=text] {
-    padding: 6px;
-    margin-top: 15px;
-    width: 75%;
-    height: 15px;
-    font-size: 20px;
-    border: 2px solid #000000;
-  }
-  
-  .myFoodmain .search-container button {
-    width: 8%;
-    height: 35px;
-    font-size: 20px;
-    border: 2px solid #000000;;
-    cursor: pointer;
-  }
+.myFoodTop .search-container button {
+  width: 8%;
+  height: 65%;
+  margin-top: 2%;
+  border: 2px solid #000000;
+  cursor: pointer;
+  position: absolute;
+  margin-left: 0.5%;
+  font-size: 20px;
+}
 
-  .rightcol{
-    height: 100%;
-    width: 20%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    border: #43ccd6;
-    overflow-x: hidden;
-    /* padding-top: 5%;*/
-  }
+.mainContent{
+  border: 2px solid #000;
+  margin-top: 8%;
+  margin-left: 15%;
+  margin-bottom: 5%;
+  height: 650px;
+  width: 72%;
+  position: absolute;
+}
 
-  .login{
-    width: 136px;
-    height: 32px;
-    padding: 10px;
-    border: 2px solid gray;
-    margin-top: 10%;
-    margin-left: 40%;
-    font-size: 20px;
-    text-align: center;
-    font-weight: bold;
-    background: #ffff89;
-  }
+.rightcol{
+  height: 100%;
+  position: absolute;
+  width: 15%;
+  right: 0;
+  top: 0;
+  overflow-x: hidden;
+}
 
-  .login:hover {
-    color: #242424;
-    background-color: rgb(135, 143, 64); /* background highlight color*/
-  }
+.rightcol .login{
+  width: 70%;
+  height: 10%;
+  border: 2px solid gray;
+  margin-top: 10%;
+  font-size: 17px;
+  right: 10%;
+  text-align: center;
+  font-weight: bold;
+  background: #ffff89;
+  position: absolute;
+}
 
-  .box{
-    width: 127px;
-    padding: 10px;
-    border: 2px solid gray;
-    margin-top: 46px;
-    margin-left: 40%;
-    font-size: 20px;
-    text-align: center;
-    font-weight: bold;
-  }
+.rightcol .login:hover {
+  color: #242424;
+  background-color: rgb(135, 143, 64); /* background highlight color*/
+}
 
-  .box:hover {
-    color: #242424;
-    background-color: rgb(131, 186, 236); /* background highlight color*/
-  }
+.rightcol .sort-col{
+  position: absolute;
+  top: 15%;
+}
+.rightcol .sort-col button{
+  width: 135px;
+  padding: 10px;
+  border: 2px solid gray;
+  margin-top: 12%;
+  margin-left: 25%;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+.rightcol .sort-col button:hover {
+  color: #242424;
+  background-color: rgb(131, 186, 236); /* background highlight color*/
+}
 
-  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 0px;}
-    .sidenav a {font-size: 18px;}
-    .sidenav a2 {font-size: 18px;}
-  }
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 0px;}
+  .sidenav a {font-size: 18px;}
+  .sidenav a2 {font-size: 18px;}
+}
+
+@media screen and (max-height: 650px) {
+  .myFoodTop input {margin-top: 20px;}
+  .myFoodTop h1 {font-size: 35px;}
+}
+@media screen and (max-height: 650px) {
+  .rightcol .sort-col button {margin-top: 5px;}
+  .myFoodTop h1 {font-size: 35px;}
+}

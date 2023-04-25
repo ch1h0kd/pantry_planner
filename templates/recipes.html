@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recipes.css') }}">
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,8 +19,32 @@
   </div>
   <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
   <!-- Page content -->
-  <div class="main">
+  <div class="recipesTop">
+    <h1>Recipes</h1>
+    <button class = "filter">Filter</button>
+    <!-- Search box -->
+    <div class="search-container">
+      <form action="/api_endpoint">
+        <input type="text" placeholder="Add keywords..." name="input1">
+        <button type="submit">Go</button>
+      </form>
+    </div>
+  </div>
+    <!-- Right columns -->
+  <div class="rightcol">
+    <button id="Sign-up" class ="login">Sign up/Login</button>
+    <div class="sort-col">
+      <button id="Sort-by" class ="box">Sort by...</button>
+      <button id="Time-to-make" class ="box">Time to make</button>
+      <button id="Use-expiring-soon" class ="box">Use expiring soon</button>
+      <button id="Vegitarian" class ="box">Vegitarian</button>
+      <button id="More-options" class ="box">More options</button>
+    </div>
     ...
+  </div> 
+
+  <div class="mainContent">
+    main content
   </div> 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
   <script type="module">
