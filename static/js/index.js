@@ -45,6 +45,7 @@ export function addItemExp() {
       });
   }
   
+  /*
   get(foodRef).then((snapshot) => {
 
     const trip = Object.values(snapshot.val());
@@ -72,6 +73,7 @@ export function addItemExp() {
         i++;
       });
 });
+*/
 
 export function buttonRemove(id){
   var toRemove = ref(db, username + "/food/" +id); 
@@ -80,26 +82,32 @@ export function buttonRemove(id){
 }
   
   onValue(foodRef, (snapshot) => { //update the list whenever a new food is added 
-    if(i == 0){
-      i++;
-    }
-    else{
+    const list = document.getElementById("expList");
+    list.innerHTML = "";
     const trip = Object.values(snapshot.val());
-    const element = trip[trip.length -1];
-      //trip.forEach(element => {        
-      const list = document.getElementById("expList");
-      const listItem = document.createElement("li");
-      var button = document.createElement("button");
-      button.innerHTML = "remove item";
-      listItem.appendChild(button);
-      const itemHeading = document.createElement("h2");
-      itemHeading.appendChild(document.createTextNode(element.item));
-      const expPara = document.createElement("p");
-      expPara.appendChild(document.createTextNode(element.exp));
-      listItem.appendChild(itemHeading);
-      listItem.appendChild(expPara);
-      list.appendChild(listItem);
-    }
+    const keys = Object.keys(snapshot.val());
+    var i = 0;
+    //const element = trip[trip.length -1];
+      trip.forEach(element => {        
+        const listItem = document.createElement("li");
+        const itemHeading = document.createElement("h2");
+        var button = document.createElement("button");
+        button.innerHTML = "remove item";
+        button.value = (keys[i]);
+        listItem.appendChild(button);
+
+        button.addEventListener("click", function(){
+          buttonRemove(button.value);
+        });
+
+        itemHeading.appendChild(document.createTextNode(element.item));
+        const expPara = document.createElement("p");
+        expPara.appendChild(document.createTextNode(element.exp));
+        listItem.appendChild(itemHeading);
+        listItem.appendChild(expPara);
+        list.appendChild(listItem);
+        i++;
+    });
   }); 
   
   window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
