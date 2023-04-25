@@ -68,9 +68,9 @@ def login() -> str:
 def logout() -> str:
     return render_template('logout.html')
 
-@app.route("/")
-def recipes():
-    return render_template('recipes.html');
+# @app.route("/")
+# def recipes():
+#     return render_template('recipes.html');
 
 # @app.route("/request/", methods=['POST'])
 # def request():
@@ -78,7 +78,7 @@ def recipes():
 #     forward_message = "Moving Forward..."
 #     return render_template('index.html', forward_message=forward_message);
 
-@app.route("/request/", methods=['GET'])
+@app.route("/api-endpoint", methods=['GET'])
 def api_endpoint():
     url = "https://tasty.p.rapidapi.com/recipes/list"
 
@@ -100,7 +100,7 @@ def api_endpoint():
     # Process the response and return the result
     if response.status_code == 200:
         result = response.json()
-        return render_template('recipes.html');
+        return jsonify(result);
     else:
         return "API request failed with status code: " + str(response.status_code)
 

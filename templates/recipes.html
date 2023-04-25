@@ -26,10 +26,17 @@
 
     <!-- Search box -->
     <div class="search-container">
-      <form action="/request/" method="get">
-      <input type="text" placeholder="Add keywords..." name="input1"></input>
-      <button id="submit" type="button">Go</button>
-      </form>
+      <input type="text" placeholder="Add keywords..." id="name"></input>
+      <button id="submit" type="button" onclick=getData()>Go</button>
+      <script> /*hit enter and search*/
+        var input = document.getElementById("name");
+        input.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("submit").click();
+          }
+        });
+        </script>
     </div>
   </div>
 
@@ -49,22 +56,26 @@
   <div class="mainContent">
     <div id="myData"></div>
     <script>
-      var name = document.getElementsByName('input1');
-      fetch("/api_endpoint?from=0&size=20&tags=under_30_minutes&q=${name}")
-      .then((response) =>  {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("NETWORK RESPONSE NOT OK");
-        }
-      })
-      .then(function (data) {
-        console.log(data); 
-        show(data);
-      })
-      .catch((error) => {
-        console.log('error: ' + err);
-      });
+      function getData(){
+        var name = document.getElementById('name').value;
+        console.log(name);
+        fetch('/api-endpoint?input1='+name)
+        .then((response) =>  {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("NETWORK RESPONSE NOT OK");
+          }
+        })
+        .then(function (data) {
+          console.log(data); 
+          //show(data);
+        })
+        .catch((error) => {
+          console.log('error: ' + error);
+        });
+      }
+      
       
       // function show(data) {
       //   var mainContainer = document.getElementById("myData");
@@ -86,7 +97,7 @@
       // Import the functions you need from the SDKs you need
     
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-      import { getDatabases } from "firebase/database";
+      import { getDatabase } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
       // TODO: Add SDKs for Firebase products that you want to use
     
       // https://firebase.google.com/docs/web/setup#available-libraries
