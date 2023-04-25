@@ -58,14 +58,13 @@ def shopping_list() -> str:
 def recipes() -> str:
     return render_template('recipes.html')
 
-@app.route('/login')
-def login() -> str:
-    return render_template('welcome.html')
-
-@app.route('/logout')
-@login_required()
-def logout() -> str:
+@app.route('/successful_logout')
+def successful_logout() -> str:
     return render_template('logout.html')
+
+@app.route('/successful_login')
+def successful_login() -> str:
+    return render_template('login.html')
 
 if __name__ == '__main__':
     index()

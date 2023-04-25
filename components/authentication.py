@@ -14,8 +14,6 @@ def create_auth_blueprint(oauth):
 
     @auth.route('/login')
     def login():
-        print("went through login")
-        print(url_for("auth.callback", _external=True))
         return oauth.auth0.authorize_redirect(
             redirect_uri=url_for("auth.callback", _external=True)
         )
@@ -25,20 +23,21 @@ def create_auth_blueprint(oauth):
         print("went to /callback")
         token = oauth.auth0.authorize_access_token()
         session["user"] = token
-        return redirect("/pantry_planner")
+        return redirect("/successful_login")
 
     @auth.route('/logout')
     def logout():
         session.clear()
         return redirect(
-            "https://" + env.get("AUTH0_DOMAIN")
-            + "/v2/logout?"
-            + urlencode(
-                {
-                    "returnTo": url_for("pantry_planner", _external=True),
-                    "client_id": env.get("AUTH0_CLIENT_ID"),
-                },
-                quote_via=quote_plus,
-            )
+            "/successful_logout" # this is a temporary "solution"
+            # "https://" + env.get("AUTH0_DOMAIN")
+            # + "/v2/logout?"
+            # + urlencode(
+            #     {
+            #         "returnTo": url_for("successful_logout", _external=True),
+            #         "client_id": env.get("AUTH0_CLIENT_ID"),
+            #     },
+            #     quote_via=quote_plus,
+            # )
         )
     return auth
