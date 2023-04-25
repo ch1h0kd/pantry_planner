@@ -20,7 +20,6 @@ def create_auth_blueprint(oauth):
 
     @auth.route('/callback', methods=["GET", "POST"])
     def callback():
-        print("went to /callback")
         token = oauth.auth0.authorize_access_token()
         session["user"] = token
         return redirect("/successful_login")

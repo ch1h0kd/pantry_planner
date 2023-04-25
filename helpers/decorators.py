@@ -9,7 +9,7 @@ def login_required(status=None):
                 return func(*args, **kwargs)
             else:
                 flash("You are not logged in")
-                return redirect(url_for("welcome"))
+                return redirect(url_for("login"))
         return wrapper
     return login_decorator
 
