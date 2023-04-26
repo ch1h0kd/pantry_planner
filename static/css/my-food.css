@@ -133,7 +133,8 @@
   font-size: 55px;
   margin: 0.5%;
 }
-.myFoodTop .add-food{
+
+.add-food{
   margin-right: 3%;
   position: absolute;
   right: 0;
@@ -144,7 +145,14 @@
   font-size: 20px;
   text-align: center;
   bottom: 6%;
+  cursor: pointer;
 }
+
+.add-food:hover {
+  color: #242424;
+  background-color: rgb(131, 186, 236); /* background highlight color*/
+}
+
 /* The actual popup */
 .add-food .popupWindow {
   visibility: hidden;
@@ -157,6 +165,7 @@
   width: 700px;
   top: 10%;
   left: 29%;
+  z-index: 1;
   }
 
   .add-food .form2 {
@@ -181,10 +190,6 @@
     animation: fadeIn 1s;
   }
 
-.add-food:hover {
-  color: #242424;
-  background-color: rgb(131, 186, 236); /* background highlight color*/
-}
   .myFoodTop .search-container {
     margin-left: 0.5%;
     top: 50%;

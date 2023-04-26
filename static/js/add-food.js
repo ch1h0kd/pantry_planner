@@ -1,6 +1,7 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, push, onValue, get, remove } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
+
 
 var i = 0;
 const app = initializeApp({
@@ -47,7 +48,20 @@ export function changeUser(){
   });
 }
 
-export function addItemExp() {    
+export function popUp() {
+    var popup = document.getElementById("Popup");
+    if (!popup.classList.contains("show")) {
+      popup.classList.toggle("show");
+    }
+  }
+
+export function closePopUp(){
+    console.log("closePopUp");
+    popup.classList.toggle("show");
+}
+
+export function addItemExp() {   
+    console.log("addItemExp"); 
     const itemInput = document.getElementById("item-input-pop");
     const expInput = document.getElementById("exp-input-pop");
     const item = itemInput.value;
@@ -204,3 +218,5 @@ function shopHandler(snapshot){
   window.addItemShop = addItemShop;
   window.buttonRemove = buttonRemove;
   window.changeUser = changeUser;
+  window.closePopUp = closePopUp;
+  window.popUp = popUp;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/my-food.css') }}">
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/add-food.js') }}"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,14 +29,18 @@
           <form>
       
             <div class ="input">
-              <label for="item-input">Food:</label>
-              <input type="text" id="item-input" name="item-input">
+              <div id = "user-promt-pop">ENTER A USER NAME</div>
+              <input type="text" id="user-input-pop" name="user-input">
+              <!-- <button type="button" id="user-button-pop" onclick="changeUser()">Change Username</button> -->
+              
+              <label for="item-input"><br>Food:</label>
+              <input type="text" id="item-input-pop" name="item-input"></input>
             
-              <label for="exp-input">Expiration date:</label>
-              <input type="date" id="exp-input" name="exp-input">
+              <label for="exp-input"><br>Expiration date:</label>
+              <input type="date" id="exp-input-pop" name="exp-input"></input>
       
               
-              <button type="button" onclick="addItemExp()">Add to List</button>
+              <button type="button" id="add-to-list" onclick="closePopUp(); addItemExp(); changeUser();">Add to List</button>
             </div>
           </form>
       
@@ -46,9 +50,17 @@
     </div>
     <script>
       // When the user clicks on div, open the popup
-      function popUp() {
+      function popUp(){
         var popup = document.getElementById("Popup");
-        popup.classList.toggle("show");
+        if (!popup.classList.contains("show")) {
+          popup.classList.toggle("show");
+        }
+      }
+
+      function closePopUp(){
+        var popup = document.getElementById("Popup");
+        console.log("closePopUp");
+        popup.classList.toggle("hide");
       }
       </script>
     <!-- Search box -->
@@ -74,7 +86,7 @@
   </div> 
 
   <div class="mainContent">
-    main content
+    <ul id="expList"></ul>
   </div> 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
   <script type="module">

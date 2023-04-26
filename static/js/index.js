@@ -198,6 +198,7 @@ function shopHandler(snapshot){
       i++;
     });
 }
+
   
   window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
   window.addItemShop = addItemShop;
