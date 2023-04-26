@@ -75,7 +75,7 @@ def successful_login() -> str:
 # def home():
 #     return app.send_static_file('recipes.html')
 
-@app.route("/api-endpoint", methods=['GET'])
+@app.route('/api-endpoint', methods=['GET'])
 def api_endpoint():
     url = "https://tasty.p.rapidapi.com/recipes/list"
 
