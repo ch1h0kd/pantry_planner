@@ -71,11 +71,11 @@ def successful_logout() -> str:
 def successful_login() -> str:
     return render_template('login.html')
     
-@app.route("/")
-def home():
-    return app.send_static_file('recipes.html')
-    
-@app.route('/api_endpoint', methods=['GET'])
+# @app.route("/")
+# def home():
+#     return app.send_static_file('recipes.html')
+
+@app.route("/api-endpoint", methods=['GET'])
 def api_endpoint():
     url = "https://tasty.p.rapidapi.com/recipes/list"
 
