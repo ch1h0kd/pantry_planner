@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { getDatabase, ref, push, onValue, get, remove } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
 
 
@@ -25,6 +25,7 @@ get(shoppingRef).then((snapshot) => {
 get(foodRef).then((snapshot) => {
   foodHandler(snapshot)
 });
+
 
 export function changeUser(){
   const userInput = document.getElementById("user-input-pop");
@@ -145,7 +146,7 @@ function foodHandler(snapshot){
   var i = 0;
   trip.forEach(element => {        
       const listItem = document.createElement("li");
-      const itemHeading = document.createElement("h2");
+      const itemHeading = document.createElement("h3");
       var button = document.createElement("button");
       button.innerHTML = "remove item";
       button.value = (keys[i]);
@@ -214,9 +215,9 @@ function shopHandler(snapshot){
 }
 
   
-  window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
-  window.addItemShop = addItemShop;
-  window.buttonRemove = buttonRemove;
+window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
+window.addItemShop = addItemShop;
+window.buttonRemove = buttonRemove;
   window.changeUser = changeUser;
   window.closePopUp = closePopUp;
   window.popUp = popUp;

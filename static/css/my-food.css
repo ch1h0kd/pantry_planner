@@ -118,6 +118,14 @@
     border: 1px solid #000;
   }
 
+  h3{
+    color: #b1acff;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+  }
+
 /* Style page content */
 .myFoodTop {
   height: 15%;

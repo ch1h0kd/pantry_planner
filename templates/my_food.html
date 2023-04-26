@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/my-food.css') }}">
-    <script src="{{ url_for('static', filename='js/add-food.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/add-food.js') }}"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
   <div class="sidenav">
     <a id="pantry_planner" href="pantry_planner">Pantry Planner</a>
     <a id="my_food" href="my_food">My Food</a>
-    <a id="shopping_list" href="shopping_list">Shopping List</a>
+    <a id="shopping_list" href="shopmoping_list">Shopping List</a>
     <a id="recipes" href="recipes">Recipes</a>
     <a3 id="login" href="login">Login</a3>
     <a2 id="settings" href="settings">Settings</a2>
@@ -40,7 +40,7 @@
               <input type="date" id="exp-input-pop" name="exp-input"></input>
       
               
-              <button type="button" id="add-to-list" onclick="closePopUp(); addItemExp(); changeUser();">Add to List</button>
+              <button type="button" id="add-to-list" onclick="popUp(); changeUser(); addItemExp();">Add to List</button>
             </div>
           </form>
       
@@ -52,16 +52,20 @@
       // When the user clicks on div, open the popup
       function popUp(){
         var popup = document.getElementById("Popup");
-        if (!popup.classList.contains("show")) {
-          popup.classList.toggle("show");
-        }
+        var popup2 = document.getElementById("container");
+        console.log("popUp");
+        popup.classList.toggle("show");
+        popup2.classList.toggle("show");
+        // if (!popup.classList.contains("show")) {
+        //   popup.classList.toggle("show");
+        // }
       }
 
-      function closePopUp(){
-        var popup = document.getElementById("Popup");
-        console.log("closePopUp");
-        popup.classList.toggle("hide");
-      }
+      // function closePopUp(){
+      //   var popup = document.getElementById("Popup");
+      //   console.log("closePopUp");
+      //   popup.classList.toggle("hide");
+      // }
       </script>
     <!-- Search box -->
     <div class="search-container">
@@ -89,44 +93,6 @@
     <ul id="expList"></ul>
   </div> 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
-  <script type="module">
-
-      // Import the functions you need from the SDKs you need
-    
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-      import { getDatabases } from "firebase/database";
-      // TODO: Add SDKs for Firebase products that you want to use
-    
-      // https://firebase.google.com/docs/web/setup#available-libraries
-    
-    
-      // Your web app's Firebase configuration
-    
-      const firebaseConfig = {
-    
-        apiKey: "AIzaSyA3RzxLT0P7Vu_ne5bwfcSS2jFGXRV91YI",
-    
-        authDomain: "pantry-planner-c34aa.firebaseapp.com",
-    
-        projectId: "pantry-planner-c34aa",
-    
-        storageBucket: "pantry-planner-c34aa.appspot.com",
-    
-        messagingSenderId: "718999300893",
-    
-        appId: "1:718999300893:web:04b1ef888d8bc0b3074ff4",
-
-        // The value of `databaseURL` depends on the location of the database
-        //TODO: replace with database name
-        databaseURL: "https://DATABASE_NAME.firebaseio.com",
-
-    
-      };
-    
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-    
-    </script>
     <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
 </body>
 </html>
