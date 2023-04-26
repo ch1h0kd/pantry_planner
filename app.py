@@ -10,7 +10,7 @@ from components.authentication import create_auth_blueprint
 from helpers.decorators import login_required
 
 import requests
-#from bs4 import BeautifulSoup
+import json
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
@@ -68,15 +68,24 @@ def successful_logout() -> str:
 @app.route('/successful_login')
 def successful_login() -> str:
     return render_template('login.html')
-    
-# @app.route("/")
-# def home():
-#     return app.send_static_file('recipes.html')
+
+my_global_variable = None  # Initialize global variable
+
+@app.route('/myFoodArray/<string:itemArray>', methods=['POST'])
+def myFoodArray(itemArray):
+    itemArray = json.loads(itemArray)
+    global foodNames  # Declare that we're using the global variable
+    foodNames = itemArray
+    print()
+    print('------------------')
+    print(f"Item: {foodNames}")
+    return "Success!!"
 
 @app.route('/api-endpoint', methods=['GET'])
 def api_endpoint():
     url = "https://tasty.p.rapidapi.com/recipes/list"
 
+    print(f"Item: {foodNames}")
     # Retrieve the query parameters from the request
     # Load the HTML file
     # with open('templates/recipes.html') as f:

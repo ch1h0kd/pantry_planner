@@ -26,47 +26,31 @@ get(foodRef).then((snapshot) => {
 });
 
 
-function getMyFood(){
-  // get all ingredients from the database
-  get(shoppingRef).then((snapshot) => {
-    shopHandler(snapshot)
-  });
-  get(foodRef).then((snapshot) => {
-    foodHandler(snapshot)
-  });
-  // pass them in the parameter
-  // print the responses
-}
-
 function foodHandler(snapshot){
-  const list = document.getElementById("expList");
-  if (list == null) {
-    console.log("Element with ID 'expList' not found");
-    return;
-  }
-  list.innerHTML = "";
-  const trip = Object.values(snapshot.val());
-  const keys = Object.keys(snapshot.val());
+  // const list = document.getElementById("expList"); // how to get expList in homepage.html
+  // if (list == null) {
+  //   console.log("Element with ID 'expList' not found");
+  //   return;
+  // }
+  //list.innerHTML = "";
+  const trip = Object.values(snapshot.val()); // array(size)
+  //const keys = Object.keys(snapshot.val());
   var i = 0;
-  trip.forEach(element => {        
-      const listItem = document.createElement("li");
-      const itemHeading = document.createElement("h2");
-      var button = document.createElement("button");
-      button.innerHTML = "remove item";
-      button.value = (keys[i]);
-      listItem.appendChild(button);
-      button.style["float"] = "right";
-      button.addEventListener("click", function(){
-        buttonRemove("/food/", button.value);
-      });
-      itemHeading.appendChild(document.createTextNode(element.item));
-      const expPara = document.createElement("p");
-      expPara.appendChild(document.createTextNode(element.exp));
-      listItem.appendChild(itemHeading);
-      listItem.appendChild(expPara);
-      list.appendChild(listItem);
-      i++;
+  const itemArray = [];
+  trip.forEach(element => {  
+    itemArray.push(element.item);      
+    console.log(element.item); // prints "apple"
+    //console.log(element.exp); // prints "2023-05-01"
+    i++;
   });
+  console.log(itemArray); 
+  const request = new XMLHttpRequest()
+  request.open('POST', `/myFoodArray/${JSON.stringify(itemArray)}`)
+  request.onload = () => {
+    const flastMessage = request.responseText
+    console.log(flastMessage)
+  }
+  request.send()
 }
 
 // my part ------------------------------------------
@@ -111,4 +95,5 @@ function getData(){
     }
   }
 
-  //window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
+  window.foodHandler = foodHandler; //changes the scope!!! most important line, makes global
+  window.getData = getData;

@@ -225,6 +225,7 @@ p{ /* description */
   top: 15%;
 }
 
+/* Buttons on the right */
 .rightcol .sort-col .box{
   width: 135px;
   padding: 10px;
@@ -235,22 +236,6 @@ p{ /* description */
   text-align: center;
   font-weight: bold;
   cursor: pointer;
-}
-
-.rightcol .sort-col .closePopup{
-  width: 135px;
-  padding: 10px;
-  border: 2px solid gray;
-  margin-left: 41%;
-  font-size: 20px;
-  text-align: center;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.rightcol .sort-col button:hover {
-  color: #242424;
-  background-color: rgb(131, 186, 236); /* background highlight color*/
 }
 
 /* Add food pop up */
@@ -289,6 +274,23 @@ p{ /* description */
 .popup-content h2 {
   text-align: center;
 }
+
+.rightcol .sort-col .closePopup{
+  width: 135px;
+  padding: 10px;
+  border: 2px solid gray;
+  margin-left: 41%;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rightcol .sort-col button:hover {
+  color: #242424;
+  background-color: rgb(131, 186, 236); /* background highlight color*/
+}
+
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
