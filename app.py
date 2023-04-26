@@ -104,10 +104,11 @@ def api_endpoint():
     # Get the value of the input
     # name_value = name_input['value']
     # print(name_value)
-    name = request.form['name']
-    name_input = request.args.get("name")
-    print(name)
-    querystring = {"from":"0","size":30,"q":name_input}
+
+    # name = request.form['name']
+    # name_input = request.args.get("name")
+    # print(name)
+    querystring = {"from":"0","size":30,"q":"rice"}
 
     headers = {
         "X-RapidAPI-Key":env.get("API_KEY"),
