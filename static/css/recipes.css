@@ -225,7 +225,7 @@ p{ /* description */
   top: 15%;
 }
 
-.rightcol .sort-col button{
+.rightcol .sort-col .box{
   width: 135px;
   padding: 10px;
   border: 2px solid gray;
@@ -236,9 +236,58 @@ p{ /* description */
   font-weight: bold;
   cursor: pointer;
 }
+
+.rightcol .sort-col .closePopup{
+  width: 135px;
+  padding: 10px;
+  border: 2px solid gray;
+  margin-top: 44%;
+  margin-left: 41%;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .rightcol .sort-col button:hover {
   color: #242424;
   background-color: rgb(131, 186, 236); /* background highlight color*/
+}
+
+.popup {
+  position: fixed;
+  z-index: 1;
+  left: 32%;
+  top: 10%;
+  width: 41%;
+  padding: 20px;
+  height: 74%;
+  overflow: auto;
+  background-color: rgb(207 207 207);
+  display: none;
+}
+.popup-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888888;
+  width: 30%;
+  font-weight: bolder;
+}
+.popup-content button {
+  display: block;
+  margin: 0 auto;
+}
+.show {
+  display: block;
+}
+.popup-content h1 {
+  color: green;
+  text-align: center;
+}
+
+.popup-content h2 {
+  text-align: center;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

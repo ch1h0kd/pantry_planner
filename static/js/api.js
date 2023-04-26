@@ -18,23 +18,32 @@ const db = getDatabase(app);
 var username = "defualt-user";
 var foodRef = ref(db, username + "/food");
 var shoppingRef = ref(db, username + "/shopping");
-get(shoppingRef).then((snapshot) => {
-  shopHandler(snapshot)
-});
+//get(shoppingRef).then((snapshot) => {
+//  shopHandler(snapshot)
+//});
 get(foodRef).then((snapshot) => {
-  
-  (snapshot)
+  foodHandler(snapshot)
 });
 
 
 function getMyFood(){
-  // get the first three ingredients from the database
+  // get all ingredients from the database
+  get(shoppingRef).then((snapshot) => {
+    shopHandler(snapshot)
+  });
+  get(foodRef).then((snapshot) => {
+    foodHandler(snapshot)
+  });
   // pass them in the parameter
   // print the responses
 }
 
 function foodHandler(snapshot){
   const list = document.getElementById("expList");
+  if (list == null) {
+    console.log("Element with ID 'expList' not found");
+    return;
+  }
   list.innerHTML = "";
   const trip = Object.values(snapshot.val());
   const keys = Object.keys(snapshot.val());
@@ -59,6 +68,8 @@ function foodHandler(snapshot){
       i++;
   });
 }
+
+// my part ------------------------------------------
 
 function getData(){
     var name = document.getElementById('name').value;
@@ -100,3 +111,4 @@ function getData(){
     }
   }
 
+  //window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
