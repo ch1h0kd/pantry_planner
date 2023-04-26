@@ -12,7 +12,7 @@ from helpers.decorators import login_required
 import requests
 from bs4 import BeautifulSoup
 
-
+from firebase import Firebase
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
@@ -21,6 +21,37 @@ if ENV_FILE:
 app = Flask(__name__)
 app.secret_key = env.get("APP_SECRET_KEY")
 app.server_name = env.get("BASE_URL")
+
+
+config = {
+    "apiKey": "AIzaSyB2DuI-rqRSZYiiEzvBasH4CUeppxX_FoY",
+    "authDomain": "pantryplanner-5d480.firebaseapp.com",
+    "databaseURL": "https://pantryplanner-5d480-default-rtdb.firebaseio.com",
+    "projectId": "pantryplanner-5d480",
+    "storageBucket": "pantryplanner-5d480.appspot.com",
+    "messagingSenderId": "407621335990",
+    "appId": "1:407621335990:web:c6ef5ac9f60b5ba09e9f17",
+    "measurementId": "G-56LV409GVC"
+}
+
+firebase = Firebase(config)
+# Get a reference to the auth service
+auth = firebase.auth()
+
+# Log the user in
+user = "default-user"
+# Get a reference to the database service
+db = firebase.database()
+
+foodRef = db.child(user).child("food")
+shoppingRef = db.child(user).child("shopping")
+shopping_snapshot = shoppingRef.get()
+food_snapshot = foodRef.get()
+
+@app.route('/getDatabase')
+def getDatabase():
+    print(shopping_snapshot)
+    print(food_snapshot)
 
 #initialize OAuth registry with this fetch_token function
 oauth = OAuth(app)
