@@ -10,6 +10,9 @@ from components.authentication import create_auth_blueprint
 from helpers.decorators import login_required
 
 import requests
+from bs4 import BeautifulSoup
+
+
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
@@ -82,12 +85,23 @@ def logout() -> str:
 def api_endpoint():
     url = "https://tasty.p.rapidapi.com/recipes/list"
 
-    print("here")
-
     # Retrieve the query parameters from the request
-    input1 = request.args.get('input1')
+    # Load the HTML file
+    # with open('templates/recipes.html') as f:
+    #     soup = BeautifulSoup(f, 'html.parser')
 
-    querystring = {"from":"0","size":"20","tags":"under_30_minutes","q":input1}
+    # # Find the input element with id 'name'
+    # name_input = soup.find('input', {'id': 'name'}).get('value')
+    # print(soup.find('input', {'id': 'name'}))
+    # print(name_input)
+
+    # Get the value of the input
+    # name_value = name_input['value']
+    # print(name_value)
+
+    name_input = request.args.get("name")
+    print(name_input)
+    querystring = {"from":"0","size":30,"q":name_input}
 
     headers = {
         "X-RapidAPI-Key":env.get("API_KEY"),
@@ -96,7 +110,6 @@ def api_endpoint():
 
     response = requests.request("GET", url, headers=headers, params=querystring)
 
-    #print(response.text)
     # Process the response and return the result
     if response.status_code == 200:
         result = response.json()

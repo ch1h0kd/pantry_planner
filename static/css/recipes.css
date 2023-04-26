@@ -52,6 +52,7 @@
   flex-direction: row;
   align-items:end;
 }
+
 .homeCol{
 margin-left: 15%;
 display: flex;
@@ -93,15 +94,6 @@ float: left;
   background-color: rgb(141, 194, 174); /* background highlight color*/
 }
 
-.main scrollBox{
-  height:550px;
-  width:400px;
-  padding: 10px;
-  margin-top: 10px;
-  border:1px solid #ccc;
-  overflow:auto;
-}
-
 .input{
   padding: 10px;
 }
@@ -109,136 +101,151 @@ float: left;
 .input item-input{
   width: 100px;
 }
-ul{
+
+ol{
   list-style-type: none;
   padding: 0;
+  margin-top: 0;
 }
 
-ul li{
+h2{
+  padding: 5px;
+}
+
+ol li{
   border: 1px solid #000;
 }
 
+p{ /* description */
+  font-size: 15px;
+}
+
+
+
 /* Style page content */
 .recipesTop {
-height: 15%;
-margin-left: 8px;
-padding: 0px 10px;
-width: 72%;
-top: 0;
-position: absolute;
-left: 15%;
+  height: 15%;
+  margin-left: 8px;
+  padding: 0px 10px;
+  width: 72%;
+  top: 0;
+  position: absolute;
+  left: 15%;
 }
 
 .recipesTop h1{
-font-size: 55px;
-margin: 0.5%;
+  font-size: 55px;
+  margin: 0.5%;
 }
+
 .recipesTop .filter{
-margin-right: 3%;
-position: absolute;
-right: 0;
-border: 2px solid black;
-width: 13%;
-height: 60px;
-top: 38%;
-font-size: 20px;
-text-align: center;
-bottom: 6%;
-cursor: pointer;
+  margin-right: 3%;
+  position: absolute;
+  right: 0;
+  border: 2px solid black;
+  width: 13%;
+  height: 60px;
+  top: 38%;
+  font-size: 20px;
+  text-align: center;
+  bottom: 6%;
+  cursor: pointer;
 }
+
 .filter:hover {
-color: #242424;
-background-color: rgb(131, 186, 236); /* background highlight color*/
+  color: #242424;
+  background-color: rgb(131, 186, 236); /* background highlight color*/
 }
+
 .recipesTop .search-container {
-margin-left: 0.5%;
-top: 50%;
-width: 95%;
-position: absolute;
+  margin-left: 0.5%;
+  top: 50%;
+  width: 95%;
+  position: absolute;
 }
 
 .recipesTop input[type=text] {
-padding: 6px;
-margin-top: 2%;
-width: 75%;
-height: 15px;
-font-size: 18px;
-border: 2px solid #000000;
+  padding: 6px;
+  margin-top: 2%;
+  width: 75%;
+  height: 15px;
+  font-size: 18px;
+  border: 2px solid #000000;
 }
 
 .recipesTop .search-container button {
-width: 8%;
-height: 65%;
-margin-top: 2%;
-border: 2px solid #000000;
-cursor: pointer;
-position: absolute;
-margin-left: 0.5%;
-font-size: 20px;
+  width: 8%;
+  height: 65%;
+  margin-top: 2%;
+  border: 2px solid #000000;
+  cursor: pointer;
+  position: absolute;
+  margin-left: 0.5%;
+  font-size: 20px;
 }
 
 .mainContent{
-border: 2px solid #000;
-margin-top: 8%;
-margin-left: 15%;
-margin-bottom: 5%;
-height: 650px;
-width: 72%;
-position: absolute;
+  margin-top: 8%;
+  margin-left: 15%;
+  margin-bottom: 5%;
+  height: 650px;
+  width: 72%;
+  position: absolute;
 }
 
 .rightcol{
-height: 100%;
-position: absolute;
-width: 15%;
-right: 0;
-top: 0;
-overflow-x: hidden;
+  height: 100%;  
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  width: 15%;
+  right: 0;
+  top: 0;
+  overflow-x: hidden;
 }
 
 .rightcol .login{
-width: 70%;
-height: 10%;
-border: 2px solid gray;
-margin-top: 10%;
-font-size: 17px;
-right: 10%;
-text-align: center;
-font-weight: bold;
-background: #ffff89;
-position: absolute;
+  width: 70%;
+  height: 10%;
+  border: 2px solid gray;
+  margin-top: 10%;
+  font-size: 17px;
+  right: 10%;
+  text-align: center;
+  font-weight: bold;
+  background: #ffff89;
+  position: absolute;
 }
 
 .rightcol .login:hover {
-color: #242424;
-background-color: rgb(135, 143, 64); /* background highlight color*/
+  color: #242424;
+  background-color: rgb(135, 143, 64); /* background highlight color*/
 }
 
 .rightcol .sort-col{
-position: absolute;
-top: 15%;
+  position: absolute;
+  top: 15%;
 }
+
 .rightcol .sort-col button{
-width: 135px;
-padding: 10px;
-border: 2px solid gray;
-margin-top: 12%;
-margin-left: 25%;
-font-size: 20px;
-text-align: center;
-font-weight: bold;
-cursor: pointer;
+  width: 135px;
+  padding: 10px;
+  border: 2px solid gray;
+  margin-top: 12%;
+  margin-left: 25%;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
 }
 .rightcol .sort-col button:hover {
-color: #242424;
-background-color: rgb(131, 186, 236); /* background highlight color*/
+  color: #242424;
+  background-color: rgb(131, 186, 236); /* background highlight color*/
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-.sidenav {padding-top: 0px;}
-.sidenav a {font-size: 18px;}
-.sidenav a2 {font-size: 18px;}
+  .sidenav {padding-top: 0px;}
+  .sidenav a {font-size: 18px;}
+  .sidenav a2 {font-size: 18px;}
 }
 
 @media screen and (max-height: 650px) {
