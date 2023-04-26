@@ -15,7 +15,13 @@
     <a id="my_food" href="my_food">My Food</a>
     <a id="shopping_list" href="shopping_list">Shopping List</a>
     <a id="recipes" href="recipes">Recipes</a>
+    <a3 id="login" href="login">Login</a3>
     <a2 id="settings" href="settings">Settings</a2>
+  </div>
+  <div class="main">
+    <div class ="homeCol">
+    <homeText> Settings : Logged In</homeText>
+    </div>
   </div>
   <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
   <!-- Page content -->
@@ -23,44 +29,5 @@
     ...
   </div> 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
-  <script type="module">
-
-      // Import the functions you need from the SDKs you need
-    
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-      import { getDatabases } from "firebase/database";
-      // TODO: Add SDKs for Firebase products that you want to use
-    
-      // https://firebase.google.com/docs/web/setup#available-libraries
-    
-    
-      // Your web app's Firebase configuration
-    
-      const firebaseConfig = {
-    
-        apiKey: "AIzaSyA3RzxLT0P7Vu_ne5bwfcSS2jFGXRV91YI",
-    
-        authDomain: "pantry-planner-c34aa.firebaseapp.com",
-    
-        projectId: "pantry-planner-c34aa",
-    
-        storageBucket: "pantry-planner-c34aa.appspot.com",
-    
-        messagingSenderId: "718999300893",
-    
-        appId: "1:718999300893:web:04b1ef888d8bc0b3074ff4",
-
-        // The value of `databaseURL` depends on the location of the database
-        //TODO: replace with database name
-        databaseURL: "https://DATABASE_NAME.firebaseio.com",
-
-    
-      };
-    
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-    
-    </script>
-    <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
 </body>
 </html>

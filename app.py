@@ -20,6 +20,7 @@ if ENV_FILE:
     
 app = Flask(__name__)
 app.secret_key = env.get("APP_SECRET_KEY")
+app.server_name = env.get("BASE_URL")
 
 #initialize OAuth registry with this fetch_token function
 oauth = OAuth(app)
@@ -62,32 +63,19 @@ def shopping_list() -> str:
 def recipes() -> str:
     return render_template('recipes.html')
 
-@app.route('/login')
-def login() -> str:
-    return render_template('welcome.html')
-
-@app.route('/logout')
-@login_required()
-def logout() -> str:
+@app.route('/successful_logout')
+def successful_logout() -> str:
     return render_template('logout.html')
 
-# @app.route("/")
-# def recipes():
-#     return render_template('recipes.html');
-
-# @app.route("/request/", methods=['POST'])
-# def request():
-#     #Moving forward code
-#     forward_message = "Moving Forward..."
-#     return render_template('index.html', forward_message=forward_message);
-
-
+@app.route('/successful_login')
+def successful_login() -> str:
+    return render_template('login.html')
+    
 @app.route("/")
 def home():
     return app.send_static_file('recipes.html')
-
-
-@app.route("/api-endpoint", methods=['GET'])
+    
+@app.route('/api_endpoint', methods=['GET'])
 def api_endpoint():
     url = "https://tasty.p.rapidapi.com/recipes/list"
 
