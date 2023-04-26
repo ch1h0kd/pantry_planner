@@ -28,9 +28,12 @@ get(foodRef).then((snapshot) => {
 export function changeUser(){
   const userInput = document.getElementById("user-input");
   const promt = document.getElementById("user-promt");
+  const but = document.getElementById("user-button");
   const newUser = userInput.value;
   if(newUser != ""){
     promt.remove();
+    userInput.remove();
+    but.remove();
     username = newUser;
     foodRef = ref(db, username + "/food");
     shoppingRef = ref(db, username + "/shopping");
