@@ -81,6 +81,12 @@ def logout() -> str:
 #     forward_message = "Moving Forward..."
 #     return render_template('index.html', forward_message=forward_message);
 
+
+@app.route("/")
+def home():
+    return app.send_static_file('recipes.html')
+
+
 @app.route("/api-endpoint", methods=['GET'])
 def api_endpoint():
     url = "https://tasty.p.rapidapi.com/recipes/list"
@@ -98,9 +104,9 @@ def api_endpoint():
     # Get the value of the input
     # name_value = name_input['value']
     # print(name_value)
-
+    name = request.form['name']
     name_input = request.args.get("name")
-    print(name_input)
+    print(name)
     querystring = {"from":"0","size":30,"q":name_input}
 
     headers = {
