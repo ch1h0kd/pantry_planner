@@ -32,6 +32,7 @@ function buttonClicked(buttonNumber) {
   if (buttonNumber === 1) {
     button1Clicked = true;
   }
+}
 
 function foodHandler(snapshot){
   // const list = document.getElementById("expList"); // how to get expList in homepage.html
@@ -45,10 +46,8 @@ function foodHandler(snapshot){
   const itemArray = [];
   trip.forEach(element => {  
     itemArray.push(element.item);      
-    console.log(element.item); // prints "apple"
     i++;
   });
-  console.log(itemArray); 
   const request = new XMLHttpRequest()
   request.open('POST', `/myFoodArray/${JSON.stringify(itemArray)}`)
   request.onload = () => {
@@ -64,7 +63,6 @@ function foodHandler(snapshot){
 
 function getData(){
     var name = document.getElementById('name').value;
-    console.log(name);
     fetch('/api-endpoint')
     .then((response) =>  {
       if (response.ok) {
