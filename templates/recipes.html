@@ -29,7 +29,7 @@
     <div class="search-container">
       <form method="GET">
         <input type="text" placeholder="Add keywords..." name = "name" id="name"></input>
-        <button id="submit" type="button" onclick=getData()>Go</button>
+        <button id="submit" type="button" onclick="getData">Go</button>
       </form>
       <script> /*hit enter and search*/
         var input = document.getElementById("name");
@@ -48,7 +48,7 @@
     <button id="Sign-up" class ="login">Sign up/Login</button>
     <div class="sort-col">
       <button id="Sort-by" class ="box">Sort by...</button>
-      <button id="useMyFood" onclick = "foodHandler()" class ="box">  <!-- -->
+      <button id="useMyFood" onclick = "foodHandler" class ="box">  <!-- -->
         Use my food
       </button>
       <!-- <div id="myFoodPopup" class="popup">

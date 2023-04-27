@@ -33,6 +33,7 @@ function foodHandler(snapshot){
   //   return;
   // }
   //list.innerHTML = "";
+  console.log('clicked')
   const trip = Object.values(snapshot.val()); // array(size)
   //const keys = Object.keys(snapshot.val());
   var i = 0;
