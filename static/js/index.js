@@ -94,34 +94,6 @@ export function buttonRemove(category, id){
     foodHandler(snapshot)
   });
 }
-/*  
-onValue(foodRef, (snapshot) => { //update the list whenever a new food is added 
-  const list = document.getElementById("expList");
-  list.innerHTML = "";
-  const trip = Object.values(snapshot.val());
-  const keys = Object.keys(snapshot.val());
-  var i = 0;
-  trip.forEach(element => {        
-      const listItem = document.createElement("li");
-      const itemHeading = document.createElement("h2");
-      var button = document.createElement("button");
-      button.innerHTML = "remove item";
-      button.value = (keys[i]);
-      listItem.appendChild(button);
-      button.style["float"] = "right";
-      button.addEventListener("click", function(){
-        buttonRemove("/food/", button.value);
-      });
-      itemHeading.appendChild(document.createTextNode(element.item));
-      const expPara = document.createElement("p");
-      expPara.appendChild(document.createTextNode(element.exp));
-      listItem.appendChild(itemHeading);
-      listItem.appendChild(expPara);
-      list.appendChild(listItem);
-      i++;
-  });
-}); 
-*/
 
 function foodHandler(snapshot){
   const list = document.getElementById("expList");
@@ -150,31 +122,6 @@ function foodHandler(snapshot){
   });
 }
 
-/*
-onValue(shoppingRef, (snapshot) => { //update the list whenever a new food is added 
-  const list = document.getElementById("shopList");
-  list.innerHTML = "";
-  const trip = Object.values(snapshot.val());
-  const keys = Object.keys(snapshot.val());
-  var i = 0;
-  trip.forEach(element => {        
-      const listItem = document.createElement("li");
-      const itemHeading = document.createElement("h2");
-      var button = document.createElement("button");
-      button.innerHTML = "remove item";
-      button.value = (keys[i]);
-      listItem.appendChild(button);
-      button.style["float"] = "right";
-      button.addEventListener("click", function(){
-        buttonRemove("/shopping/", button.value);
-      });
-      itemHeading.appendChild(document.createTextNode(element.item));
-      listItem.appendChild(itemHeading);
-      list.appendChild(listItem);
-      i++;
-  });
-});
-*/
 function shopHandler(snapshot){
   const list = document.getElementById("shopList");
   list.innerHTML = "";
