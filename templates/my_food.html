@@ -45,7 +45,7 @@
                   
                 </div>
               </form>
-            <button type="button" class="closeAddPopup"  id="AddFoodButton">  <!-- onclick="popUp; changeUser; addItemExp;" -->
+            <button type="button" onclick="changeUser(); addItemExp();" class="closeAddPopup"  id="AddFoodButton">  <!--  -->
                   Add
               </button>
         </div>
@@ -66,34 +66,7 @@
           }
         });
       </script>
-      <!-- <span class="popupWindow" id="Popup">
-        <div id="container">
-          <h2> Add food </h2>
-          
       
-          
-        </div>// End #container -->
-      <!-- </span> --> -->
-    <!-- </div>
-    <script>
-      // When the user clicks on div, open the popup
-      function popUp(){
-        var popup = document.getElementById("Popup");
-        var popup2 = document.getElementById("container");
-        console.log("popUp");
-        popup.classList.toggle("show");
-        popup2.classList.toggle("show");
-        // if (!popup.classList.contains("show")) {
-        //   popup.classList.toggle("show");
-        // }
-      }
-
-      // function closePopUp(){
-      //   var popup = document.getElementById("Popup");
-      //   console.log("closePopUp");
-      //   popup.classList.toggle("hide");
-      // }
-      </script> -->
     <!-- Search box -->
     <div class="search-container">
       <form action="/action_page.php">
