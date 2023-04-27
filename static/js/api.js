@@ -100,6 +100,6 @@ function getData(){
     }
   }
 
-  window.foodHandler = foodHandler; //changes the scope!!! most important line, makes global
-  window.getData = getData;
-  window.buttonClicked = buttonClicked;
+window.foodHandler = foodHandler; //changes the scope!!! most important line, makes global
+window.getData = getData;
+window.buttonClicked = buttonClicked;
