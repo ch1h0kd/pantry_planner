@@ -99,7 +99,6 @@ function getData(){
       list.appendChild(listItem);
     }
   }
-}
 
 window.foodHandler = foodHandler; //changes the scope!!! most important line, makes global
 window.getData = getData;
