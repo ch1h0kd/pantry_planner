@@ -26,6 +26,7 @@ get(foodRef).then((snapshot) => {
 });
 
 export function changeUser(){
+  console.log("change user");
   const userInput = document.getElementById("user-input");
   const promt = document.getElementById("user-promt");
   const but = document.getElementById("user-button");
@@ -47,7 +48,8 @@ export function changeUser(){
   });
 }
 
-export function addItemExp() {    
+export function addItemExp() {  
+    console.log("addItemExp");  
     const itemInput = document.getElementById("item-input");
     const expInput = document.getElementById("exp-input");
     const item = itemInput.value;
@@ -198,6 +200,7 @@ function shopHandler(snapshot){
       i++;
     });
 }
+
   
   window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
   window.addItemShop = addItemShop;

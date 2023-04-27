@@ -1,0 +1,335 @@
+ /* The sidebar menu */ 
+ .sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 15%; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #43ccd6; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 0px;
+  }
+
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #000000;
+    display: block;
+    background: lightgreen
+  }
+  
+  /* The settings link at the bottom of the navigation menu*/
+  .sidenav a2 {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size:  25px;
+    color: #000000;
+    display: block;
+    background: lightgreen;
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #7d5411;
+    background-color: rgb(255, 244, 48); /* background highlight color*/
+  }
+
+  .sidenav a2:hover {
+    color: #7d5411;
+    background-color: rgb(255, 244, 48);
+  }
+  
+  /* Style page content */
+  .main {
+    padding:  10px 10px 10px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items:end;
+  }
+  .homeCol{
+  margin-left: 15%;
+  display: flex;
+  flex-direction: column;
+  float: left;
+  }
+  
+  .main homeText{
+    font-size: 90px;
+  }
+
+  .textBox{
+    width: 200px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin-top: 5%;
+    text-align: center;
+    float: left;
+    font-weight: bold;
+  }
+
+  .sortBy{
+    width: 100px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin-top: 5%;
+    text-align: center;
+    float:left;
+    font-weight: bold;
+  }
+
+  .textBox:hover {
+    color: #242424;
+    background-color: rgb(131, 186, 236); /* background highlight color*/
+  }
+
+  .sortBy:hover {
+    color: #242424;
+    background-color: rgb(141, 194, 174); /* background highlight color*/
+  }
+
+  .main scrollBox{
+    height:550px;
+    width:400px;
+    padding: 10px;
+    margin-top: 10px;
+    border:1px solid #ccc;
+    overflow:auto;
+  }
+
+  .input{
+    padding: 10px;
+  }
+
+  .input item-input{
+    width: 100px;
+  }
+  ul{
+    list-style-type: none;
+    padding: 0;
+  }
+
+  ul li{
+    border: 1px solid #000;
+  }
+
+  h3{
+    color: #000000;
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+/* Style page content */
+.myFoodTop {
+  height: 15%;
+  margin-left: 8px;
+  padding: 0px 10px;
+  width: 72%;
+  top: 0;
+  position: absolute;
+  left: 15%;
+}
+
+.myFoodTop .title{
+  font-size: 55px;
+  margin: 0.5%;
+}
+
+.add_food{  /* It's a button */ 
+  margin-right: 3%;
+  position: absolute;
+  right: 0;
+  border: 2px solid black;
+  width: 13%;
+  height: 60px;
+  top: 38%;
+  font-size: 20px;
+  text-align: center;
+  bottom: 6%;
+  cursor: pointer;
+}
+
+.add_food:hover {
+  color: #242424;
+  background-color: rgb(131, 186, 236); /* background highlight color*/
+}
+
+/* The actual popup */
+.popup {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+}
+
+  .addFoodPopup-content {
+    background-color: #818181;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888888;
+    width: 40%;
+    height: 50%;
+    font-weight: bolder;
+  }
+
+  .addFoodPopup-content button {
+    display: block;
+    margin: 0 auto;
+    height: 2.3em;
+    width: 12.3em;
+    background: #b7b7b7;
+    cursor: pointer;
+  }
+  .addFoodPopup-content button:hover {
+    color: #242424;
+    background-color: rgb(131, 186, 236)7; /* background highlight color*/
+  }
+
+  .addFoodPopup-content .x { /* X */
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    background: #b7b7b7;
+    left: 46%;
+    width: 12%;
+  }
+  .addFoodPopup-content .x:hover {
+    color: #242424;
+    background-color: rgb(131, 186, 236); /* background highlight color*/
+  }
+
+  .addFoodPopup-content .closeAddPopup { /* X */
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    position: relative;
+    background: #b7b7b7;
+    height: 38px;
+    width: 142px;
+    font-size: 20px;
+  }
+  .addFoodPopup-content .closeAddPopup:hover {
+    color: #242424;
+    background-color: rgb(131, 186, 236); /* background highlight color*/
+  }
+
+  .show {
+    display: block;
+  }
+  .addFoodPopup-content h1 { /* Add food text */
+    margin: 0%;
+    text-align: center;
+    font-size: 50px;
+  }
+
+  .myFoodTop .search-container {
+    margin-left: 0.5%;
+    top: 50%;
+    width: 95%;
+    position: absolute;
+  }
+
+  .myFoodTop input[type=text] {
+    padding: 6px;
+    margin-top: 2%;
+    width: 75%;
+    height: 15px;
+    font-size: 20px;
+    border: 2px solid #000000;
+  }
+  
+  .myFoodTop .search-container button {
+    width: 8%;
+    height: 65%;
+    margin-top: 2%;
+    border: 2px solid #000000;
+    cursor: pointer;
+    position: absolute;
+    margin-left: 0.5%;
+    font-size: 20px;
+  }
+
+  .mainContent{
+    margin-top: 8%;
+    margin-left: 15%;
+    margin-bottom: 5%;
+    height: 650px;
+    width: 72%;
+    position: absolute;
+  }
+
+  .rightcol{
+    height: 100%;
+    position: absolute;
+    width: 15%;
+    right: 0;
+    top: 0;
+    overflow-x: hidden;
+  }
+
+  .rightcol .login{
+    width: 70%;
+    height: 10%;
+    border: 2px solid gray;
+    margin-top: 10%;
+    font-size: 17px;
+    right: 10%;
+    text-align: center;
+    font-weight: bold;
+    background: #ffff89;
+    position: absolute;
+  }
+
+  .rightcol .login:hover {
+    color: #242424;
+    background-color: rgb(135, 143, 64); /* background highlight color*/
+  }
+
+  .rightcol .sort-col{
+    position: absolute;
+    top: 15%;
+  }
+  .rightcol .sort-col button{
+    width: 135px;
+    padding: 10px;
+    border: 2px solid gray;
+    margin-top: 12%;
+    margin-left: 25%;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .rightcol .sort-col button:hover {
+    color: #242424;
+    background-color: rgb(131, 186, 236); /* background highlight color*/
+  }
+
+  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 0px;}
+    .sidenav a {font-size: 18px;}
+    .sidenav a2 {font-size: 18px;}
+
+  }
+
+  @media screen and (max-height: 650px) {
+    .myFoodTop input {margin-top: 20px;}
+    .myFoodTop h1 {font-size: 35px;}
+
+  }
+  @media screen and (max-height: 650px) {
+    .rightcol .sort-col button {margin-top: 5px;}
+    .myFoodTop h1 {font-size: 35px;}
+
+  }
