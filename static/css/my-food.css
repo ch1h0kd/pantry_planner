@@ -119,11 +119,9 @@
   }
 
   h3{
-    color: #b1acff;
+    color: #000000;
     font-size: 30px;
     font-weight: 700;
-    letter-spacing: 7px;
-    text-transform: uppercase;
   }
 
 /* Style page content */
@@ -137,12 +135,12 @@
   left: 15%;
 }
 
-.myFoodTop h1{
+.myFoodTop .title{
   font-size: 55px;
   margin: 0.5%;
 }
 
-.add-food{
+.add_food{  /* It's a button */ 
   margin-right: 3%;
   position: absolute;
   right: 0;
@@ -156,46 +154,82 @@
   cursor: pointer;
 }
 
-.add-food:hover {
+.add_food:hover {
   color: #242424;
   background-color: rgb(131, 186, 236); /* background highlight color*/
 }
 
 /* The actual popup */
-.add-food .popupWindow {
-  visibility: hidden;
-  border: solid 3px #474544;
-  background-color: dimgrey;
-  max-width: 769px;
-  margin: 60px auto;
+.popup {
   position: fixed;
-  height: 400px;
-  width: 700px;
-  top: 10%;
-  left: 29%;
   z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+}
+
+  .addFoodPopup-content {
+    background-color: #818181;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888888;
+    width: 40%;
+    height: 50%;
+    font-weight: bolder;
   }
 
-  .add-food .form2 {
-    padding: 37.5px;
-    margin: 50px 0;
+  .addFoodPopup-content button {
+    display: block;
+    margin: 0 auto;
+    height: 2.3em;
+    width: 12.3em;
+    background: #b7b7b7;
+    cursor: pointer;
+  }
+  .addFoodPopup-content button:hover {
+    color: #242424;
+    background-color: rgb(131, 186, 236)7; /* background highlight color*/
   }
 
-  h2 {
-    color: #ffc1a1;
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 7px;
+  .addFoodPopup-content .x { /* X */
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    background: #b7b7b7;
+    left: 46%;
+    width: 12%;
+  }
+  .addFoodPopup-content .x:hover {
+    color: #242424;
+    background-color: rgb(131, 186, 236); /* background highlight color*/
+  }
+
+  .addFoodPopup-content .closeAddPopup { /* X */
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    position: relative;
+    background: #b7b7b7;
+    height: 38px;
+    width: 142px;
+    font-size: 20px;
+  }
+  .addFoodPopup-content .closeAddPopup:hover {
+    color: #242424;
+    background-color: rgb(131, 186, 236); /* background highlight color*/
+  }
+
+  .show {
+    display: block;
+  }
+  .addFoodPopup-content h1 { /* Add food text */
+    margin: 0%;
     text-align: center;
-    text-transform: uppercase;
-  }
-  
-
-  /* Toggle this class - hide and show the popup */
-.add-food .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
+    font-size: 50px;
   }
 
   .myFoodTop .search-container {
@@ -226,7 +260,6 @@
   }
 
   .mainContent{
-    border: 2px solid #000;
     margin-top: 8%;
     margin-left: 15%;
     margin-bottom: 5%;

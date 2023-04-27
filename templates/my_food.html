@@ -21,33 +21,60 @@
   <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
   <!-- Page content -->
   <div class="myFoodTop">
-    <h1>My Food</h1>
-    <div class = "add-food" onclick="popUp()">Add food
-      <span class="popupWindow" id="Popup">
+    <h1 class="title">My Food</h1>
+    <button class = "add_food" id = "add_food">Add food</button> <!-- onclick="popUp()" -->
+      <div id="addFoodPopup" class="popup">
+        <div class="addFoodPopup-content">
+            <button class="x"  id="x"> <!-- close button -->
+                X
+            </button>
+            <h1 style="color:rgb(196, 255, 196);">
+                Add food
+              </h1>
+              <form>
+                <div class ="input">
+                  <div id = "user-promt-pop">ENTER A USER NAME</div>
+                  <input type="text" id="user-input-pop" name="user-input">
+                  <!-- <button type="button" id="user-button-pop" onclick="changeUser()">Change Username</button> -->
+                  
+                  <label for="item-input"><br>Food:</label>
+                  <input type="text" id="item-input-pop" name="item-input"></input>
+                
+                  <label for="exp-input"><br>Expiration date:</label>
+                  <input type="date" id="exp-input-pop" name="exp-input"></input>
+                  
+                </div>
+              </form>
+            <button type="button" class="closeAddPopup"  id="AddFoodButton">  <!-- onclick="popUp; changeUser; addItemExp;" -->
+                  Add
+              </button>
+        </div>
+      </div>
+  
+      <script>
+        add_food.addEventListener("click", function () {
+          console.log("open");
+          addFoodPopup.classList.add("show");
+        });
+        x.addEventListener("click", function () {
+          console.log("close?");
+          addFoodPopup.classList.remove("show");
+        });
+        window.addEventListener("click", function (event) {
+          if (event.target == addFoodPopup) {
+            addFoodPopup.classList.remove("show");
+          }
+        });
+      </script>
+      <!-- <span class="popupWindow" id="Popup">
         <div id="container">
           <h2> Add food </h2>
-          <form>
-      
-            <div class ="input">
-              <div id = "user-promt-pop">ENTER A USER NAME</div>
-              <input type="text" id="user-input-pop" name="user-input">
-              <!-- <button type="button" id="user-button-pop" onclick="changeUser()">Change Username</button> -->
-              
-              <label for="item-input"><br>Food:</label>
-              <input type="text" id="item-input-pop" name="item-input"></input>
-            
-              <label for="exp-input"><br>Expiration date:</label>
-              <input type="date" id="exp-input-pop" name="exp-input"></input>
-      
-              
-              <button type="button" id="add-to-list" onclick="popUp(); changeUser(); addItemExp();">Add to List</button>
-            </div>
-          </form>
+          
       
           
-        </div><!-- // End #container -->
-      </span>
-    </div>
+        </div>// End #container -->
+      <!-- </span> --> -->
+    <!-- </div>
     <script>
       // When the user clicks on div, open the popup
       function popUp(){
@@ -66,7 +93,7 @@
       //   console.log("closePopUp");
       //   popup.classList.toggle("hide");
       // }
-      </script>
+      </script> -->
     <!-- Search box -->
     <div class="search-container">
       <form action="/action_page.php">
