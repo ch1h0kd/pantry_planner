@@ -11,6 +11,7 @@ from helpers.decorators import login_required
 
 import requests
 import json
+import random
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
@@ -69,16 +70,13 @@ def successful_logout() -> str:
 def successful_login() -> str:
     return render_template('login.html')
 
-my_global_variable = None  # Initialize global variable
+foodNames = None  # Initialize global variable
 
 @app.route('/myFoodArray/<string:itemArray>', methods=['POST'])
 def myFoodArray(itemArray):
     itemArray = json.loads(itemArray)
     global foodNames  # Declare that we're using the global variable
     foodNames = itemArray
-    print()
-    print('------------------')
-    print(f"Item: {foodNames}")
     return "Success!!"
 
 @app.route('/api-endpoint', methods=['GET'])
@@ -86,6 +84,16 @@ def api_endpoint():
     url = "https://tasty.p.rapidapi.com/recipes/list"
 
     print(f"Item: {foodNames}")
+
+    # choose 3 ingredients from my food randomly
+    if len(foodNames) < 3:
+        items_str = ' '.join(foodNames)
+    
+    else:
+        random_indices = random.sample(range(len(foodNames)), 3)
+        random_items = [foodNames[i] for i in random_indices]
+    
+    items_str = ' '.join(random_items)
     # Retrieve the query parameters from the request
     # Load the HTML file
     # with open('templates/recipes.html') as f:
@@ -103,7 +111,7 @@ def api_endpoint():
     # name = request.form['name']
     # name_input = request.args.get("name")
     # print(name)
-    querystring = {"from":"0","size":30,"q":"rice"}
+    querystring = {"from":"0","size":30,"q":items_str}
 
     headers = {
         "X-RapidAPI-Key":env.get("API_KEY"),

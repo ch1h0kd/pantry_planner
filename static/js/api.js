@@ -51,6 +51,7 @@ function foodHandler(snapshot){
     console.log(flastMessage)
   }
   request.send()
+  getData();
 }
 
 // my part ------------------------------------------
