@@ -17,31 +17,35 @@ const app = initializeApp({
 const db = getDatabase(app);
 var username = "defualt-user";
 var foodRef = ref(db, username + "/food");
-var shoppingRef = ref(db, username + "/shopping");
-//get(shoppingRef).then((snapshot) => {
-//  shopHandler(snapshot)
-//});
+var snapshot2 = "";
+
 get(foodRef).then((snapshot) => {
+  if (snapshot != null){
+    snapshot2 = snapshot;
+  }
   foodHandler(snapshot)
 });
 
+let button1Clicked = false;
+
+function buttonClicked(buttonNumber) {
+  if (buttonNumber === 1) {
+    button1Clicked = true;
+  }
 
 function foodHandler(snapshot){
   // const list = document.getElementById("expList"); // how to get expList in homepage.html
-  // if (list == null) {
-  //   console.log("Element with ID 'expList' not found");
-  //   return;
-  // }
-  //list.innerHTML = "";
-  console.log('clicked')
+  if (snapshot == null) {
+    snapshot = snapshot2;
+  }
+
   const trip = Object.values(snapshot.val()); // array(size)
-  //const keys = Object.keys(snapshot.val());
+
   var i = 0;
   const itemArray = [];
   trip.forEach(element => {  
     itemArray.push(element.item);      
     console.log(element.item); // prints "apple"
-    //console.log(element.exp); // prints "2023-05-01"
     i++;
   });
   console.log(itemArray); 
@@ -51,11 +55,12 @@ function foodHandler(snapshot){
     const flastMessage = request.responseText
     console.log(flastMessage)
   }
-  request.send()
-  getData();
+  if(button1Clicked == true){
+    request.send();
+    getData();
+    button1Clicked = false;
+  }
 }
-
-// my part ------------------------------------------
 
 function getData(){
     var name = document.getElementById('name').value;
@@ -99,3 +104,4 @@ function getData(){
 
   window.foodHandler = foodHandler; //changes the scope!!! most important line, makes global
   window.getData = getData;
+  window.buttonClicked = buttonClicked;

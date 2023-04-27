@@ -48,36 +48,10 @@
     <button id="Sign-up" class ="login">Sign up/Login</button>
     <div class="sort-col">
       <button id="Sort-by" class ="box">Sort by...</button>
-      <button id="useMyFood" onclick = "foodHandler" class ="box">  <!-- -->
+      <button id="useMyFood" onclick = "buttonClicked(1);  foodHandler();" class ="box">  <!-- -->
         Use my food
       </button>
-      <!-- <div id="myFoodPopup" class="popup">
-        <div class="myFoodPopup-content">
-            <h1 style="color:green;">
-                Add food
-              </h1>
-              <ul id="expList"></ul>
-            <button class="closePopup"  id="closePopup">
-                  Close
-              </button>
-        </div>
-      </div>
-  
-      <script>
-          useMyFood.addEventListener("click", function () {
-            console.log("open");
-            myFoodPopup.classList.add("show");
-          });
-          closePopup.addEventListener("click", function () {
-            console.log("close?");
-            myFoodPopup.classList.remove("show");
-          });
-          window.addEventListener("click", function (event) {
-              if (event.target == myFoodPopup) {
-                myFoodPopup.classList.remove("show");
-              }
-          });
-      </script> -->
+      
       <button id="Use-expiring-soon" class ="box">Use expiring soon</button>
       <button id="Vegitarian" class ="box">Vegitarian</button>
       <button id="More-options" class ="box">More options</button>
