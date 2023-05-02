@@ -8,8 +8,9 @@ def login_required(status=None):
             if 'user' in session and (status is None or status in session):
                 return func(*args, **kwargs)
             else:
+                print("not logged in")
                 flash("You are not logged in")
-                return redirect(url_for(""))
+                return redirect(url_for("login"))
         return wrapper
     return login_decorator
 

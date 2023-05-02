@@ -43,7 +43,7 @@ def index() -> str:
 
 # this is a temporary fix hopefully for the button not working
 @app.route('/pantry_planner')
-def pantryplanner() -> str:
+def pantry_planner() -> str:
     return render_template('homepage.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/settings')
@@ -62,6 +62,10 @@ def shopping_list() -> str:
 @app.route('/recipes')
 def recipes() -> str:
     return render_template('recipes.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
+
+@app.route('/login')
+def login() -> str:
+    return render_template('homepage.html', session=session.get('user'))
 
 @app.route('/successful_logout')
 def successful_logout() -> str:
