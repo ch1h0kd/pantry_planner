@@ -59,10 +59,22 @@ document.getElementById("sortByName").addEventListener("click", function() {
 document.getElementById("RsortByName").addEventListener("click", function() {
   sortBy("item", true);
 }, false);
+document.getElementById("sortByAdded").addEventListener("click", function() {
+  sortBy("latest", true);
+}, false);
+document.getElementById("RsortByAdded").addEventListener("click", function() {
+  sortBy("latest", false);
+}, false);
 
 
 export function sortBy(category, reverse){
-  const sortedRef = query(ref(db, username + '/food'), orderByChild(category));
+  var sortedRef;
+  if(category != "latest"){
+    sortedRef = query(ref(db, username + '/food'), orderByChild(category))
+  }
+  else{
+    sortedRef = ref(db, username + '/food')
+  };
   get(sortedRef).then((snapshot) =>{
     let sortedList = [];
     let keyList = [];
