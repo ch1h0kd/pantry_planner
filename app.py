@@ -63,9 +63,10 @@ def shopping_list() -> str:
 def recipes() -> str:
     return render_template('recipes.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
 
-@app.route('/login')
-def login() -> str:
-    return render_template('homepage.html', session=session.get('user'))
+# @app.route('/login')
+# @login_required()
+# def login() -> str:
+#     return render_template('homepage.html', session=session.get('user'))
 
 @app.route('/successful_logout')
 def successful_logout() -> str:

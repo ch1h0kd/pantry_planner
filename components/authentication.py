@@ -14,6 +14,8 @@ def create_auth_blueprint(oauth):
 
     @auth.route('/login')
     def login():
+        print("Hello")
+        print(url_for("auth.callback", _external=True))
         return oauth.auth0.authorize_redirect(
             redirect_uri=url_for("auth.callback", _external=True)
         )
@@ -22,7 +24,8 @@ def create_auth_blueprint(oauth):
     def callback():
         token = oauth.auth0.authorize_access_token()
         session["user"] = token
-        return redirect("/")
+        print(redirect(url_for("pantry_planner")))
+        return redirect(url_for("pantry_planner"))
 
     @auth.route('/logout')
     def logout():
