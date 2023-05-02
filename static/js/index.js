@@ -48,14 +48,20 @@ export function changeUser(){
 }
 
 document.getElementById("sortByExp").addEventListener("click", function() {
-  sortBy("exp");
+  sortBy("exp", false);
+}, false);
+document.getElementById("RsortByExp").addEventListener("click", function() {
+  sortBy("exp", true);
 }, false);
 document.getElementById("sortByName").addEventListener("click", function() {
-  sortBy("item");
+  sortBy("item", false);
+}, false);
+document.getElementById("RsortByName").addEventListener("click", function() {
+  sortBy("item", true);
 }, false);
 
 
-export function sortBy(category){
+export function sortBy(category, reverse){
   const sortedRef = query(ref(db, username + '/food'), orderByChild(category));
   get(sortedRef).then((snapshot) =>{
     let sortedList = [];
@@ -66,6 +72,10 @@ export function sortBy(category){
       sortedList.push(element.val())
       keyList.push(element.key)
     });
+    if(reverse){
+      sortedList.reverse();
+      keyList.reverse();
+    }
     listFiller(sortedList, keyList);
   });
 }
