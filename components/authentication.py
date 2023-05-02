@@ -22,7 +22,7 @@ def create_auth_blueprint(oauth):
     def callback():
         token = oauth.auth0.authorize_access_token()
         session["user"] = token
-        return redirect("/successful_login")
+        return redirect("/")
 
     @auth.route('/logout')
     def logout():
