@@ -46,11 +46,10 @@ export function addItemExp() {
     console.log("addItemExp"); 
     const itemInput = document.getElementById("item-input-pop");
     const expInput = document.getElementById("exp-input-pop");
-    const tagInput = document.getElementById("tag");
+    const tagInput = document.querySelector("#tag");
     const item = itemInput.value;
     const exp = expInput.value;
-    const tag = tagInput.value;
-    console.log(tag);
+    console.log(tagInput);
     if(item != "" && exp != "" && tag != ""){
       itemInput.value = "";
       expInput.value = "";
@@ -58,7 +57,7 @@ export function addItemExp() {
       push(foodRef, {
         item: item,
         exp: exp,
-        tag: tag
+        tag: tagInput
       });
     }
     get(foodRef).then((snapshot) => {
