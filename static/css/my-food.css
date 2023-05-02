@@ -121,13 +121,20 @@
   .input item-input{
     width: 100px;
   }
+  
   ul{
     list-style-type: none;
+    display: flex;
     padding: 0;
+    flex-flow: row wrap;
+    justify-content: space-around;
   }
 
-  ul li{
+  ul section{
     border: 1px solid #000;
+    width: 22%;
+    height: 287px;
+    margin: 1%;
   }
 
   h3{

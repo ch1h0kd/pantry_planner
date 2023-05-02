@@ -94,7 +94,7 @@ function foodHandler(snapshot){
   const keys = Object.keys(snapshot.val());
   var i = 0;
   trip.forEach(element => {        
-      const listItem = document.createElement("li");
+      const listItem = document.createElement("section");
       const itemHeading = document.createElement("h3");
       var button = document.createElement("button");
       button.innerHTML = "remove item";
