@@ -47,9 +47,13 @@ export function changeUser(){
   });
 }
 
-document.getElementById("sortBy").addEventListener("click", function() {
+document.getElementById("sortByExp").addEventListener("click", function() {
   sortBy("exp");
 }, false);
+document.getElementById("sortByName").addEventListener("click", function() {
+  sortBy("item");
+}, false);
+
 
 export function sortBy(category){
   const sortedRef = query(ref(db, username + '/food'), orderByChild(category));
@@ -194,6 +198,29 @@ function shopHandler(snapshot){
     });
 }
 
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
+
+  window.myFunction = myFunction;
   window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
   window.addItemShop = addItemShop;
   window.buttonRemove = buttonRemove;
