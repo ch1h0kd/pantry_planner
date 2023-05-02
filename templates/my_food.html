@@ -35,14 +35,19 @@
                 <div class ="input">
                   <div id = "user-promt-pop">ENTER A USER NAME</div>
                   <input type="text" id="user-input-pop" name="user-input">
-                  <!-- <button type="button" id="user-button-pop" onclick="changeUser()">Change Username</button> -->
                   
                   <label for="item-input"><br>Food:</label>
                   <input type="text" id="item-input-pop" name="item-input"></input>
                 
                   <label for="exp-input"><br>Expiration date:</label>
                   <input type="date" id="exp-input-pop" name="exp-input"></input>
-                  
+
+                  <label for="tag">Select a tag:</label>
+                  <select id="tag">
+                    <option selected>Other</option>
+                    <option>Ingredient</option>
+                    <option>Snacks</option>
+                  </select>
                 </div>
               </form>
             <button type="button" onclick="changeUser(); addItemExp();" class="closeAddPopup"  id="AddFoodButton">  <!--  -->

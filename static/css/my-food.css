@@ -243,6 +243,12 @@
     background-color: rgb(131, 186, 236); /* background highlight color*/
   }
 
+  .addFoodPopup-content select {
+    height: 30px;
+    width: 110px;
+    margin-top: 20px;
+  }
+
   .show {
     display: block;
   }
