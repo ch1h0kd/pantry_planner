@@ -60,7 +60,49 @@
   </div> 
 
   <div class="mainContent">
-    <ol id="recipes-list"></ol>
+    <ul id="recipes-list"></ul>
+    <div id="recipesPop" class="popup">
+      <div class="recipesPop_content">
+          <button class="close"  id="close2"> <!-- close button -->
+              X
+          </button>
+          <h1 style="color:rgb(196, 255, 196);">
+              Add food
+            </h1>
+            <form>
+              <div class ="input">
+                <div id = "user-promt-pop">ENTER A USER NAME</div>
+                <input type="text" id="user-input-pop" name="user-input">
+                <!-- <button type="button" id="user-button-pop" onclick="changeUser()">Change Username</button> -->
+                
+                <label for="item-input"><br>Food:</label>
+                <input type="text" id="item-input-pop" name="item-input"></input>
+              
+                <label for="exp-input"><br>Expiration date:</label>
+                <input type="date" id="exp-input-pop" name="exp-input"></input>
+                
+              </div>
+            </form>
+          <button type="button" onclick="changeUser(); addItemExp();" class="closeAddPopup"  id="AddFoodButton">  <!--  -->
+                Add
+            </button>
+      </div>
+    </div>
+    <script>
+      fullRecipe.addEventListener("click", function () {
+        console.log("open");
+        addFoodPopup.classList.add("show");
+      });
+      close2.addEventListener("click", function () {
+        console.log("close?");
+        addFoodPopup.classList.remove("show");
+      });
+      window.addEventListener("click", function (event) {
+        if (event.target == addFoodPopup) {
+          addFoodPopup.classList.remove("show");
+        }
+      });
+    </script>
   </div> 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
     <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>

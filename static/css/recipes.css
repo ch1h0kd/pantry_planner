@@ -113,17 +113,22 @@ float: left;
   width: 100px;
 }
 
-ol{
+ul{
   list-style-type: none;
   padding: 0;
   margin-top: 0;
 }
 
-h2{
+.mainContent h2{
   padding: 5px;
+  cursor: pointer;
 }
 
-ol li{
+.mainContent h2:hover{
+  color: slateblue;  
+}
+
+ul li{
   border: 1px solid #000;
 }
 

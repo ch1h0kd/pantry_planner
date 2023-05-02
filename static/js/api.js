@@ -86,6 +86,7 @@ function getData(){
     for(let i = 0; i < data.results.length; i++) {
       const listItem = document.createElement("li");
       const nameLI = document.createElement('h2');
+      nameLI.setAttribute("id", "fullRecipe");
       nameLI.innerHTML = data.results[i].name;
     
       // create list for description
