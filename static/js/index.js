@@ -98,6 +98,7 @@ function listFiller(items, keys){
   var i = 0;
   items.forEach(element => {        
       const listItem = document.createElement("li");
+      listItem.classList.add("list-item");
       const itemHeading = document.createElement("h2");
       var button = document.createElement("button");
       button.innerHTML = "remove item";
@@ -176,6 +177,7 @@ function foodHandler(snapshot){
   var i = 0;
   trip.forEach(element => {        
       const listItem = document.createElement("li");
+      listItem.classList.add("list-item");
       const itemHeading = document.createElement("h2");
       var button = document.createElement("button");
       button.innerHTML = "remove item";
@@ -204,6 +206,7 @@ function shopHandler(snapshot){
   var i = 0;
   trip.forEach(element => {        
       const listItem = document.createElement("li");
+      listItem.classList.add("list-item");
       const itemHeading = document.createElement("h2");
       var button = document.createElement("button");
       button.innerHTML = "remove item";
