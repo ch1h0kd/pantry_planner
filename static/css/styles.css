@@ -75,6 +75,16 @@
   flex-direction: column;
   float: left;
   }
+
+  .scrollB{
+    overflow-y: scroll;
+    border-width: 1px;
+    border: solid #000;
+    height: 60vb;
+    padding: 10px;
+    width: 100%;
+    border-radius: 25px;
+  }
   
   .main homeText{
     font-size: 6vw;
@@ -304,6 +314,7 @@
   color: #242424;
   background-color: rgb(131, 186, 236); /* background highlight color*/
 }
+
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
