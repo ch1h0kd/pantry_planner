@@ -34,11 +34,7 @@ function initialize(snapshot){
   let finalGroup;
 
   finalGroup = Object.values(snapshot.val()); // show all items in my food as default
-  console.log("final group1 " + finalGroup);
-  console.log("snapshot " + snapshot);
   showDisplay();
-  
-  console.log("snapshot " + typeof snapshot);
 
   finalGroup = [];
 
@@ -75,9 +71,7 @@ function initialize(snapshot){
     }
 
     const trip = Object.values(finalGroup); //[object Object],[object Object],[object Object]
-    //console.log("Object.values(snapshot.val()) " + trip);
     const keys = Object.keys(finalGroup); //-NUSIz-AfjvoCJ7y0Htb,-NUSJ16BoyBtw933wrZs,-NUSJ2f6u2gvIT8KgOKc
-    //console.log("Object.keys(snapshot.val()) " + keys);
     //keys[0]: -NUSIz-AfjvoCJ7y0Htb
     var i = 0;
     trip.forEach(element => {
@@ -85,19 +79,24 @@ function initialize(snapshot){
         //element.exp: 2023-05-31
         const listItem = document.createElement("section");
         const itemHeading = document.createElement("h3");
-        var button = document.createElement("button");
+        const button = document.createElement("button");
+        const expPara = document.createElement("p");
+        const tag = document.createElement("p")
+
         button.innerHTML = "remove item";
         button.value = (keys[i]);
-        listItem.appendChild(button);
         button.style["float"] = "right";
         button.addEventListener("click", function(){
           buttonRemove("/food/", button.value);
         });
+
         itemHeading.appendChild(document.createTextNode(element.item));
-        const expPara = document.createElement("p");
         expPara.appendChild(document.createTextNode(element.exp));
+        tag.appendChild(document.createTextNode(element.tag));
+        listItem.appendChild(button);
         listItem.appendChild(itemHeading);
         listItem.appendChild(expPara);
+        listItem.appendChild(tag);
         list.appendChild(listItem);
         i++;
     });
@@ -129,7 +128,8 @@ export function addItemExp() {
     const tagInput = document.querySelector("#tag");
     const item = itemInput.value;
     const exp = expInput.value;
-    //console.log(tagInput);
+    const tag = tagInput.value;
+    console.log(tagInput.value);
     if(item != "" && exp != "" && tag != ""){
       itemInput.value = "";
       expInput.value = "";
@@ -137,7 +137,7 @@ export function addItemExp() {
       push(foodRef, {
         item: item,
         exp: exp,
-        tag: tagInput
+        tag: tag
       });
     }
     get(foodRef).then((snapshot) => {
