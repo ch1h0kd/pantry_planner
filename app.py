@@ -1,9 +1,10 @@
+import json
 from os import environ as env
 
 from authlib.integrations.flask_client import OAuth
 
 from dotenv import find_dotenv, load_dotenv
-from flask import Flask, redirect, render_template, url_for, flash, request, jsonify
+from flask import Flask, redirect, render_template, url_for, flash, request, jsonify, session
 
 from components.authentication import create_auth_blueprint
 
@@ -38,37 +39,33 @@ app.register_blueprint(create_auth_blueprint(oauth))
 
 @app.route('/')
 def index() -> str:
-    return render_template('homepage.html')
+    return render_template('homepage.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
 
 # this is a temporary fix hopefully for the button not working
 @app.route('/pantry_planner')
 def pantryplanner() -> str:
-    return render_template('homepage.html')
+    return render_template('homepage.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/settings')
 @login_required()
 def settings() -> str:
-    return render_template('settings.html')
+    return render_template('settings.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/my_food')
 def myfood() -> str:
-    return render_template('my_food.html')
+    return render_template('my_food.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/shopping_list')
 def shopping_list() -> str:
-    return render_template('shopping_list.html')
+    return render_template('shopping_list.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/recipes')
 def recipes() -> str:
-    return render_template('recipes.html')
+    return render_template('recipes.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/successful_logout')
 def successful_logout() -> str:
-    return render_template('logout.html')
-
-@app.route('/successful_login')
-def successful_login() -> str:
-    return render_template('login.html')
+    return render_template('logout.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
 
 foodNames = None  # Initialize global variable
 
