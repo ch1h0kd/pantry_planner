@@ -34,7 +34,7 @@ function initialize(snapshot){
   let finalGroup;
 
   finalGroup = Object.values(snapshot.val()); // show all items in my food as default
-  showDisplay();
+  display();
 
   finalGroup = [];
 
@@ -56,10 +56,10 @@ function initialize(snapshot){
     // Filter finalGroup to contain only products whose name includes the search term
     finalGroup = Object.values(snapshot.val()).filter( element => element.item.includes(lowerCaseSearchTerm));
     // Once we have the final group, update the display
-    showDisplay();
+    display();
   }
 
-  function showDisplay(){
+  function display(){
     const list = document.getElementById("expList");
     list.innerHTML = "";
 
@@ -89,10 +89,14 @@ function initialize(snapshot){
         button.addEventListener("click", function(){
           buttonRemove("/food/", button.value);
         });
-
+        console.log(element.tag);
         itemHeading.appendChild(document.createTextNode(element.item));
         expPara.appendChild(document.createTextNode(element.exp));
-        tag.appendChild(document.createTextNode(element.tag));
+        if(element.tag == undefined){
+          tag.appendChild(document.createTextNode("Other"));
+        } else{
+          tag.appendChild(document.createTextNode(element.tag));
+        }
         listItem.appendChild(button);
         listItem.appendChild(itemHeading);
         listItem.appendChild(expPara);
