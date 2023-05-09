@@ -120,14 +120,22 @@ export function addItemExp() {
     console.log("addItemExp");  
     const itemInput = document.getElementById("item-input");
     const expInput = document.getElementById("exp-input");
+    const invalid = document.getElementById("invalid-input-food");
     const item = itemInput.value;
     const exp = expInput.value;
     if(item != "" && exp != ""){
-      itemInput.value = "";
-      expInput.value = "";
       push(foodRef, {
         item: item,
         exp: exp
+      })
+      .then(() => {
+        invalid.style.display = "none";
+        itemInput.value = "";
+        expInput.value = "";
+      })
+      .catch((error) => {
+        console.log("Write operation denied: " + error.message);
+        invalid.style.display = "block";
       });
     }
     get(foodRef).then((snapshot) => {
@@ -139,10 +147,17 @@ export function addItemExp() {
 export function addItemShop() {    
   const itemInput = document.getElementById("shop-input");
   const item = itemInput.value;
+  const invalid = document.getElementById("invalid-input-shop");
   if(item != ""){
-    itemInput.value = "";
     push(shoppingRef, {
       item: item
+    }).then(() => {
+      invalid.style.display = "none";
+      itemInput.value = "";
+    })
+    .catch((error) => {
+      console.log("Write operation denied: " + error.message);
+      invalid.style.display = "block";
     });
   }
 }

@@ -129,7 +129,10 @@
   border-radius: 5px;
   padding: 7px;
 }
-
+.errormsg{
+  display: none;
+  color: red;
+}
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
