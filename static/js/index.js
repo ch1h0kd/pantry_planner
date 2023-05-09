@@ -18,12 +18,11 @@ const db = getDatabase(app);
 var username = '{{ nickname }}';
 var foodRef = ref(db, username + "/food");
 var shoppingRef = ref(db, username + "/shopping");
-get(shoppingRef).then((snapshot) => {
-  shopHandler(snapshot)
-});
 get(foodRef).then((snapshot) => {
   foodHandler(snapshot)
 });
+expHandler();
+
 
 export function changeUser(){
   const userInput = document.getElementById("user-input");
@@ -39,9 +38,6 @@ export function changeUser(){
     shoppingRef = ref(db, username + "/shopping");
     userInput.value = "";
   }
-  get(shoppingRef).then((snapshot) => {
-    shopHandler(snapshot)
-  });
   get(foodRef).then((snapshot) => {
     foodHandler(snapshot)
   });
@@ -137,6 +133,7 @@ export function addItemExp() {
     get(foodRef).then((snapshot) => {
       foodHandler(snapshot)
     });
+    expHandler();
 }
 
 export function addItemShop() {    
@@ -148,25 +145,15 @@ export function addItemShop() {
       item: item
     });
   }
-  get(shoppingRef).then((snapshot) => {
-    shopHandler(snapshot)
-  });
 }
-  
-  /*
-  get(foodRef).then((snapshot) => {
-    in case I need it again the code to get food ref once
-*/
 
 export function buttonRemove(category, id){
   var toRemove = ref(db, username + category + id); 
   remove(toRemove);
-  get(shoppingRef).then((snapshot) => {
-    shopHandler(snapshot)
-  });
   get(foodRef).then((snapshot) => {
     foodHandler(snapshot)
   });
+  expHandler();
 }
 
 function foodHandler(snapshot){
@@ -198,29 +185,29 @@ function foodHandler(snapshot){
 }
 
 
-function shopHandler(snapshot){
-  const list = document.getElementById("shopList");
-  list.innerHTML = "";
-  const trip = Object.values(snapshot.val());
-  const keys = Object.keys(snapshot.val());
+function expHandler(){
+  var sortedRef = query(ref(db, username + '/food'), orderByChild("exp"))
+  const list = document.getElementById("expSoon");
   var i = 0;
-  trip.forEach(element => {        
-      const listItem = document.createElement("li");
-      listItem.classList.add("list-item");
-      const itemHeading = document.createElement("h2");
-      var button = document.createElement("button");
-      button.innerHTML = "remove item";
-      button.value = (keys[i]);
-      listItem.appendChild(button);
-      button.style["float"] = "right";
-      button.addEventListener("click", function(){
-        buttonRemove("/shopping/", button.value);
-      });
-      itemHeading.appendChild(document.createTextNode(element.item));
-      listItem.appendChild(itemHeading);
-      list.appendChild(listItem);
+  get(sortedRef).then((snapshot) => {
+    list.innerHTML = "";
+    snapshot.forEach(element =>{
+      if(i < 4){
+        const listItem = document.createElement("li");
+        listItem.classList.add("list-item");
+        const itemHeading = document.createElement("h2");
+        itemHeading.appendChild(document.createTextNode(element.val().item));
+        const expPara = document.createElement("p");
+        expPara.appendChild(document.createTextNode(element.val().exp));
+        listItem.appendChild(itemHeading);
+        listItem.appendChild(expPara);
+        list.appendChild(listItem);
       i++;
-    });
+      }
+      });
+    });  
+
+  
 }
 
 /* When the user clicks on the button,

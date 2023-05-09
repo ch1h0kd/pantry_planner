@@ -323,9 +323,8 @@
   background-color: rgb(131, 186, 236); /* background highlight color*/
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 2px;
+.buttonBox {
+  margin-bottom: 10px;
 }
 
 

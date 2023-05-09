@@ -63,22 +63,19 @@
 
     </div>
     <div class ="homeCol">
-      <div id = "user-promt">ENTER A USER NAME TO START</div>
-      <input type="text" id="user-input" name="user-input">
-      <button type="button" id="user-button" onclick="changeUser()">Change Username</button>
-      <div>
-        
-        <div class ="sortBy">Sort</div>
-        <div class ="textBox">My Shopping List</div>
+        <div class ="textBox">Shopping List Quick Add</div>
+        <div class = "buttonBox">
+          <label for="item-input">Food:</label>
+          <input type="text" id="shop-input" name="item-input">
+          <button type="button" onclick="addItemShop()">Add to List</button>
+        </div>
+        <div class ="textBox">Food Expiring Soon</div>
+        <div>
+          <ul id="expSoon"></ul>
+        </div>
       </div>
-      <div>
-        <label for="item-input">Food:</label>
-        <input type="text" id="shop-input" name="item-input">
-        <button type="button" onclick="addItemShop()">Add to List</button>
-      </div>
-      <div class = "scrollB"> 
-        <ul id="shopList"></ul>
-      </div>
+
+
       </div>
   </div> 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
