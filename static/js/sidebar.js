@@ -5,6 +5,7 @@ var sidebar_settings = document.getElementById("settings");
 var sidebar_shopping_list = document.getElementById("shopping_list");
 var sidebar_shopping_list = document.getElementById("login");
 var ourURL = 'https://airfishi-bug-free-space-lamp-pgwj4rjxwrpf5vq-5000.preview.app.github.dev';
+//need to fix the url here for other people to be able to use the login button
 
 sidebar_pantry_planner.addEventListener("click", function() {
   window.location.href = ourURL + "/pantry_planner";

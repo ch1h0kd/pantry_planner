@@ -6,12 +6,11 @@ from authlib.integrations.flask_client import OAuth
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, redirect, render_template, url_for, flash, request, jsonify, session
 
-from components.authentication import create_auth_blueprint
+from components.authentication import create_auth_blueprint, nickname
 
 from helpers.decorators import login_required
 
 import requests
-import json
 import random
 
 ENV_FILE = find_dotenv()
@@ -52,7 +51,7 @@ def settings() -> str:
     return render_template('settings.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/my_food')
-def myfood() -> str:
+def my_food() -> str:
     return render_template('my_food.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/shopping_list')
@@ -71,6 +70,11 @@ def recipes() -> str:
 @app.route('/successful_logout')
 def successful_logout() -> str:
     return render_template('logout.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
+
+@app.route('/getnickname')
+def getnickname():
+    print('Is this even running?')
+    return jsonify(nickname)
 
 foodNames = None  # Initialize global variable
 
