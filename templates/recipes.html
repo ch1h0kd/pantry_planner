@@ -29,7 +29,7 @@
     <div class="search-container">
       <form method="GET">
         <input type="text" placeholder="Add keywords..." name = "name" id="name"></input>
-        <button id="submit" type="button" onclick="getData">Go</button>
+        <button id="submit" type="button" onclick="getData()">Go</button>
       </form>
       <script> /*hit enter and search*/
         var input = document.getElementById("name");
@@ -48,7 +48,7 @@
     <button id="Sign-up" class ="login">Sign up/Login</button>
     <div class="sort-col">
       <button id="Sort-by" class ="box">Sort by...</button>
-      <button id="useMyFood" onclick = "buttonClicked(1);  foodHandler();" class ="box">  <!-- -->
+      <button id="useMyFood" onclick = "foodHandler()" class ="box">  <!-- -->
         Use my food
       </button>
       
@@ -60,7 +60,33 @@
   </div> 
 
   <div class="mainContent">
-    <ol id="recipes-list"></ol>
+    <ul id="recipes-list"></ul>
+    <div id="recipesPop" class="popup">
+      <div class="recipesPop_content">
+          <button class="close"  id="close2"> 
+              X
+          </button>
+          <div id ="fullRecipe">
+            <h1 style="color:rgb(196, 255, 196);"></h1>
+          </div>
+          <!--   <form>
+              <div class ="input">
+                <div id = "user-promt-pop">ENTER A USER NAME</div>
+                <input type="text" id="user-input-pop" name="user-input">
+                <button type="button" id="user-button-pop" onclick="changeUser()">Change Username</button> -->
+<!--                 
+                <label for="item-input"><br>Food:</label>
+                <input type="text" id="item-input-pop" name="item-input"></input>
+              
+                <label for="exp-input"><br>Expiration date:</label>
+                <input type="date" id="exp-input-pop" name="exp-input"></input>
+                
+              </div>
+            </form>
+          <button type="button" onclick="changeUser(); addItemExp();" class="closeAddPopup"  id="AddFoodButton">   -->
+            <!-- </button> -->
+      </div>
+    </div>
   </div> 
   <!-- import all the firebase stuff, put in body before using any firebase stuff-->
     <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
