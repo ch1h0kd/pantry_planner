@@ -124,6 +124,7 @@
 
 .list-item{
   border-radius: 5px;
+  padding: 7px;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -317,6 +318,11 @@
 .rightcol .sort-col button:hover {
   color: #242424;
   background-color: rgb(131, 186, 236); /* background highlight color*/
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 2px;
 }
 
 
