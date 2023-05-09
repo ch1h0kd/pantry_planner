@@ -6,12 +6,11 @@ from authlib.integrations.flask_client import OAuth
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, redirect, render_template, url_for, flash, request, jsonify, session
 
-from components.authentication import create_auth_blueprint
+from components.authentication import create_auth_blueprint, get_nickname
 
 from helpers.decorators import login_required
 
 import requests
-import json
 import random
 
 ENV_FILE = find_dotenv()
@@ -39,33 +38,50 @@ app.register_blueprint(create_auth_blueprint(oauth))
 
 @app.route('/')
 def index() -> str:
-    return render_template('homepage.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
+    nickname = get_nickname()
+    return render_template('homepage.html', session=session.get('user'),nickname=nickname)#, pretty=json.dump(session.get('user'), indent=4))
 
 # this is a temporary fix hopefully for the button not working
 @app.route('/pantry_planner')
-def pantryplanner() -> str:
-    return render_template('homepage.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
+def pantry_planner() -> str:
+    nickname = get_nickname()
+    return render_template('homepage.html', session=session.get('user'),nickname=nickname)#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/settings')
 @login_required()
 def settings() -> str:
-    return render_template('settings.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
+    nickname = get_nickname()
+    return render_template('settings.html', session=session.get('user'), nickname=nickname)#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/my_food')
-def myfood() -> str:
-    return render_template('my_food.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
+def my_food() -> str:
+    nickname = get_nickname()
+    return render_template('my_food.html', session=session.get('user'), nickname=nickname)#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/shopping_list')
 def shopping_list() -> str:
-    return render_template('shopping_list.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
+    nickname = get_nickname()
+    return render_template('shopping_list.html', session=session.get('user'), nickname=nickname)#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/recipes')
 def recipes() -> str:
-    return render_template('recipes.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
+    nickname = get_nickname()
+    return render_template('recipes.html', session=session.get('user'), nickname=nickname)#, pretty=json.dump(session.get('user'), indent=4))
+
+# @app.route('/login')
+# @login_required()
+# def login() -> str:
+#     return render_template('homepage.html', session=session.get('user'))
 
 @app.route('/successful_logout')
 def successful_logout() -> str:
-    return render_template('logout.html', session=session.get('user'))#, pretty=json.dump(session.get('user'), indent=4))
+    return render_template('logout.html')#, pretty=json.dump(session.get('user'), indent=4))
+
+@app.route('/getnickname', methods=['POST'])
+def getnickname():
+    print('Is this even running?')
+    nickname = get_nickname()
+    return render_template('homepage.html', session=session.get('user'), nickname=nickname )
 
 foodNames = None  # Initialize global variable
 
@@ -82,7 +98,7 @@ def api_endpoint():
 
     print(f"Item: {foodNames}")
 
-    # choose 3 ingredients from my food randomly
+    #choose 3 ingredients from my food randomly
     if len(foodNames) < 3:
         items_str = ' '.join(foodNames)
     

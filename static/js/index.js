@@ -15,7 +15,7 @@ const app = initializeApp({
 });
 
 const db = getDatabase(app);
-var username = "defualt-user";
+var username = '{{ nickname }}';
 var foodRef = ref(db, username + "/food");
 var shoppingRef = ref(db, username + "/shopping");
 get(shoppingRef).then((snapshot) => {

@@ -35,14 +35,19 @@
                 <div class ="input">
                   <div id = "user-promt-pop">ENTER A USER NAME</div>
                   <input type="text" id="user-input-pop" name="user-input">
-                  <!-- <button type="button" id="user-button-pop" onclick="changeUser()">Change Username</button> -->
                   
                   <label for="item-input"><br>Food:</label>
                   <input type="text" id="item-input-pop" name="item-input"></input>
                 
                   <label for="exp-input"><br>Expiration date:</label>
                   <input type="date" id="exp-input-pop" name="exp-input"></input>
-                  
+
+                  <label for="tag">Select a tag:</label>
+                  <select id="tag">
+                    <option selected>Other</option>
+                    <option>Ingredient</option>
+                    <option>Snacks</option>
+                  </select>
                 </div>
               </form>
             <button type="button" onclick="changeUser(); addItemExp();" class="closeAddPopup"  id="AddFoodButton">  <!--  -->
@@ -70,8 +75,8 @@
     <!-- Search box -->
     <div class="search-container">
       <form action="/action_page.php">
-        <input type="text" placeholder="Search.." name="search">
-        <button type="submit">Go</button>
+        <input type="text" placeholder="Search.." maxlength="20" id="searchMyf">
+        <button type="submit" id="searchMyfB">Go</button>
       </form>
     </div>
   </div>
@@ -79,9 +84,9 @@
   <div class="rightcol">
     <button id="Sign-up" class ="login">Sign up/Login</button>
     <div class="sort-col">
-      <button id="Sort-foods-by-name" class ="box">Sort foods by name</button>
-      <button id="Add-foods-by-picture" class ="box">Add foods by picture</button>
-      <button id="Add-foods-from-list" class ="box">Add foods from list</button>
+      <button id="Sort-foods-by-name" class ="box">Sort...</button>
+      <button id="Add-foods-by-picture" class ="box">Filter</button>
+      <button id="Add-foods-from-list" class ="box">Add from shopping list</button>
       <button id="Remove-by-name" class ="box">Remove by name</button>
       <button id="Remove-using-recipes" class ="box">Remove using recipes</button>
       <button id="Show-expiring" class ="box">Show expiring</button>
