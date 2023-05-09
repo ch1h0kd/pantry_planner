@@ -9,7 +9,7 @@
     background-color: #43ccd6;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 0px;
-    cursor: default
+    cursor: default;
   }
 
   /* The navigation menu links */
@@ -33,6 +33,7 @@
     position: absolute;
     bottom: 0%;
     width: 100%;
+    cursor: pointer;
   }
 
   .sidenav a3 {
@@ -45,6 +46,7 @@
     position: absolute;
     bottom: 5.5%;
     width: 100%;
+    cursor: pointer;
   }
 
   /* When you mouse over the navigation links, change their color */
