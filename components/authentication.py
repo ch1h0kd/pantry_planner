@@ -19,14 +19,14 @@ def create_auth_blueprint(oauth):
 
     @auth.route('/login')
     def login():
-        print("part 1: ", url_for("auth.callback", _external=True))
+        # print("part 1: ", url_for("auth.callback", _external=True))
         return oauth.auth0.authorize_redirect(
             redirect_uri=url_for("auth.callback", _external=True)
         )
 
     @auth.route('/callback', methods=["GET", "POST"])
     def callback():
-        print("part 2: ", redirect(url_for("pantry_planner")))
+        # print("part 2: ", redirect(url_for("pantry_planner")))
         token = oauth.auth0.authorize_access_token()
         session["user"] = token
         return redirect(url_for("pantry_planner"))
