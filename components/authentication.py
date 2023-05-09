@@ -6,9 +6,9 @@ from pprint import pprint as print
 from authlib.integrations.flask_client import OAuth
 from authlib.oauth2.rfc6750 import BearerTokenValidator
 
-from flask import redirect, session, request
+from flask import redirect, session, request, url_for
 
-from helpers.decorators import url_for
+# from helpers.decorators import url_for
 
 from flask.json import jsonify
 
