@@ -98,7 +98,7 @@ def api_endpoint():
 
     print(f"Item: {foodNames}")
 
-    # choose 3 ingredients from my food randomly
+    #choose 3 ingredients from my food randomly
     if len(foodNames) < 3:
         items_str = ' '.join(foodNames)
     
