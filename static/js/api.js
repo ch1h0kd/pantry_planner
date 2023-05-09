@@ -26,14 +26,6 @@ get(foodRef).then((snapshot) => {
   foodHandler(snapshot)
 });
 
-let button1Clicked = false;
-
-function buttonClicked(buttonNumber) {
-  if (buttonNumber === 1) {
-    button1Clicked = true;
-  }
-}
-
 function foodHandler(snapshot){
   // const list = document.getElementById("expList"); // how to get expList in homepage.html
   if (snapshot == null) {
@@ -54,11 +46,12 @@ function foodHandler(snapshot){
     const flastMessage = request.responseText
     console.log(flastMessage)
   }
-  if(button1Clicked == true){
+
+  //when use my food button is clicked
+  document.getElementById("useMyFood").addEventListener("click", function() {
     request.send();
     getData();
-    button1Clicked = false;
-  }
+  });
 }
 
 function getData(){
@@ -80,27 +73,70 @@ function getData(){
     });
   }
   
+  const hashmap = {};
   function show(data) {
     const list = document.getElementById("recipes-list");
     list.innerHTML = "";
     for(let i = 0; i < data.results.length; i++) {
-      const listItem = document.createElement("li");
+      const listItem = document.createElement("section");
       const nameLI = document.createElement('h2');
       nameLI.setAttribute("id", "fullRecipe");
-      nameLI.innerHTML = data.results[i].name;
-    
-      // create list for description
-      const descriptionLI = document.createElement('p');
-      descriptionLI.innerHTML = data.results[i].description;
+      nameLI.innerHTML = data.results[i].name; //get name of a recipe
+      if (data.results[i].name.length > 40){
+        nameLI.style.fontSize = '18px';
+      }
+
+      // store the pair of name and index for later use
+      hashmap[data.results[i].name] = i;
+
+      // when a name is clicked, display its full recipes
+      nameLI.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent the link from navigating to the URL
+        const popupBox = document.getElementById("recipesPop");
+        popupBox.classList.add("show");
+        fullRecipes(data, data.results[i].name);
+      });
+
+      // display images
+      const src = data.results[i].thumbnail_url;
+      let imgTag = document.createElement('img');
+      imgTag.src = src;
     
       // append description list to nameLI
-      nameLI.appendChild(descriptionLI);
+      nameLI.appendChild(imgTag);
       // append mainUL to body
       listItem.appendChild(nameLI);
       list.appendChild(listItem);
     }
+    console.log(hashmap);
   }
+  
+  // close full recipe pop-up
+  close2.addEventListener("click", function () {
+    const popupBox = document.getElementById("recipesPop");
+    popupBox.classList.remove("show");
+  });
+  
+  // Add event listener to window for click events
+  window.addEventListener("click", function (event) {
+    if (event.target == recipesPop) {
+    const popupBox = document.getElementById("recipesPop");
+    popupBox.classList.remove("show");
+    }
+  });
 
+  function fullRecipes(data, name){
+    // console.log(name);
+    // const recipeBox = document.getElementById("fullRecipe");
+    // recipeBox.innerHTML = "";
+    // const index = hashmap[name] 
+    // const title = document.getElementById("h1");
+    // title.innerHTML = data.results[index].name;
+
+    // // const descriptionLI = document.createElement('p');
+    // // descriptionLI.innerHTML = data.results[index].description;
+    // recipeBox.appendChild(title);
+  }
+  
 window.foodHandler = foodHandler; //changes the scope!!! most important line, makes global
 window.getData = getData;
-window.buttonClicked = buttonClicked;
