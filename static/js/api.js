@@ -18,7 +18,7 @@ const db = getDatabase(app);
 var username = "defualt-user";
 var foodRef = ref(db, username + "/food");
 var snapshot2 = "";
-
+//get my food data from database
 get(foodRef).then((snapshot) => {
   if (snapshot != null){
     snapshot2 = snapshot;
@@ -27,6 +27,7 @@ get(foodRef).then((snapshot) => {
 });
 
 function foodHandler(snapshot){
+  console.log("snapshot ", snapshot);
   // const list = document.getElementById("expList"); // how to get expList in homepage.html
   if (snapshot == null) {
     snapshot = snapshot2;
@@ -34,28 +35,40 @@ function foodHandler(snapshot){
 
   const trip = Object.values(snapshot.val()); // array(size)
 
-  var i = 0;
-  const itemArray = [];
-  trip.forEach(element => {  
-    itemArray.push(element.item);      
-    i++;
+  //when use my food button is clicked
+  document.getElementById("useMyFood").addEventListener("click", function() {
+    var i = 0;
+    const itemArray = []; //create a list of items in my food
+    trip.forEach(element => {  
+      itemArray.push(element.item);      
+      i++;
+    });
+    const request = new XMLHttpRequest()
+    request.open('POST', `/myFoodArray/${JSON.stringify(itemArray)}`)
+    request.onload = () => {
+      const flastMessage = request.responseText
+      console.log(flastMessage)
+    }
+    request.send();
+    getData();
+    console.log("use my food button is clicked");
   });
+}
+
+//when search button is clicked
+document.getElementById("submit").addEventListener("click", function() {
+  const searchTerm = document.getElementById("name").value.trim();
   const request = new XMLHttpRequest()
-  request.open('POST', `/myFoodArray/${JSON.stringify(itemArray)}`)
+  request.open('POST', `/searchTerm/${JSON.stringify(searchTerm)}`)
   request.onload = () => {
     const flastMessage = request.responseText
     console.log(flastMessage)
   }
-
-  //when use my food button is clicked
-  document.getElementById("useMyFood").addEventListener("click", function() {
-    request.send();
-    getData();
-  });
-}
+  request.send();
+  setTimeout(getData, 500); // Execute getData() after 0.5 seconds
+});
 
 function getData(){
-    var name = document.getElementById('name').value;
     fetch('/api-endpoint')
     .then((response) =>  {
       if (response.ok) {
@@ -100,15 +113,34 @@ function getData(){
       // display images
       const src = data.results[i].thumbnail_url;
       let imgTag = document.createElement('img');
+      imgTag.setAttribute("id", "image")
       imgTag.src = src;
     
       // append description list to nameLI
       nameLI.appendChild(imgTag);
-      // append mainUL to body
       listItem.appendChild(nameLI);
       list.appendChild(listItem);
     }
-    console.log(hashmap);
+
+    // // sorting buttons
+    // document.getElementById("sortByNameRec").addEventListener("click", function() {
+    //   sortBy("name", false, data);
+    // }, false);
+    // document.getElementById("RsortByNameRec").addEventListener("click", function() {
+    //   sortBy("name", true, data);
+    // }, false);
+    // document.getElementById("sortByRatings").addEventListener("click", function() {
+    //   sortBy("user_ratings", false, data);
+    // }, false);
+    // document.getElementById("RsortByRatings").addEventListener("click", function() {
+    //   sortBy("user_ratings", true, data);
+    // }, false);
+    // document.getElementById("sortByCalories").addEventListener("click", function() {
+    //   sortBy("nutrition", false, data);
+    // }, false);
+    // document.getElementById("RsortByCalories").addEventListener("click", function() {
+    //   sortBy("nutrition", true, data);
+    // }, false);
   }
   
   // close full recipe pop-up
@@ -137,6 +169,83 @@ function getData(){
     // // descriptionLI.innerHTML = data.results[index].description;
     // recipeBox.appendChild(title);
   }
-  
+
+
+// //need to store the api response on firebase?
+export function sortBy(category, reverse, json){
+  var sortedData;
+  if(category == "user_ratings"){
+    sortedData = json.results.child(category).orderByChild("score");
+  }
+  else if(category == "nutrition"){
+    sortedData = json.results.child(category).orderByChild("calories");
+  }
+  else{
+    sortedData = json.results.orderByChild("name");
+  };
+
+  //get(sortedRef).then((snapshot) =>{
+    let sortedList = [];
+    let keyList = [];
+    const list = document.getElementById("expList");
+    list.innerHTML = "";
+    sortedData.forEach(element =>{
+      sortedList.push(element.val())
+      keyList.push(element.key)
+    });
+    if(reverse){
+      sortedList.reverse();
+      keyList.reverse();
+    }
+    listShow(sortedList);
+  //});
+}
+
+const hashmap2 = {};
+  function listShow(dataList) {
+    console.log("in list show");
+    // const list = document.getElementById("recipes-list");
+    // list.innerHTML = "";
+    
+    // const trip = Object.values(dataList); //[object Object],[object Object],[object Object]
+    // const keys = Object.keys(dataList);//
+    // console.log("trip "+trip);
+    // console.log("keys "+keys);
+
+    // trip.forEach(element => {
+    //   console.log("element "+element);
+    //   const listItem = document.createElement("section");
+    //   const nameLI = document.createElement('h2');
+
+    //   nameLI.setAttribute("id", "fullRecipe");
+    //   nameLI.innerHTML = element.name; //get name of a recipe
+    //   if (element.name.length > 40){
+    //     nameLI.style.fontSize = '18px';
+    //   }
+
+    //   // store the pair of name and index for later use
+    //   hashmap2[element.name] = i;
+
+    //   // when a name is clicked, display its full recipes
+    //   nameLI.addEventListener("click", (event) => {
+    //     event.preventDefault(); // Prevent the link from navigating to the URL
+    //     const popupBox = document.getElementById("recipesPop");
+    //     popupBox.classList.add("show");
+    //     fullRecipes(data, element.name);
+    //   });
+
+    //   // display images
+    //   const src = element.thumbnail_url;
+    //   let imgTag = document.createElement('img');
+    //   imgTag.src = src;
+    
+    //   // append description list to nameLI
+    //   nameLI.appendChild(imgTag);
+    //   // append mainUL to body
+    //   listItem.appendChild(nameLI);
+    //   list.appendChild(listItem);
+    //   i++;
+    // });
+  }
 window.foodHandler = foodHandler; //changes the scope!!! most important line, makes global
 window.getData = getData;

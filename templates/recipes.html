@@ -28,10 +28,10 @@
     <!-- Search box -->
     <div class="search-container">
       <form method="GET">
-        <input type="text" placeholder="Add keywords..." name = "name" id="name"></input>
-        <button id="submit" type="button" onclick="getData()">Go</button>
+        <input type="text" placeholder="Add keywords..." maxlength="20" name = "name" id="name"></input>
+        <button id="submit" type="button">Go</button>
       </form>
-      <script> /*hit enter and search*/
+      <!-- <script> /*hit enter and search*/
         var input = document.getElementById("name");
         input.addEventListener("keypress", function(event) {
           if (event.key === "Enter") {
@@ -39,7 +39,7 @@
             document.getElementById("submit").click();
           }
         });
-        </script>
+        </script> -->
     </div>
   </div>
 
@@ -47,7 +47,19 @@
   <div class="rightcol">
     <button id="Sign-up" class ="login">Sign up/Login</button>
     <div class="sort-col">
-      <button id="Sort-by" class ="box">Sort by...</button>
+      <a>Sort by...</a>
+        <select id="sortRecipes">
+          <option id = "sortByNameRec">Name A-Z</option>
+          <option id = "RsortByNameRec">Name Z-A</option>
+          <option id = "sortByRatings">Ratings H-L</option>
+          <option id = "RsortByRatings">Ratings L-H</option>
+          <option id = "sortByCalories">Calories H-L</option>
+          <option id = "RsortByCalories">Calories L-H</option>
+          
+          <!-- famous
+          num of reviews -->
+        </select>
+      <button id="Sort-by" class ="box"></button>
       <button id="useMyFood" onclick = "foodHandler()" class ="box">  <!-- -->
         Use my food
       </button>

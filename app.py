@@ -76,21 +76,44 @@ def myFoodArray(itemArray):
     foodNames = itemArray
     return "Success!!"
 
+searchTermG = None  # Initialize global variable
+
+@app.route('/searchTerm/<string:searchTerm>', methods=['POST'])
+def getSearchTerm(searchTerm):
+
+    global searchTermG
+    searchTermG = searchTerm
+    return "Success!!"
+
+    
 @app.route('/api-endpoint', methods=['GET'])
 def api_endpoint():
     url = "https://tasty.p.rapidapi.com/recipes/list"
+    headers = {
+            "X-RapidAPI-Key":env.get("API_KEY"),
+            "X-RapidAPI-Host":env.get("API_HOST")
+    }
+    response = None
+    querystring = None
+    keyword = None
 
-    print(f"Item: {foodNames}")
+    if (foodNames != None):
+        #choose 3 ingredients from my food randomly
+        if len(foodNames) < 3:
+            keyword = ' '.join(foodNames)
+        
+        else:
+            random_indices = random.sample(range(len(foodNames)), 3)
+            random_items = [foodNames[i] for i in random_indices]
+    
+            keyword = ' '.join(random_items)
 
-    #choose 3 ingredients from my food randomly
-    if len(foodNames) < 3:
-        items_str = ' '.join(foodNames)
-    
-    else:
-        random_indices = random.sample(range(len(foodNames)), 3)
-        random_items = [foodNames[i] for i in random_indices]
-    
-    items_str = ' '.join(random_items)
+
+
+    elif (searchTermG != None):
+        keyword = searchTermG
+
+
     # Retrieve the query parameters from the request
     # Load the HTML file
     # with open('templates/recipes.html') as f:
@@ -108,13 +131,8 @@ def api_endpoint():
     # name = request.form['name']
     # name_input = request.args.get("name")
     # print(name)
-    querystring = {"from":"0","size":30,"q":items_str}
-
-    headers = {
-        "X-RapidAPI-Key":env.get("API_KEY"),
-        "X-RapidAPI-Host":env.get("API_HOST")
-    }
-
+    querystring = {"from":"0","size":30,"q":keyword}
+    
     response = requests.request("GET", url, headers=headers, params=querystring)
 
     # Process the response and return the result
