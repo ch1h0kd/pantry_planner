@@ -6,9 +6,10 @@
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #43ccd6; /* Black */
+    background-color: #43ccd6;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 0px;
+    cursor: default;
   }
 
   /* The navigation menu links */
@@ -32,6 +33,7 @@
     position: absolute;
     bottom: 0%;
     width: 100%;
+    cursor: pointer;
   }
 
   .sidenav a3 {
@@ -44,6 +46,7 @@
     position: absolute;
     bottom: 5.5%;
     width: 100%;
+    cursor: pointer;
   }
 
   /* When you mouse over the navigation links, change their color */
@@ -124,8 +127,12 @@
 
 .list-item{
   border-radius: 5px;
+  padding: 7px;
 }
-
+.errormsg{
+  display: none;
+  color: red;
+}
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
@@ -317,6 +324,10 @@
 .rightcol .sort-col button:hover {
   color: #242424;
   background-color: rgb(131, 186, 236); /* background highlight color*/
+}
+
+.buttonBox {
+  margin-bottom: 10px;
 }
 
 
