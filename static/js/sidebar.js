@@ -19,7 +19,7 @@ sidebar_recipes.addEventListener("click", function() {
 });
 
 sidebar_settings.addEventListener("click", function() {
-  window.location.href = "www.cooklog.nl" + "/settings"
+  window.location.href = "/settings"
 });
 
 sidebar_shopping_list.addEventListener("click", function() {
