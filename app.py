@@ -99,6 +99,7 @@ def getSearchTerm(searchTerm):
     
 @app.route('/api-endpoint', methods=['GET'])
 def api_endpoint():
+
     url = "https://tasty.p.rapidapi.com/recipes/list"
     headers = {
             "X-RapidAPI-Key":env.get("API_KEY"),
@@ -125,7 +126,7 @@ def api_endpoint():
     elif (searchTermG != None):
         keyword = searchTermG
 
-    querystring = {"from":"0","size":30,"q":keyword}
+    querystring = {"from":"0","size":50,"q":keyword}
     print("keyword : ", keyword)
     response = requests.request("GET", url, headers=headers, params=querystring)
 
