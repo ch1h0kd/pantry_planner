@@ -76,20 +76,22 @@ def getnickname():
     print('Is this even running?')
     return render_template('homepage.html', session=session.get('user'), nickname=get_nickname())
 
-foodNames = None  # Initialize global variable
+foodNames = None # Initialize global variable
 
 @app.route('/myFoodArray/<string:itemArray>', methods=['POST'])
 def myFoodArray(itemArray):
+    print("in my food array")
     itemArray = json.loads(itemArray)
     global foodNames  # Declare that we're using the global variable
     foodNames = itemArray
     return "Success!!"
 
+
 searchTermG = None  # Initialize global variable
 
 @app.route('/searchTerm/<string:searchTerm>', methods=['POST'])
 def getSearchTerm(searchTerm):
-
+    print("in search term")
     global searchTermG
     searchTermG = searchTerm
     return "Success!!"
@@ -102,47 +104,33 @@ def api_endpoint():
             "X-RapidAPI-Key":env.get("API_KEY"),
             "X-RapidAPI-Host":env.get("API_HOST")
     }
+    global foodNames  # Declare global variables
+    global searchTermG
+
     response = None
     querystring = None
     keyword = None
 
     if (foodNames != None):
-        #choose 3 ingredients from my food randomly
-        if len(foodNames) < 3:
-            keyword = ' '.join(foodNames)
+        # #choose 3 ingredients from my food randomly
+        # if len(foodNames) < 3:
+        #     keyword = ' '.join(foodNames)
         
-        else:
-            random_indices = random.sample(range(len(foodNames)), 3)
-            random_items = [foodNames[i] for i in random_indices]
+        
+        random_indices = random.sample(range(len(foodNames)), 3)
+        random_items = [foodNames[i] for i in random_indices]
     
-            keyword = ' '.join(random_items)
-
-
+        keyword = ' '.join(random_items)
 
     elif (searchTermG != None):
         keyword = searchTermG
 
-
-    # Retrieve the query parameters from the request
-    # Load the HTML file
-    # with open('templates/recipes.html') as f:
-    #     soup = BeautifulSoup(f, 'html.parser')
-
-    # # Find the input element with id 'name'
-    # name_input = soup.find('input', {'id': 'name'}).get('value')
-    # print(soup.find('input', {'id': 'name'}))
-    # print(name_input)
-
-    # Get the value of the input
-    # name_value = name_input['value']
-    # print(name_value)
-
-    # name = request.form['name']
-    # name_input = request.args.get("name")
-    # print(name)
     querystring = {"from":"0","size":30,"q":keyword}
-    
+    print("keyword : ", keyword)
     response = requests.request("GET", url, headers=headers, params=querystring)
+
+    searchTermG = None #initialize
+    foodNames = None
 
     # Process the response and return the result
     if response.status_code == 200:

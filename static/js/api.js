@@ -15,7 +15,7 @@ const app = initializeApp({
 });
 
 const db = getDatabase(app);
-var username = "defualt-user";
+var username = '{{ nickname }}';
 var foodRef = ref(db, username + "/food");
 var snapshot2 = "";
 //get my food data from database
@@ -23,9 +23,13 @@ get(foodRef).then((snapshot) => {
   if (snapshot != null){
     snapshot2 = snapshot;
   }
+  initialize(snapshot)
   foodHandler(snapshot)
 });
 
+function initialize(snapshot){
+
+}
 function foodHandler(snapshot){
   console.log("snapshot ", snapshot);
   // const list = document.getElementById("expList"); // how to get expList in homepage.html
@@ -37,6 +41,7 @@ function foodHandler(snapshot){
 
   //when use my food button is clicked
   document.getElementById("useMyFood").addEventListener("click", function() {
+    console.log("use my food button is clicked")
     var i = 0;
     const itemArray = []; //create a list of items in my food
     trip.forEach(element => {  
@@ -50,13 +55,14 @@ function foodHandler(snapshot){
       console.log(flastMessage)
     }
     request.send();
-    getData();
-    console.log("use my food button is clicked");
+    setTimeout(getData, 500); // Execute getData() after 0.5 seconds
+    
   });
 }
 
 //when search button is clicked
 document.getElementById("submit").addEventListener("click", function() {
+  console.log("search button is clicked")
   const searchTerm = document.getElementById("name").value.trim();
   const request = new XMLHttpRequest()
   request.open('POST', `/searchTerm/${JSON.stringify(searchTerm)}`)
@@ -84,12 +90,20 @@ function getData(){
     .catch((error) => {
       console.log('error: ' + error);
     });
-  }
+}
   
   const hashmap = {};
   function show(data) {
     const list = document.getElementById("recipes-list");
     list.innerHTML = "";
+
+    // if no results much, display the message
+    if(data.count == 0){
+      const para = document.createElement('h1');
+      para.textContent = 'No results';
+      list.appendChild(para);
+    }
+
     for(let i = 0; i < data.results.length; i++) {
       const listItem = document.createElement("section");
       const nameLI = document.createElement('h2');
@@ -121,11 +135,15 @@ function getData(){
       listItem.appendChild(nameLI);
       list.appendChild(listItem);
     }
-
-    // // sorting buttons
-    // document.getElementById("sortByNameRec").addEventListener("click", function() {
-    //   sortBy("name", false, data);
-    // }, false);
+    // when sorting button is clicked
+    document.getElementById("sortApply").addEventListener("click", function() {
+      console.log("sorting button is clicked")
+      var e = document.getElementById("sortRecipes");
+      var id = e.id;
+      console.log("id is " + id);
+      sortBy(id, false, data);
+    }, false);
+  }
     // document.getElementById("RsortByNameRec").addEventListener("click", function() {
     //   sortBy("name", true, data);
     // }, false);
@@ -140,8 +158,8 @@ function getData(){
     // }, false);
     // document.getElementById("RsortByCalories").addEventListener("click", function() {
     //   sortBy("nutrition", true, data);
+    //   console.log("clicked");
     // }, false);
-  }
   
   // close full recipe pop-up
   close2.addEventListener("click", function () {
@@ -174,10 +192,10 @@ function getData(){
 // //need to store the api response on firebase?
 export function sortBy(category, reverse, json){
   var sortedData;
-  if(category == "user_ratings"){
+  if(category == "sortsortByRatingsByNameRec" || category == "RsortByRatings"){
     sortedData = json.results.child(category).orderByChild("score");
   }
-  else if(category == "nutrition"){
+  else if(category == "sortByCalories" || category == "RsortByCalories" ){
     sortedData = json.results.child(category).orderByChild("calories");
   }
   else{
@@ -197,6 +215,7 @@ export function sortBy(category, reverse, json){
       sortedList.reverse();
       keyList.reverse();
     }
+    console.log(sortedList);
     listShow(sortedList);
   //});
 }
@@ -204,48 +223,47 @@ export function sortBy(category, reverse, json){
 const hashmap2 = {};
   function listShow(dataList) {
     console.log("in list show");
-    // const list = document.getElementById("recipes-list");
-    // list.innerHTML = "";
+    const list = document.getElementById("recipes-list");
+    list.innerHTML = "";
     
-    // const trip = Object.values(dataList); //[object Object],[object Object],[object Object]
-    // const keys = Object.keys(dataList);//
-    // console.log("trip "+trip);
-    // console.log("keys "+keys);
+    const trip = Object.values(dataList); //[object Object],[object Object],[object Object]
+    const keys = Object.keys(dataList);//
+    console.log("trip "+trip);
+    console.log("keys "+keys);
 
-    // trip.forEach(element => {
-    //   console.log("element "+element);
-    //   const listItem = document.createElement("section");
-    //   const nameLI = document.createElement('h2');
+    trip.forEach(element => {
+      console.log("element "+element);
+      const listItem = document.createElement("section");
+      const nameLI = document.createElement('h2');
 
-    //   nameLI.setAttribute("id", "fullRecipe");
-    //   nameLI.innerHTML = element.name; //get name of a recipe
-    //   if (element.name.length > 40){
-    //     nameLI.style.fontSize = '18px';
-    //   }
+      nameLI.setAttribute("id", "fullRecipe");
+      nameLI.innerHTML = element.name; //get name of a recipe
+      if (element.name.length > 40){
+        nameLI.style.fontSize = '18px';
+      }
 
-    //   // store the pair of name and index for later use
-    //   hashmap2[element.name] = i;
+      // store the pair of name and index for later use
+      hashmap2[element.name] = i;
 
-    //   // when a name is clicked, display its full recipes
-    //   nameLI.addEventListener("click", (event) => {
-    //     event.preventDefault(); // Prevent the link from navigating to the URL
-    //     const popupBox = document.getElementById("recipesPop");
-    //     popupBox.classList.add("show");
-    //     fullRecipes(data, element.name);
-    //   });
+      // when a name is clicked, display its full recipes
+      nameLI.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent the link from navigating to the URL
+        const popupBox = document.getElementById("recipesPop");
+        popupBox.classList.add("show");
+        fullRecipes(data, element.name);
+      });
 
-    //   // display images
-    //   const src = element.thumbnail_url;
-    //   let imgTag = document.createElement('img');
-    //   imgTag.src = src;
+      // display images
+      const src = element.thumbnail_url;
+      let imgTag = document.createElement('img');
+      imgTag.src = src;
     
-    //   // append description list to nameLI
-    //   nameLI.appendChild(imgTag);
-    //   // append mainUL to body
-    //   listItem.appendChild(nameLI);
-    //   list.appendChild(listItem);
-    //   i++;
-    // });
+      // append description list to nameLI
+      nameLI.appendChild(imgTag);
+      listItem.appendChild(nameLI);
+      list.appendChild(listItem);
+      i++;
+    });
   }
 window.foodHandler = foodHandler; //changes the scope!!! most important line, makes global
 window.getData = getData;
