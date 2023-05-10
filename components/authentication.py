@@ -19,7 +19,7 @@ def create_auth_blueprint(oauth):
 
     @auth.route('/login')
     def login():
-        # print("part 1: ", url_for("auth.callback", _external=True))
+        print(url_for("auth.callback", _external=True))
         return oauth.auth0.authorize_redirect(
             redirect_uri=url_for("auth.callback", _external=True)
         )
