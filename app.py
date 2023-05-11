@@ -136,7 +136,7 @@ def api_endpoint():
     # Process the response and return the result
     if response.status_code == 200:
         result = response.json()
-        return jsonify(result);
+        return jsonify(result)
     else:
         return "API request failed with status code: " + str(response.status_code)
 
