@@ -228,6 +228,15 @@
     background-color: rgb(131, 186, 236); /* background highlight color*/
   }
 
+  .errormsg{
+    display: none;
+    color: rgb(255, 117, 117);
+  }
+
+  .addedmsg{
+    display: none;
+    color: rgb(117, 255, 158);
+  }
   .addFoodPopup-content .closeAddPopup { /* X */
     display: block;
     margin: 0 auto;

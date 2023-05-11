@@ -37,7 +37,9 @@
                 <div class ="input">
                   <label for="item-input"><br>Food:</label>
                   <input type="text" id="item-input-pop" name="item-input"></input>
-                
+                  <div id="invalid-input-food" class=errormsg>Invalid Input, Try Again</div>
+                  <div id="valid-input-food" class=addedmsg>Item Added!</div>
+
                   <label for="exp-input"><br>Expiration date:</label>
                   <input type="date" id="exp-input-pop" name="exp-input"></input>
 
@@ -96,10 +98,8 @@
         <button class="sortButton" id="sortApply"> 
           Apply
         </button>
-      <button id="Add-foods-by-picture" class ="box">Filter</button>
-      <button id="Add-foods-from-list" class ="box">Add from shopping list</button>
-      <!-- <button id="Remove-by-name" class ="box">Remove by name</button>
-      <button id="Remove-using-recipes" class ="box">Remove using recipes</button> -->
+      <!-- <button id="Add-foods-by-picture" class ="box">Filter</button>
+      <button id="Add-foods-from-list" class ="box">Add from shopping list</button> -->
       <button id="Show-expiring" class ="box">Show expiring</button>
     </div>
     ...

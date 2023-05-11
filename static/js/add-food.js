@@ -43,6 +43,16 @@ function initialize(snapshot){
 
   // when sort apply is clicked
   document.getElementById("sortApply").addEventListener("click", preSortBy);
+
+  document.getElementById("sortApply").addEventListener("click", preSortBy);
+
+
+  const expiring = document.getElementById("Show-expiring");
+  // when show expiring is clicked
+  expiring.addEventListener("click", function(){
+    sortBy2("exp", false);
+
+  });
   
   function selectItems(e){
     e.preventDefault();
@@ -65,7 +75,6 @@ function initialize(snapshot){
 
   function preSortBy(){
     const byWhat = document.querySelector("#sortRecipes").value; // Name A-Z
-    console.log("by what ", byWhat);
     if(byWhat == "Expiring sooner"){
       sortBy("exp", false);
     }
@@ -112,6 +121,31 @@ function initialize(snapshot){
     });
   }
 
+  //to show expiring
+  function sortBy2(category){
+    var sortedRef = query(ref(db, username + '/food'), orderByChild(category));
+    get(sortedRef).then((snapshot) =>{
+      let sortedList = [];
+      let keyList = [];
+      const list = document.getElementById("expList");
+      list.innerHTML = "";
+      snapshot.forEach(element =>{
+        var today = new Date();
+        var expDate = new Date(element.val().exp)
+        console.log("working: ", element.val().exp)
+
+        //if element expires in three days;
+        console.log(expDate - today < 259200000, expDate - today)
+        if(expDate - today < 259200000){
+          sortedList.push(element.val())//{exp: '2023-05-28', item: 'milk'}
+          keyList.push(element.key)// -NV0x9xV8KKgAGfbjuYN
+        }
+      });
+      displayExp(sortedList, keyList);
+      console.log("end of sortby2");
+    });
+  }
+
   function display(){
     const list = document.getElementById("expList");
     list.innerHTML = "";
@@ -144,7 +178,85 @@ function initialize(snapshot){
         });
         //console.log(element.tag);
         itemHeading.appendChild(document.createTextNode(element.item));
-        expPara.appendChild(document.createTextNode(element.exp));
+        const expDate = document.createTextNode(element.exp)
+        expPara.appendChild(expDate);
+
+        if(element.tag == undefined){
+          tag.appendChild(document.createTextNode("Other"));
+        } else{
+          tag.appendChild(document.createTextNode(element.tag));
+        }
+        listItem.appendChild(button);
+        listItem.appendChild(itemHeading);
+        listItem.appendChild(expPara);
+        listItem.appendChild(tag);
+        list.appendChild(listItem);
+        i++;
+    });
+  }
+
+  //to show expiring with color
+  function displayExp(expList, keyList){
+    const list = document.getElementById("expList");
+    list.innerHTML = "";
+
+    // if no products match the search term, display a "No results" message
+    if (expList.length === 0) {
+      const para = document.createElement('h1');
+      para.textContent = 'No results';
+      list.appendChild(para);
+    }
+
+    const trip = Object.values(expList); //[object Object],[object Object],[object Object]
+    const keys = Object.keys(keyList); //-NUSIz-AfjvoCJ7y0Htb,-NUSJ16BoyBtw933wrZs,-NUSJ2f6u2gvIT8KgOKc
+    //keys[0]: -NUSIz-AfjvoCJ7y0Htb
+    var i = 0;
+    console.log("trip", trip)
+    trip.forEach(element => {
+        //element.item: beans
+        //element.exp: 2023-05-31
+        const listItem = document.createElement("section");
+        const itemHeading = document.createElement("h3");
+        const button = document.createElement("button");
+        const expPara = document.createElement("p");
+        const tag = document.createElement("p");
+
+        button.innerHTML = "remove item";
+        button.value = (keys[i]);
+        button.style["float"] = "right";
+        button.addEventListener("click", function(){
+          buttonRemove("/food/", button.value);
+        });
+        //console.log(element.tag);
+        itemHeading.appendChild(document.createTextNode(element.item));
+        //expPara.textContent = expDate;
+
+        const expiring = document.createTextNode(element.exp);
+        console.log("not working : ", expiring)
+        var expDate = new Date(expiring);
+        console.log("ok?   ", expDate)
+        var today = new Date();
+        expPara.appendChild(expiring);
+
+        // console.log(expDate)
+        // //when it's already expired
+        // if(expDate - today < -86400000){
+        //   console.log("hahaha")
+        //   expPara.style.backgroundColor = "#864242";
+        // }
+        // //when it's expiring on that day
+        // else if(expDate - today < 0){
+        //   listItem.style.backgroundColor = "#864242ba";
+        // }
+        // //when it's expiring tomorrow
+        // else if(expDate - today < 86400000){
+        //   listItem.style.backgroundColor = "#86424287";
+        // }
+        // //when it's expiring in three days
+        // else if(expDate - today < 259200000){
+        //   listItem.style.backgroundColor = "#8642424a";
+        // }
+
         if(element.tag == undefined){
           tag.appendChild(document.createTextNode("Other"));
         } else{
@@ -184,6 +296,7 @@ export function addItemExp() {
     const expInput = document.getElementById("exp-input-pop");
     const tagInput = document.querySelector("#tag");
     const invalid = document.getElementById("invalid-input-food");
+    const valid = document.getElementById("valid-input-food");
     const item = itemInput.value;
     const exp = expInput.value;
     const tag = tagInput.value;
@@ -197,6 +310,7 @@ export function addItemExp() {
         tag: tag
       })
       .then(() => {
+        valid.style.display = "block";
         invalid.style.display = "none";
         itemInput.value = "";
         expInput.value = "";
@@ -204,6 +318,7 @@ export function addItemExp() {
       })
       .catch((error) => {
         console.log("Write operation denied: " + error.message);
+        valid.style.display = "none";
         invalid.style.display = "block";
       });
     }
@@ -213,32 +328,66 @@ export function addItemExp() {
     });
 }
 
-export function addItemShop() {    
-  const itemInput = document.getElementById("shop-input");
-  const item = itemInput.value;
-  if(item != ""){
-    itemInput.value = "";
-    push(shoppingRef, {
-      item: item
-    });
-  }
-  get(shoppingRef).then((snapshot) => {
-    shopHandler(snapshot)
-  });
-}
-
 
 export function buttonRemove(category, id){
+  console.log("in button remove")
   var toRemove = ref(db, username + category + id); 
   remove(toRemove);
-  get(shoppingRef).then((snapshot) => {
-    shopHandler(snapshot)
-  });
   get(foodRef).then((snapshot) => {
-    //foodHandler(snapshot)
-    initialize(snapshot)
+    foodHandler(snapshot)
   });
 }
+
+function foodHandler(snapshot){
+  const list = document.getElementById("expList");
+    list.innerHTML = "";
+
+    const trip = Object.values(snapshot.val()); //[object Object],[object Object],[object Object]
+    const keys = Object.keys(snapshot.val()); //-NUSIz-AfjvoCJ7y0Htb,-NUSJ16BoyBtw933wrZs,-NUSJ2f6u2gvIT8KgOKc
+    //keys[0]: -NUSIz-AfjvoCJ7y0Htb
+
+    // if no products match the search term, display a "No results" message
+    if (trip.length === 0) {
+      const para = document.createElement('h1');
+      para.textContent = 'No results';
+      list.appendChild(para);
+    }
+
+    var i = 0;
+    trip.forEach(element => {
+        //element.item: beans
+        //element.exp: 2023-05-31
+        const listItem = document.createElement("section");
+        listItem.classList.add("list-item");
+        const itemHeading = document.createElement("h3");
+        const button = document.createElement("button");
+        const expPara = document.createElement("p");
+        const tag = document.createElement("p")
+
+        button.innerHTML = "remove item";
+        button.value = (keys[i]);
+        button.style["float"] = "right";
+        listItem.appendChild(button);
+        button.addEventListener("click", function(){
+          console.log("in clicked");
+          buttonRemove("/food/", button.value);
+        });
+        //console.log(element.tag);
+        itemHeading.appendChild(document.createTextNode(element.item));
+        expPara.appendChild(document.createTextNode(element.exp));
+        if(element.tag == undefined){
+          tag.appendChild(document.createTextNode("Other"));
+        } else{
+          tag.appendChild(document.createTextNode(element.tag));
+        }
+        listItem.appendChild(itemHeading);
+        listItem.appendChild(expPara);
+        listItem.appendChild(tag);
+        list.appendChild(listItem);
+        i++;
+    });
+}
+
 
 window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
 window.changeUser = changeUser;
