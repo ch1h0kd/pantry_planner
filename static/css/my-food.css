@@ -330,7 +330,25 @@
     position: absolute;
     top: 15%;
   }
-  .rightcol .sort-col button{
+
+  .rightcol p{
+    font-size: 20px;
+    margin-left: 26%;
+    margin-bottom: 2%;
+  }
+
+  .rightcol select{
+    font-size: 17px;
+    margin-left: 25%;
+  }
+
+  .rightcol .sortButton{
+    margin-left: 32%;
+    width: 50%;
+    margin-top: 6%;
+  }
+
+  .rightcol .box{
     width: 135px;
     padding: 10px;
     border: 2px solid gray;

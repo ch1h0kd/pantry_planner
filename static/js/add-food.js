@@ -179,44 +179,32 @@ export function changeUser(){
   });
 }
 
-
-// document.getElementById("sortByExp").addEventListener("click", function() {
-//   sortBy("exp", false);
-// }, false);
-
-// document.getElementById("RsortByExp").addEventListener("click", function() {
-//   sortBy("exp", true);
-// }, false);
-// document.getElementById("sortByName").addEventListener("click", function() {
-//   sortBy("item", false);
-// }, false);
-// document.getElementById("RsortByName").addEventListener("click", function() {
-//   sortBy("item", true);
-// }, false);
-// document.getElementById("sortByAdded").addEventListener("click", function() {
-//   sortBy("latest", true);
-// }, false);
-// document.getElementById("RsortByAdded").addEventListener("click", function() {
-//   sortBy("latest", false);
-// }, false);
-
-
 export function addItemExp() {   
     const itemInput = document.getElementById("item-input-pop");
     const expInput = document.getElementById("exp-input-pop");
     const tagInput = document.querySelector("#tag");
+    const invalid = document.getElementById("invalid-input-food");
     const item = itemInput.value;
     const exp = expInput.value;
     const tag = tagInput.value;
-    console.log(tagInput.value);
     if(item != "" && exp != "" && tag != ""){
       itemInput.value = "";
       expInput.value = "";
-      tagInput.value = ""; //modify the rule on firebase
+      tagInput.value = ""; 
       push(foodRef, {
         item: item,
         exp: exp,
         tag: tag
+      })
+      .then(() => {
+        invalid.style.display = "none";
+        itemInput.value = "";
+        expInput.value = "";
+        tagInput.value = "";
+      })
+      .catch((error) => {
+        console.log("Write operation denied: " + error.message);
+        invalid.style.display = "block";
       });
     }
     get(foodRef).then((snapshot) => {
@@ -254,4 +242,3 @@ export function buttonRemove(category, id){
 
 window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
 window.changeUser = changeUser;
-window.preSortBy = preSortBy;

@@ -35,9 +35,6 @@
               </h1>
               <form>
                 <div class ="input">
-                  <div id = "user-promt-pop">ENTER A USER NAME</div>
-                  <input type="text" id="user-input-pop" name="user-input">
-                  
                   <label for="item-input"><br>Food:</label>
                   <input type="text" id="item-input-pop" name="item-input"></input>
                 
@@ -52,7 +49,7 @@
                   </select>
                 </div>
               </form>
-            <button type="button" onclick="changeUser(); addItemExp();" class="closeAddPopup"  id="AddFoodButton">  <!--  -->
+            <button type="button" onclick="addItemExp()" class="closeAddPopup"  id="AddFoodButton">  <!--  -->
                   Add
               </button>
         </div>
@@ -85,9 +82,9 @@
 
     <!-------------- Right columns --------------------->
   <div class="rightcol">
-    <button id="Sign-up" class ="login">Sign up/Login</button>
+    <!-- <button id="Sign-up" class ="login">Sign up/Login</button> -->
     <div class="sort-col">
-      <a>Sort by...</a>
+      <p>Sort by...</p>
         <select id="sortRecipes">
           <option id = "RsortByAdded" selected>First added</option>
           <option id = "sortByExp">Expiring sooner</option>
@@ -96,13 +93,13 @@
           <option id = "RsortByName">Name Z-A</option>
           <option id = "sortByAdded">Recently added</option>
         </select>
-        <button type="button" id="sortApply"> 
+        <button class="sortButton" id="sortApply"> 
           Apply
         </button>
       <button id="Add-foods-by-picture" class ="box">Filter</button>
       <button id="Add-foods-from-list" class ="box">Add from shopping list</button>
-      <button id="Remove-by-name" class ="box">Remove by name</button>
-      <button id="Remove-using-recipes" class ="box">Remove using recipes</button>
+      <!-- <button id="Remove-by-name" class ="box">Remove by name</button>
+      <button id="Remove-using-recipes" class ="box">Remove using recipes</button> -->
       <button id="Show-expiring" class ="box">Show expiring</button>
     </div>
     ...
