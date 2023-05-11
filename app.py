@@ -71,7 +71,7 @@ def recipes() -> str:
 def successful_logout() -> str:
     return render_template('logout.html')#, pretty=json.dump(session.get('user'), indent=4))
 
-@app.route('/getnickname', methods=['POST'])
+@app.route('/getnickname', methods=['GET'])
 def getnickname():
     print('Is this even running?')
     return jsonify({'nickname': getnickname()})
