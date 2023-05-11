@@ -23,15 +23,24 @@
   <!-- Page content -->
   <div class="recipesTop">
     <h1>Recipes</h1>
-    <button class = "filter">Filter</button>
+    <!-- <button class = "filter">Filter</button> -->
 
     <!-- Search box -->
     <div class="search-container">
       <form method="GET">
-        <input type="text" placeholder="Add keywords..." name = "name" id="name"></input>
-        <button id="submit" type="button" onclick="getData()">Go</button>
+        <input type="text" placeholder="Add keywords..." maxlength="20" name = "name" id="name"></input>
+        <button id="submit" type="button">Go</button>
+        <script>
+          var input = document.getElementById("name");
+          input.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              document.getElementById("submit").click();
+            }
+          });
+          </script>
       </form>
-      <script> /*hit enter and search*/
+      <!-- <script> /*hit enter and search*/
         var input = document.getElementById("name");
         input.addEventListener("keypress", function(event) {
           if (event.key === "Enter") {
@@ -39,22 +48,35 @@
             document.getElementById("submit").click();
           }
         });
-        </script>
+        </script> -->
     </div>
   </div>
 
   <!-- Right columns -->
   <div class="rightcol">
-    <button id="Sign-up" class ="login">Sign up/Login</button>
     <div class="sort-col">
-      <button id="Sort-by" class ="box">Sort by...</button>
-      <button id="useMyFood" onclick = "foodHandler()" class ="box">  <!-- -->
+      <!-- <a>Sort by...</a>
+        <select id="sortRecipes">
+          <option selected>Select...</option>
+          <option id = "sortByNameRec">Name A-Z</option>
+          <option id = "RsortByNameRec">Name Z-A</option>
+          <option id = "sortByRatings">Ratings H-L</option>
+          <option id = "RsortByRatings">Ratings L-H</option>
+          <option id = "sortByCalories">Calories H-L</option>
+          <option id = "RsortByCalories">Calories L-H</option>
+        </select>
+        <button type="button" id="sortApply"> 
+          Apply
+        </button>
+          
+      <button id="Sort-by" class ="box"></button> -->
+      <button id="useMyFood" class ="box">  
         Use my food
       </button>
       
-      <button id="Use-expiring-soon" class ="box">Use expiring soon</button>
-      <button id="Vegitarian" class ="box">Vegitarian</button>
-      <button id="More-options" class ="box">More options</button>
+      <!-- <button id="Use-expiring-soon" class ="box">Use expiring soon</button> -->
+      <!-- <button id="Vegitarian" class ="box">Vegitarian</button>
+      <button id="More-options" class ="box">More options</button> -->
     </div>
     ...
   </div> 
@@ -62,26 +84,12 @@
   <div class="mainContent">
     <ul id="recipes-list"></ul>
     <div id="recipesPop" class="popup">
-      <div class="recipesPop_content">
-          <button class="close"  id="close2"> 
-              X
-          </button>
-          <div id ="fullRecipe">
+      <p>See full recipe:</p>
+      <!-- <div class="recipesPop_content"> -->
+          <!-- <div id ="fullRecipe">
             <h1 style="color:rgb(196, 255, 196);"></h1>
-          </div>
+          </div> -->
           <!--   <form>
-              <div class ="input">
-                <div id = "user-promt-pop">ENTER A USER NAME</div>
-                <input type="text" id="user-input-pop" name="user-input">
-                <button type="button" id="user-button-pop" onclick="changeUser()">Change Username</button> -->
-<!--                 
-                <label for="item-input"><br>Food:</label>
-                <input type="text" id="item-input-pop" name="item-input"></input>
-              
-                <label for="exp-input"><br>Expiration date:</label>
-                <input type="date" id="exp-input-pop" name="exp-input"></input>
-                
-              </div>
             </form>
           <button type="button" onclick="changeUser(); addItemExp();" class="closeAddPopup"  id="AddFoodButton">   -->
             <!-- </button> -->
