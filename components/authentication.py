@@ -40,7 +40,7 @@ def create_auth_blueprint(oauth):
     return auth
 
 def get_nickname():
-    return nickname
-    # if 'user' not in session:
-    #     return 'baseline'
-    # return session["user"]['userinfo']['nickname']
+    # return nickname
+    if 'user' not in session:
+        return 'baseline'
+    return session["user"]['userinfo']['nickname']
