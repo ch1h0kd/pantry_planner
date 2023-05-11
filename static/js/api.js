@@ -23,13 +23,9 @@ get(foodRef).then((snapshot) => {
   if (snapshot != null){
     snapshot2 = snapshot;
   }
-  initialize(snapshot)
   foodHandler(snapshot)
 });
 
-function initialize(snapshot){
-
-}
 function foodHandler(snapshot){
   console.log("snapshot ", snapshot);
   // const list = document.getElementById("expList"); // how to get expList in homepage.html
@@ -38,6 +34,8 @@ function foodHandler(snapshot){
   }
 
   const trip = Object.values(snapshot.val()); // array(size)
+
+  getData(); //display recipes when first visit the page
 
   //when use my food button is clicked
   document.getElementById("useMyFood").addEventListener("click", function() {
