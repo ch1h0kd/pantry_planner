@@ -9,6 +9,7 @@
     <title>Document</title>
 </head>
 <body>
+
   <!-- Side navigation -->
   <div class="sidenav">
     <a id="pantry_planner" href="pantry_planner">Pantry Planner</a>
@@ -19,6 +20,7 @@
     <a2 id="settings" href="settings">Settings</a2>
   </div>
   <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+
   <!-- Page content -->
   <div class="myFoodTop">
     <h1 class="title">My Food</h1>
@@ -80,11 +82,23 @@
       </form>
     </div>
   </div>
-    <!-- Right columns -->
+
+    <!-------------- Right columns --------------------->
   <div class="rightcol">
     <button id="Sign-up" class ="login">Sign up/Login</button>
     <div class="sort-col">
-      <button id="Sort-foods-by-name" class ="box">Sort...</button>
+      <a>Sort by...</a>
+        <select id="sortRecipes">
+          <option id = "RsortByAdded" selected>First added</option>
+          <option id = "sortByExp">Expiring sooner</option>
+          <option id = "RsortByExp">Expiring later</option>
+          <option id = "sortByName">Name A-Z</option>
+          <option id = "RsortByName">Name Z-A</option>
+          <option id = "sortByAdded">Recently added</option>
+        </select>
+        <button type="button" id="sortApply"> 
+          Apply
+        </button>
       <button id="Add-foods-by-picture" class ="box">Filter</button>
       <button id="Add-foods-from-list" class ="box">Add from shopping list</button>
       <button id="Remove-by-name" class ="box">Remove by name</button>

@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, push, onValue, get, remove } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { getDatabase, ref, push, query, get, remove, orderByChild}  from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
 
 
@@ -16,7 +16,7 @@ const app = initializeApp({
 });
 
 const db = getDatabase(app);
-var username = "defualt-user";
+var username = '{{ nickname }}';
 var foodRef = ref(db, username + "/food");
 var shoppingRef = ref(db, username + "/shopping");
 get(foodRef).then((snapshot) => {
@@ -38,8 +38,12 @@ function initialize(snapshot){
 
   finalGroup = [];
 
+  // when search go is clicked
   document.getElementById("searchMyfB").addEventListener("click", selectItems);
 
+  // when sort apply is clicked
+  document.getElementById("sortApply").addEventListener("click", preSortBy);
+  
   function selectItems(e){
     e.preventDefault();
     // if the category and search term are the same as they were the last time a search was run, the results will be the same
@@ -57,6 +61,55 @@ function initialize(snapshot){
     finalGroup = Object.values(snapshot.val()).filter( element => element.item.includes(lowerCaseSearchTerm));
     // Once we have the final group, update the display
     display();
+  }
+
+  function preSortBy(){
+    const byWhat = document.querySelector("#sortRecipes").value; // Name A-Z
+    console.log("by what ", byWhat);
+    if(byWhat == "Expiring sooner"){
+      sortBy("exp", false);
+    }
+    else if(byWhat == "Expiring later"){
+      sortBy("exp", true);
+    }
+    else if(byWhat == "Name A-Z"){
+      sortBy("item", false);
+    }
+    else if(byWhat == "Name Z-A"){
+      sortBy("item", true);
+    }
+    else if(byWhat == "Recently added"){
+      sortBy("latest", true);
+    }
+    else if(byWhat == "First added"){
+      sortBy("latest", false);
+    }
+  }
+  
+  function sortBy(category, reverse){
+    var sortedRef;
+    if(category != "latest"){
+      sortedRef = query(ref(db, username + '/food'), orderByChild(category))
+    }
+    else{
+      sortedRef = ref(db, username + '/food')
+    };
+    get(sortedRef).then((snapshot) =>{
+      let sortedList = [];
+      let keyList = [];
+      const list = document.getElementById("expList");
+      list.innerHTML = "";
+      snapshot.forEach(element =>{
+        sortedList.push(element.val())//{exp: '2023-05-28', item: 'milk'}
+        keyList.push(element.key)// -NV0x9xV8KKgAGfbjuYN
+      });
+      if(reverse){
+        sortedList.reverse();//0: {exp: '2023-05-10', item: 'rice'} 1: {exp: '2023-05-17', item: 'bread'}
+        keyList.reverse(); //['-NV0x9xV8KKgAGfbjuYN', '-NV0WeJ0D4iECibm6h6E']
+      }
+      finalGroup = sortedList;
+      display();
+    });
   }
 
   function display(){
@@ -89,7 +142,7 @@ function initialize(snapshot){
         button.addEventListener("click", function(){
           buttonRemove("/food/", button.value);
         });
-        console.log(element.tag);
+        //console.log(element.tag);
         itemHeading.appendChild(document.createTextNode(element.item));
         expPara.appendChild(document.createTextNode(element.exp));
         if(element.tag == undefined){
@@ -125,6 +178,28 @@ export function changeUser(){
     initialize(snapshot)
   });
 }
+
+
+// document.getElementById("sortByExp").addEventListener("click", function() {
+//   sortBy("exp", false);
+// }, false);
+
+// document.getElementById("RsortByExp").addEventListener("click", function() {
+//   sortBy("exp", true);
+// }, false);
+// document.getElementById("sortByName").addEventListener("click", function() {
+//   sortBy("item", false);
+// }, false);
+// document.getElementById("RsortByName").addEventListener("click", function() {
+//   sortBy("item", true);
+// }, false);
+// document.getElementById("sortByAdded").addEventListener("click", function() {
+//   sortBy("latest", true);
+// }, false);
+// document.getElementById("RsortByAdded").addEventListener("click", function() {
+//   sortBy("latest", false);
+// }, false);
+
 
 export function addItemExp() {   
     const itemInput = document.getElementById("item-input-pop");
@@ -179,3 +254,4 @@ export function buttonRemove(category, id){
 
 window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
 window.changeUser = changeUser;
+window.preSortBy = preSortBy;
