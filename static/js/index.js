@@ -15,15 +15,20 @@ const app = initializeApp({
 });
 
 const db = getDatabase(app);
+var foodRef;
+var shoppingRef;
 //var username = '{{ nickname }}'
-var username = fetch('/getnickname').then(response => console.log(response));
-console.log(username);
-var foodRef = ref(db, username + "/food");
-var shoppingRef = ref(db, username + "/shopping");
-get(foodRef).then((snapshot) => {
+//var username = fetch('/getnickname').then(response => console.log(response));
+var username = fetch('/getnickname').then(starter());
+export function starter(){
+  console.log(username);
+  foodRef = ref(db, username + "/food");
+  shoppingRef = ref(db, username + "/shopping");
+  get(foodRef).then((snapshot) => {
   foodHandler(snapshot)
 });
 expHandler();
+}
 
 
 // export function changeUser(){
