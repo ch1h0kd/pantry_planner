@@ -38,31 +38,29 @@ app.register_blueprint(create_auth_blueprint(oauth))
 
 @app.route('/')
 def index() -> str:
-    getnickname()
-    return render_template('homepage.html', session=session.get('user'),nickname=get_nickname())#, pretty=json.dump(session.get('user'), indent=4))
+    return render_template('homepage.html', session=session.get('user'),nickname=getnickname())#, pretty=json.dump(session.get('user'), indent=4))
 
 # this is a temporary fix hopefully for the button not working
 @app.route('/pantry_planner')
 def pantry_planner() -> str:
-    getnickname()
-    return render_template('homepage.html', session=session.get('user'),nickname=get_nickname())#, pretty=json.dump(session.get('user'), indent=4))
+    return render_template('homepage.html', session=session.get('user'),nickname=getnickname())#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/settings')
 @login_required()
 def settings() -> str:
-    return render_template('settings.html', session=session.get('user'), nickname=get_nickname())#, pretty=json.dump(session.get('user'), indent=4))
+    return render_template('settings.html', session=session.get('user'), nickname=getnickname())#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/my_food')
 def my_food() -> str:
-    return render_template('my_food.html', session=session.get('user'), nickname=get_nickname())#, pretty=json.dump(session.get('user'), indent=4))
+    return render_template('my_food.html', session=session.get('user'), nickname=getnickname())#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/shopping_list')
 def shopping_list() -> str:
-    return render_template('shopping_list.html', session=session.get('user'), nickname=get_nickname())#, pretty=json.dump(session.get('user'), indent=4))
+    return render_template('shopping_list.html', session=session.get('user'), nickname=getnickname())#, pretty=json.dump(session.get('user'), indent=4))
 
 @app.route('/recipes')
 def recipes() -> str:
-    return render_template('recipes.html', session=session.get('user'), nickname=get_nickname())#, pretty=json.dump(session.get('user'), indent=4))
+    return render_template('recipes.html', session=session.get('user'), nickname=getnickname())#, pretty=json.dump(session.get('user'), indent=4))
 
 # @app.route('/login')
 # @login_required()
