@@ -79,7 +79,7 @@ def getnickname():
 
 foodNames = None # Initialize global variable
 
-@app.rout('/login')
+@app.route('/login')
 @login_required
 def login() -> str:
     return render_template('homepage.html', session=session.get('user'),nickname=getnickname())
