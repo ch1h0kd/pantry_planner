@@ -16,7 +16,7 @@ const app = initializeApp({
 
 const db = getDatabase(app);
 //var username = '{{ nickname }}'
-var username = fetch('/getnickname').then(response => console.log(response));
+var username = fetch('/getnickname').then(response => username = response);
 console.log(username);
 var foodRef = ref(db, username + "/food");
 var shoppingRef = ref(db, username + "/shopping");
