@@ -33,7 +33,11 @@ function initialize(snapshot){
   // Set an empty array that is returned later
   let finalGroup;
 
-  finalGroup = Object.values(snapshot.val()); // show all items in my food as default
+  if(snapshot.val() == null){
+    finalGroup = [];
+  }
+  else finalGroup = Object.values(snapshot.val()); // show all items in my food as default
+  
   display();
 
   finalGroup = [];
@@ -142,7 +146,6 @@ function initialize(snapshot){
         }
       });
       displayExp(sortedList, keyList);
-      console.log("end of sortby2");
     });
   }
 
