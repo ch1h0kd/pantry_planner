@@ -15,6 +15,8 @@ const app = initializeApp({
 });
 
 const db = getDatabase(app);
+var foodRef;
+var shoppingRef;
 //var username = '{{ nickname }}'
 var username = fetch('/getnickname').then(response => username = response);
 console.log(username);
@@ -24,6 +26,7 @@ get(foodRef).then((snapshot) => {
   foodHandler(snapshot)
 });
 expHandler();
+}
 
 
 // export function changeUser(){
