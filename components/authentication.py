@@ -41,4 +41,5 @@ def get_nickname():
     # return nickname
     if 'user' not in session:
         return 'baseline'
+    print(session['user']['userinfo']['nickname'])
     return session["user"]['userinfo']['nickname']
