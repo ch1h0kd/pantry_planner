@@ -15,8 +15,14 @@ const app = initializeApp({
 });
 
 const db = getDatabase(app);
-//var username = '{{ nickname }}'
-var username = fetch('/getnickname').then(response => console.log(response));
+var foodRef;
+var shoppingRef;
+var username = '{{ nickname }}';
+fetch('/getnickname')
+  .then(response => response.json())
+  .then(json => username = JSON.parse(json)['nickname']);
+
+console.log(username);
 var foodRef = ref(db, username + "/food");
 var shoppingRef = ref(db, username + "/shopping");
 get(foodRef).then((snapshot) => {
@@ -25,24 +31,25 @@ get(foodRef).then((snapshot) => {
 expHandler();
 
 
-export function changeUser(){
-  const userInput = document.getElementById("user-input");
-  const promt = document.getElementById("user-promt");
-  const but = document.getElementById("user-button");
-  const newUser = userInput.value;
-  if(newUser != ""){
-    promt.remove();
-    userInput.remove();
-    but.remove();
-    username = newUser;
-    foodRef = ref(db, username + "/food");
-    shoppingRef = ref(db, username + "/shopping");
-    userInput.value = "";
-  }
-  get(foodRef).then((snapshot) => {
-    foodHandler(snapshot)
-  });
-}
+
+// export function changeUser(){
+//   const userInput = document.getElementById("user-input");
+//   const promt = document.getElementById("user-promt");
+//   const but = document.getElementById("user-button");
+//   const newUser = userInput.value;
+//   if(newUser != ""){
+//     promt.remove();
+//     userInput.remove();
+//     but.remove();
+//     username = newUser;
+//     foodRef = ref(db, username + "/food");
+//     shoppingRef = ref(db, username + "/shopping");
+//     userInput.value = "";
+//   }
+//   get(foodRef).then((snapshot) => {
+//     foodHandler(snapshot)
+//   });
+// }
 
 document.getElementById("sortByExp").addEventListener("click", function() {
   sortBy("exp", false);

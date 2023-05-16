@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shopping.css') }}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +19,13 @@
   </div>
   <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
   <!-- Page content -->
+  
   <div class="main">
-    </div>
+    
     <div class ="homeCol">
+      <homeText>
+        Shopping List
+      </homeText>
       <div class ="sortBy">Sort by...</div>
       <div class ="textBox">My Shopping list</div>
       <form>
@@ -33,7 +37,8 @@
       </form>
       <scrollBox><ul id="shopping-list"></ul></scrollBox>
       </div>
-  </div> 
+  </div>
+</div>
   <script src="{{ url_for('static', filename='js/shopping-list.js') }}"></script>
 </body>
 </html>
