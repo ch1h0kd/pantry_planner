@@ -18,7 +18,10 @@ const db = getDatabase(app);
 var foodRef;
 var shoppingRef;
 //var username = '{{ nickname }}'
-var username = fetch('/getnickname').then(response => username = response);
+var username= fetch('/getnickname')
+  .then(response => response.json())
+  .then(json => console.log(json))
+
 console.log(username);
 var foodRef = ref(db, username + "/food");
 var shoppingRef = ref(db, username + "/shopping");
