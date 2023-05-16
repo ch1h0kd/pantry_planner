@@ -26,7 +26,7 @@ get(foodRef).then((snapshot) => {
   foodHandler(snapshot)
 });
 expHandler();
-}
+
 
 
 // export function changeUser(){
