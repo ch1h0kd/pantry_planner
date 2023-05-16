@@ -146,7 +146,6 @@ function initialize(snapshot){
         }
       });
       displayExp(sortedList, keyList);
-      console.log("end of sortby2");
     });
   }
 
