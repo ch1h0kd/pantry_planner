@@ -142,7 +142,7 @@ def api_endpoint():
         return jsonify(result)
 
     else: #status code 401
-        return "failed with status: " + str(response.status_code)
+        return str(response.status_code)
 
 if __name__ == '__main__':
     index()
