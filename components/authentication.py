@@ -42,4 +42,4 @@ def get_nickname():
     if 'user' not in session:
         return 'baseline'
     print(session['user']['userinfo']['nickname'])
-    return session["user"]['userinfo']['nickname']
+    return str(session["user"]['userinfo']['nickname'])
