@@ -73,8 +73,8 @@ def successful_logout() -> str:
 
 @app.route('/getnickname', methods=['GET'])
 def getnickname():
-    nickname = get_nickname()
-    return jsonify({'nickname': nickname})
+    dict = {'nickname':get_nickname()}
+    return jsonify(dict)
 
 foodNames = None # Initialize global variable
 
