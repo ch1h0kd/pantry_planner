@@ -113,15 +113,15 @@ def api_endpoint():
     keyword = None
 
     if (foodNames != None):
-        # #choose 3 ingredients from my food randomly
-        # if len(foodNames) < 3:
-        #     keyword = ' '.join(foodNames)
+        print("length is.  ", len(foodNames))
+        #choose 3 ingredients from my food randomly
+        if len(foodNames) < 3:
+            keyword = ' '.join(foodNames)
         
-        
-        random_indices = random.sample(range(len(foodNames)), 3)
-        random_items = [foodNames[i] for i in random_indices]
-    
-        keyword = ' '.join(random_items)
+        else:
+            random_indices = random.sample(range(len(foodNames)), 3)
+            random_items = [foodNames[i] for i in random_indices]
+            keyword = ' '.join(random_items)
 
     elif (searchTermG != None):
         keyword = searchTermG

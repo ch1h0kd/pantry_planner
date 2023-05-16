@@ -17,44 +17,43 @@ const app = initializeApp({
 const db = getDatabase(app);
 var username = '{{ nickname }}';
 var foodRef = ref(db, username + "/food");
-var snapshot2 = "";
-//get my food data from database
+//get my food data from firebase
 get(foodRef).then((snapshot) => {
-  if (snapshot != null){
-    snapshot2 = snapshot;
-  }
   foodHandler(snapshot)
 });
 
 function foodHandler(snapshot){
   console.log("snapshot ", snapshot);
+  console.log("null? ", snapshot.val() == null);
   // const list = document.getElementById("expList"); // how to get expList in homepage.html
-  if (snapshot == null) {
-    snapshot = snapshot2;
-  }
 
-  const trip = Object.values(snapshot.val()); // array(size)
-
-  getData(); //display recipes when first visit the page
+  //getData(); //display recipes when first visit the page
 
   //when use my food button is clicked
   document.getElementById("useMyFood").addEventListener("click", function() {
-    console.log("use my food button is clicked")
-    var i = 0;
-    const itemArray = []; //create a list of items in my food
-    trip.forEach(element => {  
-      itemArray.push(element.item);      
-      i++;
-    });
-    const request = new XMLHttpRequest()
-    request.open('POST', `/myFoodArray/${JSON.stringify(itemArray)}`)
-    request.onload = () => {
-      const flastMessage = request.responseText
-      console.log(flastMessage)
+    console.log("snapshot1 ", snapshot);
+    if(snapshot.val() == null){ // when there is no my food, show "No data"
+      var data = [];
+      show(data);
     }
-    request.send();
-    setTimeout(getData, 500); // Execute getData() after 0.5 seconds
-    
+    else{
+      const trip = Object.values(snapshot.val()); // array(size)
+      console.log("use my food button is clicked")
+      var i = 0;
+      const itemArray = []; //create a list of items in my food
+      trip.forEach(element => {  
+        itemArray.push(element.item);      
+        i++;
+      });
+      const request = new XMLHttpRequest()
+      request.open('POST', `/myFoodArray/${JSON.stringify(itemArray)}`)
+      request.onload = () => {
+        const flastMessage = request.responseText
+        console.log(flastMessage)
+      }
+      request.send();
+      setTimeout(getData, 500); // Execute getData() after 0.5 seconds  
+    }
   });
 }
 
@@ -92,51 +91,53 @@ function getData(){
   
   const hashmap = {};
 
-  function show(data) {
+  function show(data) {//data is json or []
     const list = document.getElementById("recipes-list");
     list.innerHTML = "";
 
-    // if no results much, display the message
-    if(data.count == 0){
+    //when there is no data to display, show "No results"
+    if(data.count == 0 || data.length == 0){
       const para = document.createElement('h1');
       para.textContent = 'No results';
       list.appendChild(para);
     }
 
-    for(let i = 0; i < data.results.length; i++) {
-      const listItem = document.createElement("section");
-      const nameLI = document.createElement('h2');
-      const link = document.createElement('a')
-      nameLI.setAttribute("id", "fullRecipe");
-      //link.setAttribute('href', data.results[i].name)
-      //<a href="https://www.google.com/">Google</a>
-      nameLI.innerHTML = data.results[i].name; //get name of a recipe
-      if (data.results[i].name.length > 40){
-        nameLI.style.fontSize = '18px';
+    else{
+      for(let i = 0; i < data.results.length; i++) {
+        const listItem = document.createElement("section");
+        const nameLI = document.createElement('h2');
+        const link = document.createElement('a')
+        nameLI.setAttribute("id", "fullRecipe");
+        //link.setAttribute('href', data.results[i].name)
+        //<a href="https://www.google.com/">Google</a>
+        nameLI.innerHTML = data.results[i].name; //get name of a recipe
+        if (data.results[i].name.length > 40){
+          nameLI.style.fontSize = '18px';
+        }
+  
+        // store the pair of name and index for later use
+        hashmap[data.results[i].name] = i;
+  
+        // display images
+        const src = data.results[i].thumbnail_url;
+        let imgTag = document.createElement('img');
+        imgTag.setAttribute("id", "image")
+        imgTag.src = src;
+      
+        // append description list to nameLI
+        list.appendChild(listItem);
+        listItem.appendChild(nameLI);
+        listItem.appendChild(imgTag);
+  
+        // when a name is clicked, display its full recipes
+        nameLI.addEventListener("click", (event) => {
+          console.log("name is clicked")
+          event.preventDefault(); // Prevent the link from navigating to the URL
+          const popupBox = document.getElementById("recipesPop");
+          popupBox.classList.add("show");
+          fullRecipes(data, data.results[i].name);
+        });
       }
-
-      // store the pair of name and index for later use
-      hashmap[data.results[i].name] = i;
-
-      // display images
-      const src = data.results[i].thumbnail_url;
-      let imgTag = document.createElement('img');
-      imgTag.setAttribute("id", "image")
-      imgTag.src = src;
-    
-      // append description list to nameLI
-      list.appendChild(listItem);
-      listItem.appendChild(nameLI);
-      listItem.appendChild(imgTag);
-
-      // when a name is clicked, display its full recipes
-      nameLI.addEventListener("click", (event) => {
-        console.log("name is clicked")
-        event.preventDefault(); // Prevent the link from navigating to the URL
-        const popupBox = document.getElementById("recipesPop");
-        popupBox.classList.add("show");
-        fullRecipes(data, data.results[i].name);
-      });
     }
 
     // when sorting button is clicked
