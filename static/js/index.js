@@ -259,5 +259,5 @@ window.onclick = function(event) {
   window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
   window.addItemShop = addItemShop;
   window.buttonRemove = buttonRemove;
-  window.changeUser = changeUser;
+  //window.changeUser = changeUser;
   window.sortBy = sortBy;
