@@ -134,12 +134,13 @@ def api_endpoint():
     foodNames = None
 
     # Process the response and return the result
-    print("status code. ", response.status_code)
+    print("status code. ", response.status_code == 200)
     if response.status_code == 200:
         result = response.json()
         return jsonify(result)
     else:
-        return "API request failed with status code: " + str(response.status_code)
+
+        return str(response.status_code)
 
 if __name__ == '__main__':
     index()
