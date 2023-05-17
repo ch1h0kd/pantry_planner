@@ -62,6 +62,7 @@ function shopHandler(snapshot){
       const listItem = document.createElement("li");
       listItem.classList.add("list-item");
       const itemHeading = document.createElement("h2");
+      itemHeading.appendChild(document.createTextNode(element.item));
       var button = document.createElement("button");
       button.innerHTML = "remove item";
       button.value = (keys[i]);
@@ -75,6 +76,16 @@ function shopHandler(snapshot){
       list.appendChild(listItem);
       i++;
   });
+}
+
+
+export function buttonRemove(category, id){
+  var toRemove = ref(db, username + category + id); 
+  remove(toRemove);
+  get(shoppingRef).then((snapshot) => {
+    shopHandler(snapshot)
+  });
+  expHandler();
 }
 
 window.addItemShop = addItemShop;
