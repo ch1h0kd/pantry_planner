@@ -35,15 +35,12 @@ fetch('/getnickname')
 // });
 
 function foodHandler(snapshot){
-  console.log("snapshot ", snapshot);
-  console.log("null? ", snapshot.val() == null);
   // const list = document.getElementById("expList"); // how to get expList in homepage.html
 
   //getData(); //display recipes when first visit the page
 
   //when use my food button is clicked
   document.getElementById("useMyFood").addEventListener("click", function() {
-    console.log("snapshot1 ", snapshot);
     if(snapshot.val() == null){ // when there is no my food, show "No data"
       var data = [];
       show(data);

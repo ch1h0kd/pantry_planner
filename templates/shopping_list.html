@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shopping.css') }}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,21 +19,26 @@
   </div>
   <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
   <!-- Page content -->
-  <div class="main">
-    </div>
-    <div class ="homeCol">
-      <div class ="sortBy">Sort by...</div>
-      <div class ="textBox">My Shopping list</div>
+  
+<div class="main">
+  <div class ="homeCol">
+    <homeText>
+      Shopping List
+    </homeText>
+    <div class = "sortBox">
+        <div class ="sortBy">Sort by...</div>
       <form>
         <div class ="addItemButtonClass">
           <label for="label">Item Name:</label>
           <input type="text" id="shopping-list-input" name="shop-input">
-          <button id="add-item-button" type="button" onclick="addItem()">Add to List</button>
+          <button id="add-item-button" type="button" onclick="addItemShop()">Add to List</button>
+          <div id="invalid-input-shop" class=errormsg>Invalid Input, Try Again</div>
         </div>
       </form>
-      <scrollBox><ul id="shopping-list"></ul></scrollBox>
-      </div>
-  </div> 
-  <script src="{{ url_for('static', filename='js/shopping-list.js') }}"></script>
+    </div>
+    <scrollBox><ul id="shopping-list"></ul></scrollBox>
+  </div>
+</div>
+<script type = "module" src="{{ url_for('static', filename='js/shopping-list.js') }}"></script>
 </body>
 </html>

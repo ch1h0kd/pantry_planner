@@ -15,34 +15,42 @@ const app = initializeApp({
 });
 
 const db = getDatabase(app);
-//var username = '{{ nickname }}'
-var username = fetch('/getnickname').then(response => console.log(response));
-var foodRef = ref(db, username + "/food");
-var shoppingRef = ref(db, username + "/shopping");
-get(foodRef).then((snapshot) => {
-  foodHandler(snapshot)
-});
-expHandler();
 
+let username = '{{ nickname }}';
+let foodRef = ref(db, username + "/food");
+let shoppingRef = ref(db, username + "/shopping");
 
-export function changeUser(){
-  const userInput = document.getElementById("user-input");
-  const promt = document.getElementById("user-promt");
-  const but = document.getElementById("user-button");
-  const newUser = userInput.value;
-  if(newUser != ""){
-    promt.remove();
-    userInput.remove();
-    but.remove();
-    username = newUser;
+fetch('/getnickname')
+  .then(response => response.json())
+  .then(json => { username = json.nickname;
     foodRef = ref(db, username + "/food");
     shoppingRef = ref(db, username + "/shopping");
-    userInput.value = "";
-  }
-  get(foodRef).then((snapshot) => {
-    foodHandler(snapshot)
-  });
-}
+    get(foodRef).then((snapshot) => {
+      foodHandler(snapshot)
+      });
+    expHandler();
+    });
+
+
+
+// export function changeUser(){
+//   const userInput = document.getElementById("user-input");
+//   const promt = document.getElementById("user-promt");
+//   const but = document.getElementById("user-button");
+//   const newUser = userInput.value;
+//   if(newUser != ""){
+//     promt.remove();
+//     userInput.remove();
+//     but.remove();
+//     username = newUser;
+//     foodRef = ref(db, username + "/food");
+//     shoppingRef = ref(db, username + "/shopping");
+//     userInput.value = "";
+//   }
+//   get(foodRef).then((snapshot) => {
+//     foodHandler(snapshot)
+//   });
+// }
 
 document.getElementById("sortByExp").addEventListener("click", function() {
   sortBy("exp", false);
@@ -221,9 +229,7 @@ function expHandler(){
       i++;
       }
       });
-    });  
-
-  
+    });    
 }
 
 /* When the user clicks on the button,
@@ -252,5 +258,5 @@ window.onclick = function(event) {
   window.addItemExp = addItemExp; //changes the scope!!! most important line, makes global
   window.addItemShop = addItemShop;
   window.buttonRemove = buttonRemove;
-  window.changeUser = changeUser;
+  //window.changeUser = changeUser;
   window.sortBy = sortBy;
