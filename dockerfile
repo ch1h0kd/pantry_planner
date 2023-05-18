@@ -9,4 +9,4 @@ RUN python3 -m pip install -r requirements.txt && \
     apt -y install npm && \
     apt install sl && \ 
     ln -s /usr/games/sl /usr/bin/sl && \
-    npm install firebase
+    npm install express cors express-jwt jwks-rsa firebase-admin firebase
