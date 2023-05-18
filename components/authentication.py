@@ -1,6 +1,4 @@
-from flask import Blueprint
-
-from flask import redirect, session, url_for
+from flask import Blueprint, redirect, session, url_for
 
 def create_auth_blueprint(oauth):
     auth = Blueprint('auth', __name__, template_folder='templates')
