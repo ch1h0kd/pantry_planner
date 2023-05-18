@@ -20,7 +20,7 @@ var shoppingRef;
 var username = '{{ nickname }}';
 fetch('/getnickname')
   .then(response => response.json())
-  .then(json => username = JSON.parse(json)['nickname']);
+  .then(json => username = json.nickname);
 
 console.log(username);
 var foodRef = ref(db, username + "/food");
