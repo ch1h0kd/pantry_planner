@@ -62,10 +62,6 @@ def shopping_list() -> str:
 def recipes() -> str:
     return render_template('recipes.html', session=session.get('user'), nickname=getnickname())
 
-@app.route('/successful_logout')
-def successful_logout() -> str:
-    return render_template('logout.html')
-
 @app.route('/getnickname', methods=['GET'])
 def getnickname():
     dict = {'nickname':get_nickname()}
@@ -77,6 +73,11 @@ foodNames = None # Initialize global variable
 @login_required()
 def login() -> str:
     return render_template('homepage.html', session=session.get('user'),nickname=getnickname())
+
+@app.route('/logout')
+@login_required()
+def logout() -> str:
+    return render_template('homepage.html')
 
 @app.route('/myFoodArray/<string:itemArray>', methods=['POST'])
 def myFoodArray(itemArray):
