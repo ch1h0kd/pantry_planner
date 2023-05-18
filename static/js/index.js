@@ -13,10 +13,12 @@ const app = initializeApp({
     appId: "1:407621335990:web:c6ef5ac9f60b5ba09e9f17",
     measurementId: "G-56LV409GVC"
 });
+
+const db = getDatabase(app);
+
 let username = '{{ nickname }}';
 let foodRef = ref(db, username + "/food");
 let shoppingRef = ref(db, username + "/shopping");
-const db = getDatabase(app);
 
 fetch('/getnickname')
   .then(response => response.json())
