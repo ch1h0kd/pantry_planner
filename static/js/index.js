@@ -20,11 +20,11 @@ var shoppingRef;
 var username = '{{ nickname }}';
 fetch('/getnickname')
   .then(response => response.json())
-  .then(json => username = json.nickname);
-
-console.log(username);
-var foodRef = ref(db, username + "/food");
-var shoppingRef = ref(db, username + "/shopping");
+  .then(json => { username = json.nickname;
+    foodRef = ref(db, username + "/food");
+    shoppingRef = ref(db, username + "/shopping");
+    console.log(username);
+    });
 get(foodRef).then((snapshot) => {
   foodHandler(snapshot)
 });
