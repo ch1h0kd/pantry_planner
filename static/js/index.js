@@ -1,17 +1,17 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 import { getDatabase, ref, push, query, get, remove, orderByChild} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 import { collection, onSnapshot, orderBy  } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
-
+//require(dotnev).config();
+const api = '{{FIREBASEAPI}}';
 var i = 0;
 const app = initializeApp({
-    apiKey: "AIzaSyB2DuI-rqRSZYiiEzvBasH4CUeppxX_FoY",
-    authDomain: "pantryplanner-5d480.firebaseapp.com",
-    databaseURL: "https://pantryplanner-5d480-default-rtdb.firebaseio.com",
-    projectId: "pantryplanner-5d480",
-    storageBucket: "pantryplanner-5d480.appspot.com",
-    messagingSenderId: "407621335990",
-    appId: "1:407621335990:web:c6ef5ac9f60b5ba09e9f17",
-    measurementId: "G-56LV409GVC"
+  apiKey: api,
+  authDomain: "pantryplannerfinal.firebaseapp.com",
+  projectId: "pantryplannerfinal",
+  storageBucket: "pantryplannerfinal.appspot.com",
+  messagingSenderId: "150587264747",
+  appId: "1:150587264747:web:1ef6199be3afe673fbf8ae",
+  measurementId: "G-58F9K3EQJC"
 });
 
 const db = getDatabase(app);
