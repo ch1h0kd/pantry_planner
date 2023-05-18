@@ -231,9 +231,7 @@ function expHandler(){
       i++;
       }
       });
-    });  
-
-  
+    });    
 }
 
 /* When the user clicks on the button,
