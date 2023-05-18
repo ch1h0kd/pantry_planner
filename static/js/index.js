@@ -25,8 +25,6 @@ fetch('/getnickname')
   .then(json => { username = json.nickname;
     foodRef = ref(db, username + "/food");
     shoppingRef = ref(db, username + "/shopping");
-    console.log(username);
-    console.log(get(foodRef));
     get(foodRef).then((snapshot) => {
       foodHandler(snapshot)
       });
