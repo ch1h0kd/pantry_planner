@@ -162,7 +162,6 @@
     width: 100px;
     padding: 10px;
     border: 2px solid gray;
-    margin-top: 5%;
     text-align: center;
     float:left;
     font-weight: bold;
@@ -203,71 +202,6 @@
     border: 1px solid #000;
   }
 
-/* Style page content */
-.myFoodTop {
-  width: 70%;
-  height: 15%;
-  margin-left: 8px;
-}
-.myFoodTop {
-  height: 15%;
-  margin-left: 8px;
-  padding: 0px 10px;
-  width: 72%;
-  top: 0;
-  position: absolute;
-  width: 72%;
-  top: 0;
-  position: absolute;
-  left: 15%;
-}
-
-.myFoodTop h1{
-  font-size: 55px;
-  margin: 0.5%;
-}
-.myFoodTop .add-food{
-  margin-right: 3%;
-  position: absolute;
-  right: 0;
-  border: 2px solid black;
-  width: 13%;
-  height: 60px;
-  top: 38%;
-  font-size: 20px;
-  text-align: center;
-  bottom: 6%;
-}
-.add-food:hover {
-  color: #242424;
-  background-color: rgb(131, 186, 236); /* background highlight color*/
-}
-.myFoodTop .search-container {
-  margin-left: 0.5%;
-  top: 50%;
-  width: 95%;
-  position: absolute;
-}
-
-.myFoodTop input[type=text] {
-  padding: 6px;
-  margin-top: 2%;
-  width: 75%;
-  height: 15px;
-  font-size: 20px;
-  border: 2px solid #000000;
-}
-  
-.myFoodTop .search-container button {
-  width: 8%;
-  height: 65%;
-  margin-top: 2%;
-  border: 2px solid #000000;
-  cursor: pointer;
-  position: absolute;
-  margin-left: 0.5%;
-  font-size: 20px;
-}
 
 .mainContent{
   border: 2px solid #000;
@@ -326,10 +260,9 @@
   background-color: rgb(131, 186, 236); /* background highlight color*/
 }
 
-.buttonBox {
-  margin-bottom: 10px;
+.sortBox{
+  vertical-align: bottom;
 }
-
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
