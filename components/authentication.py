@@ -1,9 +1,4 @@
 from flask import Blueprint
-from os import environ as env
-from urllib.parse import quote_plus, urlencode
-
-from authlib.integrations.flask_client import OAuth
-from authlib.oauth2.rfc6750 import BearerTokenValidator
 
 from flask import redirect, session, url_for
 
