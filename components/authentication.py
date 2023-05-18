@@ -27,4 +27,8 @@ def create_auth_blueprint(oauth):
 def get_nickname():
     if 'user' not in session:
         return 'baseline'
-    return str(session["user"]['userinfo']['email'])
+    temp = session["user"]['userinfo']['email']
+    for c in temp:
+        if c == '@' or c == '.' or c == '{' or c == '}' or c == '[' or c == ']' or c == '/' or c == '$':
+            c = ''
+    return temp
