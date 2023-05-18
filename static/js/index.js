@@ -1,11 +1,11 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 import { getDatabase, ref, push, query, get, remove, orderByChild} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 import { collection, onSnapshot, orderBy  } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
-require(dotnev).config();
-//const apiKey = process.env.FIREBASEAPI;
+//require(dotnev).config();
+const api = '{{FIREBASEAPI}}';
 var i = 0;
 const app = initializeApp({
-  apiKey: FIREBASEAPI,
+  apiKey: api,
   authDomain: "pantryplannerfinal.firebaseapp.com",
   projectId: "pantryplannerfinal",
   storageBucket: "pantryplannerfinal.appspot.com",
