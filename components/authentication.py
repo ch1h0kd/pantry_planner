@@ -19,7 +19,7 @@ def create_auth_blueprint(oauth):
     def logout():
         session.clear()
         return redirect(
-            "/successful_logout"
+            "/pantry_planner"
         )   
     
     return auth
