@@ -106,10 +106,12 @@ def getSearchTerm(searchTerm):
 def api_endpoint():
 
     url = "https://tasty.p.rapidapi.com/recipes/list"
+
     headers = {
             "X-RapidAPI-Key":env.get("API_KEY"),
             "X-RapidAPI-Host":env.get("API_HOST")
     }
+
     global foodNames  # Declare global variables
     global searchTermG
 
@@ -143,8 +145,9 @@ def api_endpoint():
     if response.status_code == 200:
         result = response.json()
         return jsonify(result)
-    else:
-        return "API request failed with status code: " + str(response.status_code)
+
+    else: #status code 401
+        return str(response.status_code)
 
 if __name__ == '__main__':
     index()
