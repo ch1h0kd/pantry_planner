@@ -24,11 +24,11 @@ fetch('/getnickname')
     foodRef = ref(db, username + "/food");
     shoppingRef = ref(db, username + "/shopping");
     console.log(username);
+    get(foodRef).then((snapshot) => {
+      foodHandler(snapshot)
+      });
+    expHandler();
     });
-get(foodRef).then((snapshot) => {
-  foodHandler(snapshot)
-});
-expHandler();
 
 
 
