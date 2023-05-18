@@ -19,10 +19,16 @@ const db = getDatabase(app);
 var username = '{{ nickname }}';
 var foodRef = ref(db, username + "/food");
 var shoppingRef = ref(db, username + "/shopping");
-get(foodRef).then((snapshot) => {
-  //foodHandler(snapshot)
-  initialize(snapshot)
-});
+
+fetch('/getnickname')
+  .then(response => response.json())
+  .then(json => { username = json.nickname;
+    foodRef = ref(db, username + "/food");
+    //shoppingRef = ref(db, username + "/shopping");
+    get(foodRef).then((snapshot) => {
+      initialize(snapshot)
+      });
+  });
 
 
 function initialize(snapshot){

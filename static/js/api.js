@@ -18,9 +18,20 @@ const db = getDatabase(app);
 var username = '{{ nickname }}';
 var foodRef = ref(db, username + "/food");
 //get my food data from firebase
-get(foodRef).then((snapshot) => {
-  foodHandler(snapshot)
-});
+fetch('/getnickname')
+  .then(response => response.json())
+  .then(json => { username = json.nickname;
+    foodRef = ref(db, username + "/food");
+    console.log(username);
+    console.log(get(foodRef));
+    get(foodRef).then((snapshot) => {
+      foodHandler(snapshot)
+      });
+  });
+
+// get(foodRef).then((snapshot) => {
+//   foodHandler(snapshot)
+// });
 
 function foodHandler(snapshot){
   // const list = document.getElementById("expList"); // how to get expList in homepage.html
