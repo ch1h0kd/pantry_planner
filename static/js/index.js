@@ -15,8 +15,7 @@ const app = initializeApp({
 });
 
 const db = getDatabase(app);
-var foodRef;
-var shoppingRef;
+
 var username = '{{ nickname }}';
 fetch('/getnickname')
   .then(response => response.json())
