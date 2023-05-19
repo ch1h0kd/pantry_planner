@@ -17,8 +17,7 @@ const app = initializeApp({
 const db = getDatabase(app);
 
 let username = '{{ nickname }}';
-let foodRef = ref(db, username + "/food");
-let shoppingRef = ref(db, username + "/shopping");
+
 
 fetch('/getnickname')
   .then(response => response.json())
@@ -30,6 +29,9 @@ fetch('/getnickname')
       });
     expHandler();
     });
+
+let foodRef = ref(db, username + "/food");
+let shoppingRef = ref(db, username + "/shopping");
 
 document.getElementById("sortByExp").addEventListener("click", function() {
   sortBy("exp", false);
