@@ -30,5 +30,5 @@ def get_nickname():
     temp = session["user"]['userinfo']['email']
     for c in temp:
         if c == '@' or c == '.' or c == '{' or c == '}' or c == '[' or c == ']' or c == '/' or c == '$':
-            temp[c] = ''
+            temp[temp.index(c)] = ''
     return temp
