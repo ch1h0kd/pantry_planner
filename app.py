@@ -85,7 +85,6 @@ def login() -> str:
 
 @app.route('/myFoodArray/<string:itemArray>', methods=['POST'])
 def myFoodArray(itemArray):
-    print("in my food array")
     itemArray = json.loads(itemArray)
     global foodNames  # Declare that we're using the global variable
     foodNames = itemArray
@@ -96,12 +95,10 @@ searchTermG = None  # Initialize global variable
 
 @app.route('/searchTerm/<string:searchTerm>', methods=['POST'])
 def getSearchTerm(searchTerm):
-    print("in search term")
     global searchTermG
     searchTermG = searchTerm
     return "Success!!"
 
-    
 @app.route('/api-endpoint', methods=['GET'])
 def api_endpoint():
 
@@ -120,7 +117,6 @@ def api_endpoint():
     keyword = None
 
     if (foodNames != None):
-        print("length is.  ", len(foodNames))
         #choose 3 ingredients from my food randomly
         if len(foodNames) < 3:
             keyword = ' '.join(foodNames)
@@ -141,13 +137,16 @@ def api_endpoint():
     foodNames = None
 
     # Process the response and return the result
-    print("status code. ", response.status_code)
     if response.status_code == 200:
         result = response.json()
-        return jsonify(result)
+        return jsonify({
+            'result': result, 
+            'keyword': keyword
+        })
 
-    else: #status code 401
+    else: 
         return str(response.status_code)
+
 
 if __name__ == '__main__':
     index()

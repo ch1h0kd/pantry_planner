@@ -89,45 +89,49 @@ function getData(){
       }
     })
     .then((data) => {
-      console.log(data); 
+      console.log(data);
       show(data);
     })
     .catch((error) => {
       console.log('error: ' + error);
     });
 }
-  
+
   const hashmap = {};
 
-  function show(data) {//data is json or []
+  function show(data) {
+    const keywordd = document.getElementById("keyword");
+    keywordd.innerHTML = "Keyword : "+ data.keyword;
+  
+    console.log(data.result);
     const list = document.getElementById("recipes-list");
     list.innerHTML = "";
 
     //when there is no data to display, show "No results"
-    if(data.count == 0 || data.length == 0){
+    if(data.count == 0 || data.result.results.length == 0){
       const para = document.createElement('h1');
       para.textContent = 'No results';
       list.appendChild(para);
     }
 
     else{
-      for(let i = 0; i < data.results.length; i++) {
+      for(let i = 0; i < data.result.results.length; i++) {
         const listItem = document.createElement("section");
         const nameLI = document.createElement('h2');
         const link = document.createElement('a')
         nameLI.setAttribute("id", "fullRecipe");
         //link.setAttribute('href', data.results[i].name)
         //<a href="https://www.google.com/">Google</a>
-        nameLI.innerHTML = data.results[i].name; //get name of a recipe
-        if (data.results[i].name.length > 40){
+        nameLI.innerHTML = data.result.results[i].name; //get name of a recipe
+        if (data.result.results[i].name.length > 40){
           nameLI.style.fontSize = '18px';
         }
   
         // store the pair of name and index for later use
-        hashmap[data.results[i].name] = i;
+        hashmap[data.result.results[i].name] = i;
   
         // display images
-        const src = data.results[i].thumbnail_url;
+        const src = data.result.results[i].thumbnail_url;
         let imgTag = document.createElement('img');
         imgTag.setAttribute("id", "image")
         imgTag.src = src;
@@ -143,7 +147,7 @@ function getData(){
           event.preventDefault(); // Prevent the link from navigating to the URL
           const popupBox = document.getElementById("recipesPop");
           popupBox.classList.add("show");
-          fullRecipes(data, data.results[i].name);
+          fullRecipes(data.result, data.result.results[i].name);
         });
       }
     }
