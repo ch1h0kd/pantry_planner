@@ -92,15 +92,31 @@ def myFoodArray(itemArray):
 
 
 searchTermG = None  # Initialize global variable
+fromm = None  # Initialize global variable
 
-@app.route('/searchTerm/<string:searchTerm>', methods=['POST'])
-def getSearchTerm(searchTerm):
-    global searchTermG
-    searchTermG = searchTerm
+@app.route('/searchTerm/<string:data>', methods=['POST'])
+def getSearchTerm(data):
+    param = json.loads(data) 
+
+    global searchTermG 
+    global fromm
+    searchTermG = param['searchTerm']
+    fromm = param['from']
+    print("vals changed")
     return "Success!!"
 
 @app.route('/api-endpoint', methods=['GET'])
 def api_endpoint():
+
+    global foodNames  # Declare global variables
+    global searchTermG
+    global fromm
+
+    # # Wait until variable is not None
+    # while fromm is None:
+    #     print("waiting")
+    #     # Do nothing, just wait
+    #     pass
 
     url = "https://tasty.p.rapidapi.com/recipes/list"
 
@@ -109,12 +125,11 @@ def api_endpoint():
             "X-RapidAPI-Host":env.get("API_HOST")
     }
 
-    global foodNames  # Declare global variables
-    global searchTermG
-
     response = None
     querystring = None
     keyword = None
+
+    print("api calling")
 
     if (foodNames != None):
         #choose 3 ingredients from my food randomly
@@ -129,12 +144,15 @@ def api_endpoint():
     elif (searchTermG != None):
         keyword = searchTermG
 
-    querystring = {"from":"0","size":50,"q":keyword}
+
+    querystring = {"from":fromm,"size":40,"q":keyword}
     print("keyword : ", keyword)
+    print("fromm : ",fromm)
     response = requests.request("GET", url, headers=headers, params=querystring)
 
     searchTermG = None #initialize
     foodNames = None
+    fromm = None
 
     # Process the response and return the result
     if response.status_code == 200:

@@ -17,6 +17,9 @@ const app = initializeApp({
 const db = getDatabase(app);
 var username = '{{ nickname }}';
 var foodRef = ref(db, username + "/food");
+var from = 0;
+var keyword = "";
+
 //get my food data from firebase
 fetch('/getnickname')
   .then(response => response.json())
@@ -28,10 +31,6 @@ fetch('/getnickname')
       foodHandler(snapshot)
       });
   });
-
-// get(foodRef).then((snapshot) => {
-//   foodHandler(snapshot)
-// });
 
 function foodHandler(snapshot){
   // const list = document.getElementById("expList"); // how to get expList in homepage.html
@@ -46,38 +45,51 @@ function foodHandler(snapshot){
     }
     else{
       const trip = Object.values(snapshot.val()); // array(size)
-      console.log("use my food button is clicked")
       var i = 0;
       const itemArray = []; //create a list of items in my food
       trip.forEach(element => {  
         itemArray.push(element.item);      
         i++;
       });
-      const request = new XMLHttpRequest()
-      request.open('POST', `/myFoodArray/${JSON.stringify(itemArray)}`)
-      request.onload = () => {
-        const flastMessage = request.responseText
-        console.log(flastMessage)
-      }
-      request.send();
-      setTimeout(getData, 500); // Execute getData() after 0.5 seconds  
+      from = 0;
+      console.log("itermArray", itemArray)
+      keyword = itemArray
+      sendParam(keyword, from);
     }
   });
 }
 
 //when search button is clicked
 document.getElementById("submit").addEventListener("click", function() {
-  console.log("search button is clicked")
   const searchTerm = document.getElementById("name").value.trim();
+  from = 0;
+  keyword = searchTerm
+  sendParam(keyword, from);
+});
+
+function sendParam(searchTerm, range){
   const request = new XMLHttpRequest()
-  request.open('POST', `/searchTerm/${JSON.stringify(searchTerm)}`)
+
+  if(searchTerm.startsWith('"') == true){
+    const converted = searchTerm.slice(1, -1);
+    var data = { searchTerm: converted, from: range };
+    console.log("sending keyword ",converted);
+  }
+  else {
+    var data = { searchTerm: searchTerm, from: range };
+    console.log("sending keyword ",searchTerm);
+  }
+
+  console.log("sending from ",range);
+
+  request.open('POST', `/searchTerm/${JSON.stringify(data)}`)
   request.onload = () => {
     const flastMessage = request.responseText
     console.log(flastMessage)
   }
   request.send();
   setTimeout(getData, 500); // Execute getData() after 0.5 seconds
-});
+}
 
 function getData(){
     fetch('/api-endpoint')
@@ -97,60 +109,118 @@ function getData(){
     });
 }
 
-  const hashmap = {};
+const hashmap = {};
+// display previous/next buttons on the bottom
+const next = document.getElementById("next");
+const previous = document.getElementById("previous");
 
-  function show(data) {
-    const keywordd = document.getElementById("keyword");
-    keywordd.innerHTML = "Keyword : "+ data.keyword;
-  
-    console.log(data.result);
-    const list = document.getElementById("recipes-list");
-    list.innerHTML = "";
+const nextTx = document.createTextNode("Next≫");
+const prevTx = document.createTextNode("≪Previous");
 
-    //when there is no data to display, show "No results"
-    if(data.count == 0 || data.result.results.length == 0){
-      const para = document.createElement('h1');
-      para.textContent = 'No results';
-      list.appendChild(para);
-    }
+console.log("just once")
+next.appendChild(nextTx);
+previous.appendChild(prevTx);
 
-    else{
-      for(let i = 0; i < data.result.results.length; i++) {
-        const listItem = document.createElement("section");
-        const nameLI = document.createElement('h2');
-        const link = document.createElement('a')
-        nameLI.setAttribute("id", "fullRecipe");
-        //link.setAttribute('href', data.results[i].name)
-        //<a href="https://www.google.com/">Google</a>
-        nameLI.innerHTML = data.result.results[i].name; //get name of a recipe
-        if (data.result.results[i].name.length > 40){
-          nameLI.style.fontSize = '18px';
-        }
-  
-        // store the pair of name and index for later use
-        hashmap[data.result.results[i].name] = i;
-  
-        // display images
-        const src = data.result.results[i].thumbnail_url;
-        let imgTag = document.createElement('img');
-        imgTag.setAttribute("id", "image")
-        imgTag.src = src;
-      
-        // append description list to nameLI
-        list.appendChild(listItem);
-        listItem.appendChild(nameLI);
-        listItem.appendChild(imgTag);
-  
-        // when a name is clicked, display its full recipes
-        nameLI.addEventListener("click", (event) => {
-          console.log("name is clicked")
-          event.preventDefault(); // Prevent the link from navigating to the URL
-          const popupBox = document.getElementById("recipesPop");
-          popupBox.classList.add("show");
-          fullRecipes(data.result, data.result.results[i].name);
-        });
+function show(data) {
+  const keywordd = document.getElementById("keyword");
+  if(data.keyword.startsWith('"') == false){
+    data.keyword = `"`+data.keyword+`"`;
+  }
+  keywordd.innerHTML = data.result.count+" results with keyword "+ data.keyword;
+
+  console.log(data.result);
+  const list = document.getElementById("recipes-list");
+  list.innerHTML = "";
+
+  //when there is no data to display, show "No results"
+  if(data.count == 0 || data.result.results.length == 0){
+    const para = document.createElement('h1');
+    para.textContent = 'No results';
+    list.appendChild(para);
+  }
+
+  else{
+    for(let i = 0; i < data.result.results.length; i++) {
+      const listItem = document.createElement("section");
+      const nameLI = document.createElement('h2');
+      const link = document.createElement('a')
+      nameLI.setAttribute("id", "fullRecipe");
+
+      nameLI.innerHTML = data.result.results[i].name; //get name of a recipe
+      if (data.result.results[i].name.length > 40){
+        nameLI.style.fontSize = '18px';
       }
+
+      // store the pair of name and index for later use
+      hashmap[data.result.results[i].name] = i;
+
+      // display images
+      const src = data.result.results[i].thumbnail_url;
+      let imgTag = document.createElement('img');
+      imgTag.setAttribute("id", "image")
+      imgTag.src = src;
+    
+      // append description list to nameLI
+      list.appendChild(listItem);
+      listItem.appendChild(nameLI);
+      listItem.appendChild(imgTag);
+
+      // when a name is clicked, display its full recipes
+      nameLI.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent the link from navigating to the URL
+        const popupBox = document.getElementById("recipesPop");
+        popupBox.classList.add("show");
+        fullRecipes(data.result, data.result.results[i].name);
+      });
     }
+  }
+
+
+  //show next button
+  if(data.result.count > 40 && from+40 < data.result.count ){
+    next.style.display = "block";
+
+    //when next button is clicked
+    document.getElementById("next").addEventListener("click", function(){
+      clickNext(data.keyword, from)
+      console.log("onclick to clickNext() ", from);
+    });
+  }
+  else next.style.display = "none";
+
+  //On the first page, don't show previous button
+  if(from > 40){
+    previous.style.display = "block";
+    //when previous button is clicked
+    document.getElementById("previous").addEventListener("click", function(){
+      clickPrevious(data.keyword, from);
+      console.log("onclick to ");
+    });
+  }
+  else previous.style.display = "none";
+}
+
+function clickNext(keyword, from){
+  from += 40;
+  sendParam(keyword, from);
+  console.log("right after sendParam. ", from);
+  // When the user clicks on the button, scroll to the top of the document
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+  document.getElementById("next").removeEventListener("click", function(){});
+
+}
+
+function clickPrevious(keyword, from){
+  from -= 40;
+  sendParam(keyword, from);
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+  document.getElementById("previous").removeEventListener("click", function(){});
+
+}
+
+    //fullRecipes(data.result, data.result.results[i].name);
 
     // when sorting button is clicked
     // document.getElementById("sortApply").addEventListener("click", function() {
@@ -160,7 +230,7 @@ function getData(){
     //   console.log("id is " + id);
     //   sortBy(id, false, data);
     // }, false);
-  }
+
     // document.getElementById("RsortByNameRec").addEventListener("click", function() {
     //   sortBy("name", true, data);
     // }, false);
@@ -177,81 +247,78 @@ function getData(){
     //   sortBy("nutrition", true, data);
     //   console.log("clicked");
     // }, false);
-  function fullRecipes(data, name){
-    console.log("fullRecipes name is ", name);
-    const recipeBox = document.getElementById("recipesPop");
-    recipeBox.innerHTML = "";
-    const closeButton = document.createElement("button"); //close button
-    const text = document.createTextNode("X");
-    closeButton.setAttribute("id", "close2");
-    const index = hashmap[name];
-    const recipeName = document.createElement("h1"); //recipeName
-    const seeFull = document.createElement("h2"); // see full recipe nav
-    const tastyLink = document.createElement("a"); //link to tasty    
-    seeFull.textContent = 'Open Tasty ';
-    
-    // Create the text node for anchor element
-    const linkText = document.createTextNode("to see full recipe");
-
-    // Set the title
-    tastyLink.title = "Open Tasty"; 
-
-    // when "open tasty" is clicked
-    tastyLink.addEventListener("click", function () {
-      console.log("tastyLink clicked")
-      if(data.results[index].hasOwnProperty('compilations')){// if the recipe is recipe
-        var slug = data.results[index].slug;
-        window.open(
-          'https://tasty.co/recipe/'+slug, "_blank");
-      }
-      else{ // if the recipe is compilation
-        var slug = data.results[index].slug;
-        window.open(
-          'https://tasty.co/compilation/'+slug, "_blank");
-      }
-    });
-
-    recipeName.innerHTML = data.results[index].name;
-
+function fullRecipes(data, name){
+  const recipeBox = document.getElementById("recipesPop");
+  recipeBox.innerHTML = "";
+  const closeButton = document.createElement("button"); //close button
+  const text = document.createTextNode("X");
+  closeButton.setAttribute("id", "close2");
+  const index = hashmap[name];
+  const recipeName = document.createElement("h1"); //recipeName
+  const seeFull = document.createElement("h2"); // see full recipe nav
+  const tastyLink = document.createElement("a"); //link to tasty    
+  seeFull.textContent = 'Open Tasty ';
   
-    // display images
-    const src = data.results[index].thumbnail_url;
-    let img = document.createElement('img');
-    img.setAttribute("id", "image2")
-    img.src = src;
+  // Create the text node for anchor element
+  const linkText = document.createTextNode("to see full recipe");
 
-    img.style.position = "relative";
-    img.style.height = 'auto';
-    img.style.width = '250px';
-    img.style.marginLeft = '30%';
-    img.style.marginBottom = '30px';
+  // Set the title
+  tastyLink.title = "Open Tasty"; 
 
-    recipeBox.appendChild(closeButton);
-    closeButton.appendChild(text);
-    recipeBox.appendChild(recipeName);
-    closeButton.appendChild(text);
-    recipeBox.appendChild(img);
-    closeButton.appendChild(text);
-    recipeBox.appendChild(seeFull); 
-    seeFull.appendChild(linkText); 
-    seeFull.appendChild(tastyLink); 
-    tastyLink.appendChild(linkText); 
+  // when "open tasty" is clicked
+  tastyLink.addEventListener("click", function () {
+    if(data.results[index].hasOwnProperty('compilations')){// if the recipe is recipe
+      var slug = data.results[index].slug;
+      window.open(
+        'https://tasty.co/recipe/'+slug, "_blank");
+    }
+    else{ // if the recipe is compilation
+      var slug = data.results[index].slug;
+      window.open(
+        'https://tasty.co/compilation/'+slug, "_blank");
+    }
+  });
 
-     // close full recipe pop-up
-    closeButton.addEventListener("click", function () {
-      console.log("close clicked");
-      const popupBox = document.getElementById("recipesPop");
-      popupBox.classList.remove("show");
-    });
-  
-    // Add event listener to window for click events
-    window.addEventListener("click", function (event) {
-      if (event.target == recipesPop) {
-      const popupBox = document.getElementById("recipesPop");
-      popupBox.classList.remove("show");
-      }
-    });
-  }
+  recipeName.innerHTML = data.results[index].name;
+
+
+  // display images
+  const src = data.results[index].thumbnail_url;
+  let img = document.createElement('img');
+  img.setAttribute("id", "image2")
+  img.src = src;
+
+  img.style.position = "relative";
+  img.style.height = 'auto';
+  img.style.width = '250px';
+  img.style.marginLeft = '30%';
+  img.style.marginBottom = '30px';
+
+  recipeBox.appendChild(closeButton);
+  closeButton.appendChild(text);
+  recipeBox.appendChild(recipeName);
+  closeButton.appendChild(text);
+  recipeBox.appendChild(img);
+  closeButton.appendChild(text);
+  recipeBox.appendChild(seeFull); 
+  seeFull.appendChild(linkText); 
+  seeFull.appendChild(tastyLink); 
+  tastyLink.appendChild(linkText); 
+
+   // close full recipe pop-up
+  closeButton.addEventListener("click", function () {
+    const popupBox = document.getElementById("recipesPop");
+    popupBox.classList.remove("show");
+  });
+
+  // Add event listener to window for click events
+  window.addEventListener("click", function (event) {
+    if (event.target == recipesPop) {
+    const popupBox = document.getElementById("recipesPop");
+    popupBox.classList.remove("show");
+    }
+  });
+}
  
 
   

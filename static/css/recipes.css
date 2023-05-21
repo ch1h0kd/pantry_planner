@@ -216,11 +216,68 @@ img {
   margin-top: 8%;
   margin-left: 15%;
   margin-bottom: 5%;
-  height: 650px;
   width: 72%;
   position: absolute;
 }
 
+#next, #previous{
+  position: relative;
+  overflow: auto;
+  height: 41px;
+  width: 84px;
+  margin-bottom: 11px;
+  left: 37%;
+  float: left;
+  margin-left: 34px;
+  background-color: rgb(207 207 207);
+  display: none;
+  cursor: pointer;
+}
+
+#next, #previous:hover {
+  color: #242424;
+  background-color: rgb(240, 255, 108); /* background highlight color*/
+}
+
+/* Add food pop up */
+.popup {
+  position: fixed;
+  z-index: 1;
+  left: 32%;
+  top: 10%;
+  width: 41%;
+  padding: 20px;
+  height: 74%;
+  overflow: auto;
+  background-color: rgb(207 207 207);
+  display: none;
+}
+
+.popup-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888888;
+  width: 30%;
+  font-weight: bolder;
+}
+.popup-content button {
+  display: block;
+  margin: 0 auto;
+}
+
+.show {
+  display: block;
+}
+
+.popup-content h1 {
+  color: green;
+  text-align: center;
+}
+
+.popup-content h2 {
+  text-align: center;
+}
 .rightcol{
   height: 100%;  
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
@@ -264,43 +321,6 @@ img {
   text-align: center;
   font-weight: bold;
   cursor: pointer;
-}
-
-/* Add food pop up */
-.popup {
-  position: fixed;
-  z-index: 1;
-  left: 32%;
-  top: 10%;
-  width: 41%;
-  padding: 20px;
-  height: 74%;
-  overflow: auto;
-  background-color: rgb(207 207 207);
-  display: none;
-}
-.popup-content {
-  background-color: white;
-  margin: 10% auto;
-  padding: 20px;
-  border: 1px solid #888888;
-  width: 30%;
-  font-weight: bolder;
-}
-.popup-content button {
-  display: block;
-  margin: 0 auto;
-}
-.show {
-  display: block;
-}
-.popup-content h1 {
-  color: green;
-  text-align: center;
-}
-
-.popup-content h2 {
-  text-align: center;
 }
 
 .rightcol .sort-col .closePopup{
