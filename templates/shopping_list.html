@@ -26,7 +26,15 @@
       Shopping List
     </homeText>
     <div class = "sortBox">
-        <div class ="sortBy">Sort by...</div>
+      <div onclick="myFunction()" class="dropbtn">Sort by</div>
+      <div id="myDropdown" class="dropdown-content">
+        <a id = "sortByExp">Expiring sooner</a>
+        <a id = "RsortByExp">Expiring later</a>
+        <a id = "sortByName">Name A-Z</a>
+        <a id = "RsortByName">Name Z-A</a>
+        <a id = "sortByAdded">Recently added</a>
+        <a id = "RsortByAdded">First added</a>
+      </div>
       <form>
         <div class ="addItemButtonClass">
           <label for="label">Item Name:</label>

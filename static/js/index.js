@@ -27,8 +27,8 @@ fetch('/getnickname')
     get(foodRef).then((snapshot) => {
       foodHandler(snapshot)
       });
-    expHandler();
-    });
+  expHandler();
+});
 
 let foodRef = ref(db, username + "/food");
 let shoppingRef = ref(db, username + "/shopping");
