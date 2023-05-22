@@ -17,10 +17,12 @@ const db = getDatabase(app);
 
 let username = '{{ nickname }}'
 
+var shoppingRef;
+
 fetch('/getnickname')
   .then(response => response.json())
   .then(json => { username = json.nickname;
-    let shoppingRef = ref(db, username + "/shopping");
+    shoppingRef = ref(db, username + "/shopping");
     get(shoppingRef).then((snapshot) => {
       shopHandler(snapshot)
     });
