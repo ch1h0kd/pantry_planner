@@ -233,11 +233,17 @@ window.onclick = function(event) {
 }
 
 
-document.getElementById("shopping-list-input").addEventListener("keypress", function(event) {
+document.getElementById("item-input").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addItemExp();
+  }
+});
+
+document.getElementById("shop-input").addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     event.preventDefault();
     addItemShop();
-    addItemExp();
   }
 });
 
