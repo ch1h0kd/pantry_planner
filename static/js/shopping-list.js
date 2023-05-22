@@ -47,6 +47,55 @@ document.getElementById("shopping-list-input").addEventListener("keypress", func
   }
 });
 
+export function sortBy(category, reverse){
+  var sortedRef;
+  if(category != "latest"){
+    sortedRef = query(ref(db, username + '/shopping'), orderByChild(category))
+  }
+  else{
+    sortedRef = ref(db, username + '/shopping')
+  };
+  get(sortedRef).then((snapshot) =>{
+    let sortedList = [];
+    let keyList = [];
+    const list = document.getElementById("shopping-list");
+    list.innerHTML = "";
+    snapshot.forEach(element =>{
+      sortedList.push(element.val())
+      keyList.push(element.key)
+    });
+    if(reverse){
+      sortedList.reverse();
+      keyList.reverse();
+    }
+    listFiller(sortedList, keyList);
+  });
+}
+
+function listFiller(items, keys){
+  const list = document.getElementById("shopping-list");
+  list.innerHTML = "";
+  var i = 0;
+  items.forEach(element => {        
+      const listItem = document.createElement("li");
+      listItem.classList.add("list-item");
+      const itemHeading = document.createElement("h2");
+      var button = document.createElement("button");
+      button.innerHTML = "remove item";
+      button.value = (keys[i]);
+      listItem.appendChild(button);
+      button.style["float"] = "right";
+      button.addEventListener("click", function(){
+        buttonRemove("/food/", button.value);
+      });
+      itemHeading.appendChild(document.createTextNode(element.item));
+      listItem.appendChild(itemHeading);
+      list.appendChild(listItem);
+      i++;
+  });
+}
+
+
 
 export function addItemShop() {    
   const itemInput = document.getElementById("shopping-list-input");
@@ -105,4 +154,28 @@ export function buttonRemove(category, id){
   expHandler();
 }
 
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function dFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
+
 window.addItemShop = addItemShop;
+window.dFunction = dFunction;
