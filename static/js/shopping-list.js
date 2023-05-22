@@ -16,12 +16,29 @@ const app = initializeApp({
 const db = getDatabase(app);
 
 let username = '{{ nickname }}'
-username = fetch('/getnickname').then(response => username = response);
-let shoppingRef = ref(db, username + "/shopping");
-      get(shoppingRef).then((snapshot) => {
-        shopHandler(snapshot)
-      });
 
+fetch('/getnickname')
+  .then(response => response.json())
+  .then(json => { username = json.nickname;
+    let shoppingRef = ref(db, username + "/shopping");
+    get(shoppingRef).then((snapshot) => {
+      shopHandler(snapshot)
+    });
+});
+
+
+document.getElementById("sortByName").addEventListener("click", function() {
+  sortBy("item", false);
+}, false);
+document.getElementById("RsortByName").addEventListener("click", function() {
+  sortBy("item", true);
+}, false);
+document.getElementById("sortByAdded").addEventListener("click", function() {
+  sortBy("latest", true);
+}, false);
+document.getElementById("RsortByAdded").addEventListener("click", function() {
+  sortBy("latest", false);
+}, false);
 
 document.getElementById("shopping-list-input").addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
