@@ -16,7 +16,7 @@ const app = initializeApp({
 const db = getDatabase(app);
 
 let username = '{{ nickname }}'
-//var username = fetch('/getnickname').then(response => username = response);
+username = fetch('/getnickname').then(response => username = response);
 let shoppingRef = ref(db, username + "/shopping");
       get(shoppingRef).then((snapshot) => {
         shopHandler(snapshot)
