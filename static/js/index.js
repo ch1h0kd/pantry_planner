@@ -18,7 +18,6 @@ const db = getDatabase(app);
 
 let username = '{{ nickname }}';
 
-
 fetch('/getnickname')
   .then(response => response.json())
   .then(json => { username = json.nickname;
@@ -233,6 +232,14 @@ window.onclick = function(event) {
   }
 }
 
+
+document.getElementById("shopping-list-input").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addItemShop();
+    addItemExp();
+  }
+});
 
 
   window.myFunction = myFunction;
