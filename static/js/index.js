@@ -240,6 +240,13 @@ document.getElementById("item-input").addEventListener("keypress", function(even
   }
 });
 
+document.getElementById("exp-input").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addItemExp();
+  }
+});
+
 document.getElementById("shop-input").addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     event.preventDefault();
