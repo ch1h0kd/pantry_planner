@@ -52,8 +52,26 @@ function foodHandler(snapshot){
         i++;
       });
       from = 0;
-      console.log("itermArray", itemArray)
-      keyword = itemArray
+      console.log("itemArray", itemArray)
+
+      // Choose 3 ingredients from my food randomly
+      if (itemArray.length < 3) {
+        var keyword = itemArray.join(' ');
+      } 
+      else {
+        var randomIndices = [];
+        while (randomIndices.length < 3) {
+          var randomIndex = Math.floor(Math.random() * itemArray.length);
+          if (!randomIndices.includes(randomIndex)) {
+            randomIndices.push(randomIndex);
+          }
+        }
+        var randomItems = randomIndices.map(function(index) {
+          return itemArray[index];
+        });
+        var keyword = randomItems.join(' ');
+      }
+      console.log("keyword = ", keyword);
       sendParam(keyword, from);
     }
   });
@@ -204,7 +222,6 @@ function clickPrevious(event){
   sendParam(storedKeyword, storedFrom-40);
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
-  //document.getElementById("previous").removeEventListener("click", clickPrevious);
 }
 
 //when next button is clicked
@@ -214,9 +231,6 @@ function clickNext(event){
   // When the user clicks on the button, scroll to the top of the document
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
-
-  //remove
-  //document.getElementById("next").removeEventListener("click", clickNext);
 }
 
 
