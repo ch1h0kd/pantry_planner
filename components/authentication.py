@@ -18,9 +18,7 @@ def create_auth_blueprint(oauth):
     @auth.route('/logout')
     def logout():
         session.clear()
-        return redirect(
-            "/pantry_planner"
-        )   
+        return redirect("/pantry_planner" )   
     
     return auth
 
