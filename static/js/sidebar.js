@@ -4,8 +4,8 @@ var sidebar_recipes = document.getElementById("recipes");
 var sidebar_settings = document.getElementById("settings");
 var sidebar_shopping_list = document.getElementById("shopping_list");
 var login = document.getElementById("login");
-var logout = document.getElementById("logout_button");
-//need to fix the url here for other people to be able to use the login button
+
+//need to change the url here for other people to be able to use the login button
 
 sidebar_pantry_planner.addEventListener("click", function() {
   window.location.href = "www.cooklog.nl" + "/pantry_planner";
