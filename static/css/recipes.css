@@ -210,6 +210,7 @@ img {
   width: 75%;
   height: 15px;
   font-size: 18px;
+  border-radius: 5px;
   border: 2px solid #000000;
 }
 
@@ -358,8 +359,8 @@ img {
   padding: 10px;
   border: 2px solid gray;
   margin-top: 12%;
-  margin-left: 39%;
-  font-size: 21px;
+  margin-left: 27%;
+  font-size: 17px;
   color: white;
   background: #ff5300;
   font-family: Poppins,sans-serif;

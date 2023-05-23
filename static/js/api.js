@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, push, onValue, get, remove } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { getDatabase, ref, query, onValue, get, orderByChild } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
 
 var i = 0;
@@ -34,48 +34,60 @@ fetch('/getnickname')
       });
   });
 
-
+//if Use_expiring_soon was clicked, show expiring
 document.getElementById("Use_expiring_soon").addEventListener("click", function() {
-  if(storedSnapshot.val() == null){ // when there is no my food, show "No data"
-    var data = [];
-    show(data);
-  }
-  else{
-    const trip = Object.values(storedSnapshot.val()); // array(size)
-    var i = 0;
-    const itemArray = []; //create a list of items in my food
-    trip.forEach(element => {  
-      itemArray.push(element.item);      
-      i++;
-    });
-    from = 0;
-    console.log("itemArray", itemArray)
+  var sortedRef = query(ref(db, username + '/food'), orderByChild("exp"));
+  get(sortedRef).then((snapshot) =>{
+    let sortedList = [];
+    let keyList = [];
+    snapshot.forEach(element =>{
+      var today = new Date();
+      var expDate = new Date(element.val().exp)
+      //console.log("working: ", element.val().exp)
 
-    // Choose 3 ingredients from my food randomly
-    if (itemArray.length < 3) {
-      var keyword = itemArray.join(' ');
-    } 
-    else {
-      var randomIndices = [];
-      while (randomIndices.length < 3) {
-        var randomIndex = Math.floor(Math.random() * itemArray.length);
-        if (!randomIndices.includes(randomIndex)) {
-          randomIndices.push(randomIndex);
-        }
+      //if element expires in three days;
+      //console.log(expDate - today < 259200000, expDate - today)
+      if(expDate - today < 259200000){
+        sortedList.push(element.val())//{exp: '2023-05-28', item: 'milk'}
+        keyList.push(element.key)// -NV0x9xV8KKgAGfbjuYN
       }
-      var randomItems = randomIndices.map(function(index) {
-        return itemArray[index];
-      });
-      var keyword = randomItems.join(' ');
-    }
-    if(keyword == "LOG IN TO VIEW FOOD"){
-      var data = [];
-      show(data);
-    }
-    //console.log("keyword = ", keyword);
-    else sendParam(keyword, from);
-  }
+    });
 
+    if(sortedList.length == 0){//show no results
+      var data = [];
+      show(data)
+    }
+    else {
+      const itemArray = []; //create a list of items in my food
+      sortedList.forEach(element => {  
+        itemArray.push(element.item);      
+        i++;
+      });
+      //console.log(sortedList, keyList);
+      from = 0;
+      console.log("itemArray", itemArray)
+
+      // Choose 3 ingredients from my food randomly
+      if (itemArray.length < 3) {
+        var keyword = itemArray.join(' ');
+      } 
+      else {
+        var randomIndices = [];
+        while (randomIndices.length < 3) {
+          var randomIndex = Math.floor(Math.random() * itemArray.length);
+          if (!randomIndices.includes(randomIndex)) {
+            randomIndices.push(randomIndex);
+          }
+        }
+        var randomItems = randomIndices.map(function(index) {
+          return itemArray[index];
+        });
+        var keyword = randomItems.join(' ');
+      }
+      console.log("keyword ", keyword);
+      sendParam(keyword, from);
+    }
+  });
 });
 
 function foodHandler(snapshot){
