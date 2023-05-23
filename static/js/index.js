@@ -1,24 +1,22 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 import { getDatabase, ref, push, query, get, remove, orderByChild} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 import { collection, onSnapshot, orderBy  } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
-
+//require(dotnev).config();
+const api = '{{FIREBASEAPI}}';
 var i = 0;
 const app = initializeApp({
-    apiKey: "AIzaSyB2DuI-rqRSZYiiEzvBasH4CUeppxX_FoY",
-    authDomain: "pantryplanner-5d480.firebaseapp.com",
-    databaseURL: "https://pantryplanner-5d480-default-rtdb.firebaseio.com",
-    projectId: "pantryplanner-5d480",
-    storageBucket: "pantryplanner-5d480.appspot.com",
-    messagingSenderId: "407621335990",
-    appId: "1:407621335990:web:c6ef5ac9f60b5ba09e9f17",
-    measurementId: "G-56LV409GVC"
+  apiKey: api,
+  authDomain: "pantryplannerfinal.firebaseapp.com",
+  projectId: "pantryplannerfinal",
+  storageBucket: "pantryplannerfinal.appspot.com",
+  messagingSenderId: "150587264747",
+  appId: "1:150587264747:web:1ef6199be3afe673fbf8ae",
+  measurementId: "G-58F9K3EQJC"
 });
 
 const db = getDatabase(app);
 
 let username = '{{ nickname }}';
-let foodRef = ref(db, username + "/food");
-let shoppingRef = ref(db, username + "/shopping");
 
 fetch('/getnickname')
   .then(response => response.json())
@@ -28,29 +26,11 @@ fetch('/getnickname')
     get(foodRef).then((snapshot) => {
       foodHandler(snapshot)
       });
-    expHandler();
-    });
+  expHandler();
+});
 
-
-
-// export function changeUser(){
-//   const userInput = document.getElementById("user-input");
-//   const promt = document.getElementById("user-promt");
-//   const but = document.getElementById("user-button");
-//   const newUser = userInput.value;
-//   if(newUser != ""){
-//     promt.remove();
-//     userInput.remove();
-//     but.remove();
-//     username = newUser;
-//     foodRef = ref(db, username + "/food");
-//     shoppingRef = ref(db, username + "/shopping");
-//     userInput.value = "";
-//   }
-//   get(foodRef).then((snapshot) => {
-//     foodHandler(snapshot)
-//   });
-// }
+let foodRef = ref(db, username + "/food");
+let shoppingRef = ref(db, username + "/shopping");
 
 document.getElementById("sortByExp").addEventListener("click", function() {
   sortBy("exp", false);
@@ -252,6 +232,27 @@ window.onclick = function(event) {
   }
 }
 
+
+document.getElementById("item-input").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addItemExp();
+  }
+});
+
+document.getElementById("exp-input").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addItemExp();
+  }
+});
+
+document.getElementById("shop-input").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addItemShop();
+  }
+});
 
 
   window.myFunction = myFunction;
