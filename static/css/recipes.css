@@ -64,6 +64,11 @@
   align-items:end;
 }
 
+#keyword{
+  color: #a4a4a4;
+  font-family: "Oswald",sans-serif;
+}
+
 .homeCol{
 margin-left: 15%;
 display: flex;
@@ -122,18 +127,24 @@ ul{
 }
 
 ul section{
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   width: 22%;
   height: 287px;
   margin: 0.5%;
-  padding: 0.1%;
+  padding-top: 1%;
   position: relative;
+  margin-top: 24px;
+  border-radius: 4px;
+  box-shadow: 0px 10px 30px -4px rgba(0, 0, 0, 0.15);
 }
 
 .mainContent h2{
   cursor: pointer;
   margin: 0;
   text-align: center;
+  font-size: 20px;
+  font-family: "Oswald",sans-serif;
+  color: #434343;
 }
 
 .mainContent h2:hover{
@@ -147,7 +158,8 @@ img {
   position: absolute;
   z-index: -1;
   height: 230px;
-  width: 230px;
+  width: 228px;
+  border-radius: 6px;
 }
 
 /* Style page content */
@@ -205,10 +217,12 @@ img {
   width: 8%;
   height: 65%;
   margin-top: 2%;
-  border: 2px solid #000000;
   cursor: pointer;
   position: absolute;
+  background-color: #FEA116;
+  font-size: 18px;
   margin-left: 0.5%;
+  border-radius: 10px;
   font-size: 20px;
 }
 
@@ -231,12 +245,14 @@ img {
   margin-left: 34px;
   background-color: rgb(207 207 207);
   display: none;
+  border-radius: 30px;
   cursor: pointer;
 }
 
 #next, #previous:hover {
-  color: #242424;
-  background-color: rgb(240, 255, 108); /* background highlight color*/
+  color: #ffffff;
+  background-color: #FEA116;
+  font-size: 18px;
 }
 
 /* Add food pop up */
@@ -249,35 +265,57 @@ img {
   padding: 20px;
   height: 74%;
   overflow: auto;
-  background-color: rgb(207 207 207);
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #000000;
+  border-radius: 8px;
+  box-shadow: 0px 0px 40px 60px rgba(0, 0, 0, 0.15);
   display: none;
 }
 
-.popup-content {
+/* .popup {
   background-color: white;
   margin: 10% auto;
   padding: 20px;
-  border: 1px solid #888888;
   width: 30%;
   font-weight: bolder;
-}
-.popup-content button {
-  display: block;
-  margin: 0 auto;
-}
+} */
 
+.popup button {
+  display: block;
+  position: fixed;
+  margin-left: 0;
+}
 .show {
   display: block;
 }
 
-.popup-content h1 {
-  color: green;
+.popup h1 {
+  color: rgb(110, 174, 110);
   text-align: center;
 }
 
-.popup-content h2 {
+.popup h2 {
   text-align: center;
 }
+
+#openLink {
+  font-size: 29px;
+  cursor: pointer;
+  text-align: center;
+  background: #FFFFF6 url(https://cdn-icons-png.flaticon.com/512/25/25284.png?w=1380&t=st=1684819742~exp=1684820342~hmac=91ed077…) no-repeat 467px 5px;
+  background-size: 25px 25px;
+}
+
+#openLink:hover {
+  color: #72c36c;
+  background-color: rgb(255, 255, 255); /* background highlight color*/
+}
+
+#linkIcon{
+  background: transparent url(https://cdn-icons-png.flaticon.com/512/25/25284.png?w=1380&t=st=1684819742~exp=1684820342~hmac=91ed077dbb6dd9957f6f7a0e7e4e0442f38be7164df62b71fc8ec08ed6b7ccaf) no-repeat 256px 2px;
+  background-size: 35px 33px;
+}
+
 .rightcol{
   height: 100%;  
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
@@ -316,8 +354,12 @@ img {
   padding: 10px;
   border: 2px solid gray;
   margin-top: 12%;
-  margin-left: 25%;
-  font-size: 20px;
+  margin-left: 39%;
+  font-size: 21px;
+  color: white;
+  background: #ff5300;
+  font-family: Poppins,sans-serif;
+  border-radius: 50px;
   text-align: center;
   font-weight: bold;
   cursor: pointer;
@@ -336,7 +378,7 @@ img {
 
 .rightcol .sort-col button:hover {
   color: #242424;
-  background-color: rgb(131, 186, 236); /* background highlight color*/
+  background-color: #ff915b; /* background highlight color*/
 }
 
 

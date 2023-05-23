@@ -71,8 +71,12 @@ function foodHandler(snapshot){
         });
         var keyword = randomItems.join(' ');
       }
-      console.log("keyword = ", keyword);
-      sendParam(keyword, from);
+      if(keyword == "LOG IN TO VIEW FOOD"){
+        var data = [];
+        show(data);
+      }
+      //console.log("keyword = ", keyword);
+      else sendParam(keyword, from);
     }
   });
 }
@@ -139,29 +143,36 @@ var storedKeyword;
 var storedFrom;
 
 function show(data) {
-  const from = data.from;
-  const result = data.result.results
-  const count = data.result.count;
-  const keywordRes = data.keyword
-
-  const keywordd = document.getElementById("keyword");
-  if(keywordRes.startsWith('"') == false){
-    var newKeywordRes = `"`+keywordRes+`"`;
-  }
-  keywordd.innerHTML = count+" results with keyword "+ newKeywordRes;
-
   console.log(data.result);
   const list = document.getElementById("recipes-list");
   list.innerHTML = "";
 
+
+  console.log(data.result);
   //when there is no data to display, show "No results"
-  if(data.count == 0 || result.length == 0){
+  if(data.count == 0 || data.result == null || data.result.results.length == 0){
     const para = document.createElement('h1');
+    var keywordRes = data.keyword
+    const keywordd = document.getElementById("keyword");
+    
+    if(keywordRes != null && keywordRes.startsWith('"') == false){
+      var keywordRes = `"`+keywordRes+`"`;
+    }
     para.textContent = 'No results';
+    keywordd.innerHTML = 0+" results with keyword "+ keywordRes;
     list.appendChild(para);
   }
 
   else{
+    const keywordRes = data.keyword
+  
+    const keywordd = document.getElementById("keyword");
+    if(keywordRes.startsWith('"') == false){
+      var newKeywordRes = `"`+keywordRes+`"`;
+    }
+    keywordd.innerHTML = data.result.count+" results with keyword "+ newKeywordRes;
+  
+    const result = data.result.results
     for(let i = 0; i < result.length; i++) {
       const listItem = document.createElement("section");
       const nameLI = document.createElement('h2');
@@ -195,22 +206,22 @@ function show(data) {
         fullRecipes(data.result, result[i].name);
       });
     }
-  }
 
-  //show next button
-  if(count > 40 && from+40 < count){
-    next.style.display = "block";
-  }
-  else next.style.display = "none";
+    //show next button
+    if(data.result.count > 40 && data.from+40 < data.result.count){
+      next.style.display = "block";
+    }
+    else next.style.display = "none";
 
-  //On the first page, don't show previous button
-  if(from >= 40){
-    previous.style.display = "block";
-  }
-  else previous.style.display = "none";
+    //On the first page, don't show previous button
+    if(data.from >= 40){
+      previous.style.display = "block";
+    }
+    else previous.style.display = "none";
 
-  storedKeyword = newKeywordRes;
-  storedFrom = from;
+    storedKeyword = newKeywordRes;
+    storedFrom = data.from;
+  }
 }
 // end of show ------------------------------------------------
 
@@ -269,12 +280,15 @@ function fullRecipes(data, name){
   closeButton.setAttribute("id", "close2");
   const index = hashmap[name];
   const recipeName = document.createElement("h1"); //recipeName
-  const seeFull = document.createElement("h2"); // see full recipe nav
-  const tastyLink = document.createElement("a"); //link to tasty    
-  seeFull.textContent = 'Open Tasty ';
+  //const seeFull = document.createElement("h2"); // see full recipe nav
+  const tastyLink = document.createElement("p"); //link to tasty    
+  tastyLink.setAttribute("id", "openLink");
+  const image = document.createElement("image");
+  image.setAttribute("id", "linkIcon");
+
   
   // Create the text node for anchor element
-  const linkText = document.createTextNode("to see full recipe");
+  const linkText = document.createTextNode("Open Tasty to see full recipe");
 
   // Set the title
   tastyLink.title = "Open Tasty"; 
@@ -314,10 +328,11 @@ function fullRecipes(data, name){
   closeButton.appendChild(text);
   recipeBox.appendChild(img);
   closeButton.appendChild(text);
-  recipeBox.appendChild(seeFull); 
-  seeFull.appendChild(linkText); 
-  seeFull.appendChild(tastyLink); 
+  recipeBox.appendChild(tastyLink); 
+  //seeFull.appendChild(linkText); 
+  //seeFull.appendChild(); 
   tastyLink.appendChild(linkText); 
+  tastyLink.appendChild(image);
 
    // close full recipe pop-up
   closeButton.addEventListener("click", function () {
