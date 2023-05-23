@@ -298,34 +298,6 @@ function clickNext(event){
   document.documentElement.scrollTop = 0;
 }
 
-
-    //fullRecipes(data.result, data.result.results[i].name);
-
-    // when sorting button is clicked
-    // document.getElementById("sortApply").addEventListener("click", function() {
-    //   console.log("sorting button is clicked")
-    //   var e = document.getElementById("sortRecipes");
-    //   var id = e.id;
-    //   console.log("id is " + id);
-    //   sortBy(id, false, data);
-    // }, false);
-
-    // document.getElementById("RsortByNameRec").addEventListener("click", function() {
-    //   sortBy("name", true, data);
-    // }, false);
-    // document.getElementById("sortByRatings").addEventListener("click", function() {
-    //   sortBy("user_ratings", false, data);
-    // }, false);
-    // document.getElementById("RsortByRatings").addEventListener("click", function() {
-    //   sortBy("user_ratings", true, data);
-    // }, false);
-    // document.getElementById("sortByCalories").addEventListener("click", function() {
-    //   sortBy("nutrition", false, data);
-    // }, false);
-    // document.getElementById("RsortByCalories").addEventListener("click", function() {
-    //   sortBy("nutrition", true, data);
-    //   console.log("clicked");
-    // }, false);
 function fullRecipes(data, name){
   const recipeBox = document.getElementById("recipesPop");
   recipeBox.innerHTML = "";
@@ -340,6 +312,12 @@ function fullRecipes(data, name){
   const image = document.createElement("image");
   image.setAttribute("id", "linkIcon");
 
+
+  //if(data.results[index].description != null){
+    const description = document.createElement('p');
+    description.innerHTML = data.results[index].description; //get description of a recipe
+    description.setAttribute("id", "description");
+  //}
   
   // Create the text node for anchor element
   const linkText = document.createTextNode("Open Tasty to see full recipe");
@@ -382,6 +360,7 @@ function fullRecipes(data, name){
   closeButton.appendChild(text);
   recipeBox.appendChild(img);
   closeButton.appendChild(text);
+  recipeBox.appendChild(description);
   recipeBox.appendChild(tastyLink); 
   //seeFull.appendChild(linkText); 
   //seeFull.appendChild(); 

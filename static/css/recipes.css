@@ -294,6 +294,12 @@ img {
   display: block;
 }
 
+#description{
+  color: #5c5c5c;
+  margin: 30px;
+  font-size: 23px;
+}
+
 .popup h1 {
   color: rgb(110, 174, 110);
   text-align: center;
