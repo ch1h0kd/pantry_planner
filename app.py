@@ -144,7 +144,7 @@ def api_endpoint():
     elif (searchTermG != None):
         keyword = searchTermG
 
-
+    starting = fromm
     querystring = {"from":fromm,"size":40,"q":keyword}
     print("keyword : ", keyword)
     print("fromm : ",fromm)
@@ -159,7 +159,8 @@ def api_endpoint():
         result = response.json()
         return jsonify({
             'result': result, 
-            'keyword': keyword
+            'keyword': keyword,
+            'from': starting
         })
 
     else: 

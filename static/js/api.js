@@ -73,14 +73,10 @@ function sendParam(searchTerm, range){
   if(searchTerm.startsWith('"') == true){
     const converted = searchTerm.slice(1, -1);
     var data = { searchTerm: converted, from: range };
-    console.log("sending keyword ",converted);
   }
   else {
     var data = { searchTerm: searchTerm, from: range };
-    console.log("sending keyword ",searchTerm);
   }
-
-  console.log("sending from ",range);
 
   request.open('POST', `/searchTerm/${JSON.stringify(data)}`)
   request.onload = () => {
@@ -121,41 +117,49 @@ console.log("just once")
 next.appendChild(nextTx);
 previous.appendChild(prevTx);
 
+var storedKeyword;
+var storedFrom;
+
 function show(data) {
+  const from = data.from;
+  const result = data.result.results
+  const count = data.result.count;
+  const keywordRes = data.keyword
+
   const keywordd = document.getElementById("keyword");
-  if(data.keyword.startsWith('"') == false){
-    data.keyword = `"`+data.keyword+`"`;
+  if(keywordRes.startsWith('"') == false){
+    var newKeywordRes = `"`+keywordRes+`"`;
   }
-  keywordd.innerHTML = data.result.count+" results with keyword "+ data.keyword;
+  keywordd.innerHTML = count+" results with keyword "+ newKeywordRes;
 
   console.log(data.result);
   const list = document.getElementById("recipes-list");
   list.innerHTML = "";
 
   //when there is no data to display, show "No results"
-  if(data.count == 0 || data.result.results.length == 0){
+  if(data.count == 0 || result.length == 0){
     const para = document.createElement('h1');
     para.textContent = 'No results';
     list.appendChild(para);
   }
 
   else{
-    for(let i = 0; i < data.result.results.length; i++) {
+    for(let i = 0; i < result.length; i++) {
       const listItem = document.createElement("section");
       const nameLI = document.createElement('h2');
       const link = document.createElement('a')
       nameLI.setAttribute("id", "fullRecipe");
 
-      nameLI.innerHTML = data.result.results[i].name; //get name of a recipe
-      if (data.result.results[i].name.length > 40){
+      nameLI.innerHTML = result[i].name; //get name of a recipe
+      if (result[i].name.length > 40){
         nameLI.style.fontSize = '18px';
       }
 
       // store the pair of name and index for later use
-      hashmap[data.result.results[i].name] = i;
+      hashmap[result[i].name] = i;
 
       // display images
-      const src = data.result.results[i].thumbnail_url;
+      const src = result[i].thumbnail_url;
       let imgTag = document.createElement('img');
       imgTag.setAttribute("id", "image")
       imgTag.src = src;
@@ -170,55 +174,51 @@ function show(data) {
         event.preventDefault(); // Prevent the link from navigating to the URL
         const popupBox = document.getElementById("recipesPop");
         popupBox.classList.add("show");
-        fullRecipes(data.result, data.result.results[i].name);
+        fullRecipes(data.result, result[i].name);
       });
     }
   }
 
-
   //show next button
-  if(data.result.count > 40 && from+40 < data.result.count ){
+  if(count > 40 && from+40 < count){
     next.style.display = "block";
-
-    //when next button is clicked
-    document.getElementById("next").addEventListener("click", function(){
-      clickNext(data.keyword, from)
-      console.log("onclick to clickNext() ", from);
-    });
   }
   else next.style.display = "none";
 
   //On the first page, don't show previous button
-  if(from > 40){
+  if(from >= 40){
     previous.style.display = "block";
-    //when previous button is clicked
-    document.getElementById("previous").addEventListener("click", function(){
-      clickPrevious(data.keyword, from);
-      console.log("onclick to ");
-    });
   }
   else previous.style.display = "none";
+
+  storedKeyword = newKeywordRes;
+  storedFrom = from;
+}
+// end of show ------------------------------------------------
+
+
+//when previous button is clicked
+document.getElementById("previous").addEventListener("click", clickPrevious);
+function clickPrevious(event){
+  console.log("from before from-40 = ", storedFrom);
+  sendParam(storedKeyword, storedFrom-40);
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+  //document.getElementById("previous").removeEventListener("click", clickPrevious);
 }
 
-function clickNext(keyword, from){
-  from += 40;
-  sendParam(keyword, from);
-  console.log("right after sendParam. ", from);
+//when next button is clicked
+document.getElementById("next").addEventListener("click", clickNext);
+function clickNext(event){
+  sendParam(storedKeyword, storedFrom+40);
   // When the user clicks on the button, scroll to the top of the document
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
-  document.getElementById("next").removeEventListener("click", function(){});
 
+  //remove
+  //document.getElementById("next").removeEventListener("click", clickNext);
 }
 
-function clickPrevious(keyword, from){
-  from -= 40;
-  sendParam(keyword, from);
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-  document.getElementById("previous").removeEventListener("click", function(){});
-
-}
 
     //fullRecipes(data.result, data.result.results[i].name);
 
