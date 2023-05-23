@@ -18,7 +18,6 @@ const db = getDatabase(app);
 
 let username = '{{ nickname }}';
 
-
 fetch('/getnickname')
   .then(response => response.json())
   .then(json => { username = json.nickname;
@@ -27,8 +26,8 @@ fetch('/getnickname')
     get(foodRef).then((snapshot) => {
       foodHandler(snapshot)
       });
-    expHandler();
-    });
+  expHandler();
+});
 
 let foodRef = ref(db, username + "/food");
 let shoppingRef = ref(db, username + "/shopping");
@@ -233,6 +232,27 @@ window.onclick = function(event) {
   }
 }
 
+
+document.getElementById("item-input").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addItemExp();
+  }
+});
+
+document.getElementById("exp-input").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addItemExp();
+  }
+});
+
+document.getElementById("shop-input").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addItemShop();
+  }
+});
 
 
   window.myFunction = myFunction;

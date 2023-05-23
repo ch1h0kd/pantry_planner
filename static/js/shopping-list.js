@@ -16,12 +16,31 @@ const app = initializeApp({
 const db = getDatabase(app);
 
 let username = '{{ nickname }}'
-//var username = fetch('/getnickname').then(response => username = response);
-let shoppingRef = ref(db, username + "/shopping");
-      get(shoppingRef).then((snapshot) => {
-        shopHandler(snapshot)
-      });
 
+var shoppingRef;
+
+fetch('/getnickname')
+  .then(response => response.json())
+  .then(json => { username = json.nickname;
+    shoppingRef = ref(db, username + "/shopping");
+    get(shoppingRef).then((snapshot) => {
+      shopHandler(snapshot)
+    });
+});
+
+
+document.getElementById("sortByName").addEventListener("click", function() {
+  sortBy("item", false);
+}, false);
+document.getElementById("RsortByName").addEventListener("click", function() {
+  sortBy("item", true);
+}, false);
+document.getElementById("sortByAdded").addEventListener("click", function() {
+  sortBy("latest", true);
+}, false);
+document.getElementById("RsortByAdded").addEventListener("click", function() {
+  sortBy("latest", false);
+}, false);
 
 document.getElementById("shopping-list-input").addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
@@ -29,6 +48,55 @@ document.getElementById("shopping-list-input").addEventListener("keypress", func
     addItemShop();
   }
 });
+
+export function sortBy(category, reverse){
+  var sortedRef;
+  if(category != "latest"){
+    sortedRef = query(ref(db, username + '/shopping'), orderByChild(category))
+  }
+  else{
+    sortedRef = ref(db, username + '/shopping')
+  };
+  get(sortedRef).then((snapshot) =>{
+    let sortedList = [];
+    let keyList = [];
+    const list = document.getElementById("shopping-list");
+    list.innerHTML = "";
+    snapshot.forEach(element =>{
+      sortedList.push(element.val())
+      keyList.push(element.key)
+    });
+    if(reverse){
+      sortedList.reverse();
+      keyList.reverse();
+    }
+    listFiller(sortedList, keyList);
+  });
+}
+
+function listFiller(items, keys){
+  const list = document.getElementById("shopping-list");
+  list.innerHTML = "";
+  var i = 0;
+  items.forEach(element => {        
+      const listItem = document.createElement("li");
+      listItem.classList.add("list-item");
+      const itemHeading = document.createElement("h2");
+      var button = document.createElement("button");
+      button.innerHTML = "remove item";
+      button.value = (keys[i]);
+      listItem.appendChild(button);
+      button.style["float"] = "right";
+      button.addEventListener("click", function(){
+        buttonRemove("/food/", button.value);
+      });
+      itemHeading.appendChild(document.createTextNode(element.item));
+      listItem.appendChild(itemHeading);
+      list.appendChild(listItem);
+      i++;
+  });
+}
+
 
 
 export function addItemShop() {    
@@ -88,4 +156,28 @@ export function buttonRemove(category, id){
   expHandler();
 }
 
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function dFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
+
 window.addItemShop = addItemShop;
+window.dFunction = dFunction;
