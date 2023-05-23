@@ -131,17 +131,23 @@
   }
 
   ul section{
-    border: 1px solid #000;
     width: 22%;
     height: 287px;
     margin: 0.5%;
-    padding: 6px;
+    padding: 6px;  
+    border-radius: 4px;
+    box-shadow: 0px -4px 14px 8px rgba(0, 0, 0, 0.15)
   }
 
   h3{
     color: #000000;
     font-size: 30px;
     font-weight: 700;
+  }
+
+  .removeB{
+    background: #e0e0e0;;
+    border-radius: 5px
   }
 
 /* Style page content */
@@ -164,11 +170,15 @@
   margin-right: 3%;
   position: absolute;
   right: 0;
-  border: 2px solid black;
   width: 13%;
   height: 60px;
   top: 38%;
+  z-index: 2;
   font-size: 20px;
+  color: white;
+  background: #ff5300;
+  font-family: Poppins,sans-serif;
+  border-radius: 50px;
   text-align: center;
   bottom: 6%;
   cursor: pointer;
@@ -176,7 +186,7 @@
 
 .add_food:hover {
   color: #242424;
-  background-color: rgb(131, 186, 236); /* background highlight color*/
+  background-color: #ffd279; /* background highlight color*/
 }
 
 /* The actual popup */
@@ -188,17 +198,17 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgb(0 0 0 / 17%);
   display: none;
 }
 
-  .addFoodPopup-content {
-    background-color: #818181;
+  .addFoodPopup-content {    
+    background-color: #ebebebf2;
     margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888888;
     width: 40%;
     height: 50%;
+    border-radius: 34px;
     font-weight: bolder;
   }
 
@@ -219,9 +229,12 @@
     display: block;
     margin: 0 auto;
     position: relative;
-    background: #b7b7b7;
+    background: #f4f4f4;
     left: 46%;
+    color: black;
+    font-size: 16px;
     width: 12%;
+    border-radius: 5px;
   }
   .addFoodPopup-content .x:hover {
     color: #242424;
@@ -242,14 +255,16 @@
     margin: 0 auto;
     margin-top: 20px;
     position: relative;
-    background: #b7b7b7;
+    background: #fccc43;
     height: 38px;
     width: 142px;
     font-size: 20px;
-  }
+    color: white;
+    border-radius: 10px;
+}
   .addFoodPopup-content .closeAddPopup:hover {
     color: #242424;
-    background-color: rgb(131, 186, 236); /* background highlight color*/
+    background-color: #ffe190; /* background highlight color*/
   }
 
   .addFoodPopup-content select {
@@ -262,6 +277,7 @@
     display: block;
   }
   .addFoodPopup-content h1 { /* Add food text */
+    color:rgb(0, 0, 0);
     margin: 0%;
     text-align: center;
     font-size: 50px;
@@ -278,6 +294,7 @@
     padding: 6px;
     margin-top: 2%;
     width: 75%;
+    border-radius: 5px;
     height: 15px;
     font-size: 20px;
     border: 2px solid #000000;
@@ -290,6 +307,9 @@
     border: 2px solid #000000;
     position: absolute;
     margin-left: 0.5%;
+    border-radius: 10px;
+    color: white;
+    background-color: #ffcf6f;
     font-size: 20px;
     cursor: pointer;
   }
@@ -354,23 +374,30 @@
   .rightcol .sortButton{
     margin-left: 32%;
     width: 50%;
+    color: white;
+    background: #ffcf6f;
+    font-family: Poppins,sans-serif;
+    border-radius: 20px;
     margin-top: 6%;
   }
 
   .rightcol .box{
     width: 135px;
     padding: 10px;
-    border: 2px solid gray;
     margin-top: 12%;
     margin-left: 25%;
     font-size: 20px;
     text-align: center;
+    color: white;
+    background: #ff5300;
+    font-family: Poppins,sans-serif;
+    border-radius: 50px;
     font-weight: bold;
     cursor: pointer;
   }
   .rightcol .sort-col button:hover {
     color: #242424;
-    background-color: rgb(131, 186, 236); /* background highlight color*/
+    background-color: #ffd279; /* background highlight color*/
   }
 
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

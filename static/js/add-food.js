@@ -185,6 +185,7 @@ function initialize(snapshot){
         button.addEventListener("click", function(){
           buttonRemove("/food/", button.value);
         });
+        button.setAttribute("class", "removeB")
         //console.log(element.tag);
         itemHeading.appendChild(document.createTextNode(element.item));
         const expDate = document.createTextNode(element.exp)
