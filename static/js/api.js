@@ -19,6 +19,7 @@ var username = '{{ nickname }}';
 var foodRef = ref(db, username + "/food");
 var from = 0;
 var keyword = "";
+var storedSnapshot;
 
 //get my food data from firebase
 fetch('/getnickname')
@@ -28,13 +29,56 @@ fetch('/getnickname')
     console.log(username);
     console.log(get(foodRef));
     get(foodRef).then((snapshot) => {
+      storedSnapshot = snapshot; 
       foodHandler(snapshot)
       });
   });
 
-function foodHandler(snapshot){
-  // const list = document.getElementById("expList"); // how to get expList in homepage.html
 
+document.getElementById("Use_expiring_soon").addEventListener("click", function() {
+  if(storedSnapshot.val() == null){ // when there is no my food, show "No data"
+    var data = [];
+    show(data);
+  }
+  else{
+    const trip = Object.values(storedSnapshot.val()); // array(size)
+    var i = 0;
+    const itemArray = []; //create a list of items in my food
+    trip.forEach(element => {  
+      itemArray.push(element.item);      
+      i++;
+    });
+    from = 0;
+    console.log("itemArray", itemArray)
+
+    // Choose 3 ingredients from my food randomly
+    if (itemArray.length < 3) {
+      var keyword = itemArray.join(' ');
+    } 
+    else {
+      var randomIndices = [];
+      while (randomIndices.length < 3) {
+        var randomIndex = Math.floor(Math.random() * itemArray.length);
+        if (!randomIndices.includes(randomIndex)) {
+          randomIndices.push(randomIndex);
+        }
+      }
+      var randomItems = randomIndices.map(function(index) {
+        return itemArray[index];
+      });
+      var keyword = randomItems.join(' ');
+    }
+    if(keyword == "LOG IN TO VIEW FOOD"){
+      var data = [];
+      show(data);
+    }
+    //console.log("keyword = ", keyword);
+    else sendParam(keyword, from);
+  }
+
+});
+
+function foodHandler(snapshot){
   //getData(); //display recipes when first visit the page
 
   //when use my food button is clicked
