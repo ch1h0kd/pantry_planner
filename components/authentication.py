@@ -1,16 +1,4 @@
-from flask import Blueprint
-from os import environ as env
-from urllib.parse import quote_plus, urlencode
-from pprint import pprint as print
-
-from authlib.integrations.flask_client import OAuth
-from authlib.oauth2.rfc6750 import BearerTokenValidator
-
-from flask import redirect, session, request, url_for
-
-# from helpers.decorators import url_for
-
-from flask.json import jsonify
+from flask import Blueprint, redirect, session, url_for
 
 def create_auth_blueprint(oauth):
     auth = Blueprint('auth', __name__, template_folder='templates')
@@ -23,7 +11,6 @@ def create_auth_blueprint(oauth):
 
     @auth.route('/callback', methods=["GET", "POST"])
     def callback():
-        # print("part 2: ", redirect(url_for("pantry_planner")))
         token = oauth.auth0.authorize_access_token()
         session["user"] = token
         return redirect(url_for("pantry_planner"))
@@ -31,15 +18,15 @@ def create_auth_blueprint(oauth):
     @auth.route('/logout')
     def logout():
         session.clear()
-        return redirect(
-            "/successful_logout"
-        )   
+        return redirect("/pantry_planner" )   
     
     return auth
 
 def get_nickname():
-    # return nickname
     if 'user' not in session:
         return 'baseline'
-    print(session['user']['userinfo']['nickname'])
-    return str(session["user"]['userinfo']['nickname'])
+    temp = session["user"]['userinfo']['email']
+    for c in temp:
+        if c == '@' or c == '.' or c == '{' or c == '}' or c == '[' or c == ']' or c == '/' or c == '$':
+            temp = temp[:temp.index(c)] + temp[temp.index(c) + 1:]
+    return temp
