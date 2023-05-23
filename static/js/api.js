@@ -147,8 +147,6 @@ function show(data) {
   const list = document.getElementById("recipes-list");
   list.innerHTML = "";
 
-
-  console.log(data.result);
   //when there is no data to display, show "No results"
   if(data.count == 0 || data.result == null || data.result.results.length == 0){
     const para = document.createElement('h1');
