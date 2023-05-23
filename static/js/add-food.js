@@ -56,10 +56,8 @@ function initialize(snapshot){
 
   document.getElementById("sortApply").addEventListener("click", preSortBy);
 
-
-  const expiring = document.getElementById("Show-expiring");
   // when show expiring is clicked
-  expiring.addEventListener("click", function(){
+  document.getElementById("Show-expiring").addEventListener("click", function(){
     sortBy2("exp", false);
 
   });
@@ -82,6 +80,7 @@ function initialize(snapshot){
     // Once we have the final group, update the display
     display();
   }
+
 
   function preSortBy(){
     const byWhat = document.querySelector("#sortRecipes").value; // Name A-Z
@@ -248,6 +247,7 @@ function initialize(snapshot){
         var today = new Date();
         expPara.appendChild(expiring);
 
+        datePickerId.max = new Date().toISOString().split("T")[0];
         // console.log(expDate)
         // //when it's already expired
         // if(expDate - today < -86400000){
@@ -310,6 +310,7 @@ export function addItemExp() {
     const item = itemInput.value;
     const exp = expInput.value;
     const tag = tagInput.value;
+    
     if(item != "" && exp != "" && tag != ""){
       itemInput.value = "";
       expInput.value = "";
