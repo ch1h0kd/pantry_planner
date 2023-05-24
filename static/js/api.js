@@ -91,8 +91,6 @@ document.getElementById("Use_expiring_soon").addEventListener("click", function(
 });
 
 function foodHandler(snapshot){
-  //getData(); //display recipes when first visit the page
-
   //when use my food button is clicked
   document.getElementById("useMyFood").addEventListener("click", function() {
     if(snapshot.val() == null){ // when there is no my food, show "No data"
@@ -262,6 +260,9 @@ function show(data) {
     }
 
     //show next button
+    console.log(data.result.count);
+    console.log(data.from+40);
+    console.log(data.result.count);
     if(data.result.count > 40 && data.from+40 < data.result.count){
       next.style.display = "block";
     }
