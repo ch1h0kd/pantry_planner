@@ -6,7 +6,7 @@
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #43ccd6;
+    background-color: #faebd3;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 0px;
     cursor: default;
@@ -19,7 +19,8 @@
     font-size: 25px;
     color: #000000;
     display: block;
-    background: lightgreen
+    height: 5.5%;
+    background: #b79f94
   }
   
   /* For the settings link at the bottom of the navigation menu*/
@@ -29,7 +30,8 @@
     font-size:  25px;
     color: #000000;
     display: block;
-    background: lightgreen;
+    background: #b79f94;
+    height: 4%;
     position: absolute;
     bottom: 0%;
     width: 100%;
@@ -42,8 +44,9 @@
     font-size:  25px;
     color: #000000;
     display: block;
-    background: lightgreen;
+    background: #b79f94;
     position: absolute;
+    height: 4%;
     bottom: 5.5%;
     width: 100%;
     cursor: pointer;
@@ -51,18 +54,18 @@
 
   /* When you mouse over the navigation links, change their color */
   .sidenav a:hover {
-    color: #7d5411;
-    background-color: rgb(255, 244, 48); /* background highlight color*/
+    color: #000000;
+    background-color: #8a6c5f; /* background highlight color*/
   }
 
   .sidenav a2:hover {
-    color: #7d5411;
-    background-color: rgb(255, 244, 48);
+    color: #000000;
+    background-color: #8a6c5f;
   }
 
   .sidenav a3:hover {
-    color: #7d5411;
-    background-color: rgb(255, 244, 48);
+    color: #000000;
+    background-color: #8a6c5f;
   }
   
   /* Style page content */
@@ -73,7 +76,7 @@
   }
   .homeCol{
   width: 30%;
-  margin-left: 15%;
+  margin-left: 16%;
   display: flex;
   flex-direction: column;
   float: left;
@@ -89,8 +92,9 @@
     border-radius: 25px;
   }
   
-  .main homeText{
-    font-size: 4vw;
+  .homeText{
+    margin-top: 0;
+    font-size: 55px;
   }
 
   .textBox{
@@ -108,10 +112,15 @@
   width: 20%;
   height: 15%;
   padding: 10px;
-  border: 2px solid gray;
+  border: #ffe9ba;
   text-align: center;
-  float:left;
+  float: left;
+  margin-top: 10px;
   font-weight: bold;
+  background-color: #ffe9ba;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 /* Dropdown button on hover & focus */
@@ -125,9 +134,15 @@
   display: inline-block;
 }
 
+label{
+  font-size: 20px;
+}
+
 .list-item{
-  border-radius: 5px;
+  border-radius: 10px;
+  margin-bottom: 12px;
   padding: 7px;
+  border: 1px solid #dee2e6;
 }
 .errormsg{
   display: none;
@@ -179,11 +194,38 @@
 
   .main scrollBox{
     height:70%;
+    border-radius: 10px;
     width:100%;
     padding: 10px;
     margin-top: 10px;
     border:1px solid #ccc;
     overflow:auto;
+  }
+
+  input{
+    border-radius: 13px;
+    height: 30px;
+    width: 55%;
+    border-color: white;
+    margin-top: 16px;
+    margin-bottom: 20px;
+  }
+
+  .addItemButtonClass{
+    background-color: #ffe9ba;
+    border-radius: 10px;
+    width: 448px;
+    height: 100px;
+    padding: 10px;
+  }
+
+  #add-item-button{
+    background-color: #ffc55b;
+    margin-left: 40%;
+    height: 32px;
+    border-color: #ffc55b;
+    border-radius: 5px;
+    cursor: pointer;
   }
 
   .input{
