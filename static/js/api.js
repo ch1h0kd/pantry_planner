@@ -253,7 +253,7 @@ function show(data) {
       listItem.appendChild(imgTag);
 
       // when a name is clicked, display its full recipes
-      nameLI.addEventListener("click", (event) => {
+      listItem.addEventListener("click", (event) => {
         event.preventDefault(); // Prevent the link from navigating to the URL
         const popupBox = document.getElementById("recipesPop");
         popupBox.classList.add("show");

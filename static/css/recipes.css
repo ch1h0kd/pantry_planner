@@ -6,7 +6,7 @@
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: #43ccd6; /* Black */
+  background-color: #faebd3;
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 0px;
 }
@@ -18,7 +18,8 @@
   font-size: 25px;
   color: #000000;
   display: block;
-  background: lightgreen
+  height: 5.5%;
+  background: #b79f94
 }
 
 /* The settings link at the bottom of the navigation menu*/
@@ -28,10 +29,12 @@
   font-size:  25px;
   color: #000000;
   display: block;
-  background: lightgreen;
+  background: #b79f94;
   position: absolute;
   bottom: 0%;
+  height: 4%;
   width: 100%;
+  cursor:pointer
 }
 
 .sidenav a3 {
@@ -40,20 +43,28 @@
   font-size:  25px;
   color: #000000;
   display: block;
-  background: lightgreen;
+  background: #b79f94;
   position: absolute;
   bottom: 5.5%;
   width: 100%;
+  height: 4%;
+  cursor:pointer
 }
+
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
-  color: #7d5411;
-  background-color: rgb(255, 244, 48); /* background highlight color*/
+  color: #000000;
+  background-color: #8a6c5f;/* background highlight color*/
 }
 
 .sidenav a2:hover {
-  color: #7d5411;
-  background-color: rgb(255, 244, 48);
+  color: #000000;
+  background-color: #8a6c5f;
+}
+
+.sidenav a3:hover {
+  color: #000000;
+  background-color: #8a6c5f;
 }
 
 /* Style page content */
@@ -67,6 +78,7 @@
 #keyword{
   color: #a4a4a4;
   font-family: "Oswald",sans-serif;
+  margin-top: 15px;
 }
 
 .homeCol{
@@ -135,7 +147,14 @@ ul section{
   position: relative;
   margin-top: 24px;
   border-radius: 4px;
-  box-shadow: 0px -4px 14px 8px rgba(0, 0, 0, 0.15)
+  box-shadow: 0px -4px 14px 8px rgba(0, 0, 0, 0.15);
+  transition: .5s;
+  cursor: pointer;
+}
+
+ul section:hover{
+  transform: scale(1.1);
+  background-color: rgb(252, 224, 188);
 }
 
 .mainContent h2{
@@ -147,16 +166,12 @@ ul section{
   color: #434343;
 }
 
-.mainContent h2:hover{
-  color: slateblue;  
-}
-
 img {
   width: 100%;
   bottom: 0;
   left: 0;
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   height: 230px;
   width: 228px;
   border-radius: 6px;
@@ -208,24 +223,30 @@ img {
   padding: 6px;
   margin-top: 2%;
   width: 75%;
-  height: 15px;
-  font-size: 18px;
-  border-radius: 5px;
-  border: 2px solid #000000;
+  height: 36px;
+  font-size: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 50px;
+  box-shadow: -5px 0px 14px 0px rgba(0, 0, 0, 0.15);
 }
 
 .recipesTop .search-container button {
-  width: 8%;
-  height: 65%;
+  width: 10%;
+  height: 75%;
   margin-top: 2%;
   cursor: pointer;
   position: absolute;
   background-color: #FEA116;
-  font-size: 18px;
+  border: #fea116;
   margin-left: 0.5%;
-  border-radius: 10px;
+  border-radius: 37px;
   font-size: 20px;
 }
+
+.recipesTop .search-container button:hover {
+  background-color: #ffc774;
+}
+
 
 .mainContent{
   margin-top: 8%;
@@ -277,18 +298,22 @@ img {
   display: none;
 }
 
-/* .popup {
-  background-color: white;
-  margin: 10% auto;
-  padding: 20px;
-  width: 30%;
-  font-weight: bolder;
-} */
-
 .popup button {
   display: block;
   position: fixed;
+  width: 35px;
+  font-size: 20px;
+  background-color: #cbcbcb;
+  border-color: #cbcbcb;
+  height: 35px;
   margin-left: 0;
+  position: fixed;
+  margin-left: 0;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background-color: #b9dcb7;
 }
 .show {
   display: block;
@@ -301,7 +326,7 @@ img {
 }
 
 .popup h1 {
-  color: rgb(110, 174, 110);
+  color: rgb(104, 168, 20);
   text-align: center;
 }
 
@@ -363,7 +388,7 @@ img {
 .rightcol .sort-col .box{
   width: 135px;
   padding: 10px;
-  border: 2px solid gray;
+  border-color:#ff5300;
   margin-top: 12%;
   margin-left: 27%;
   font-size: 17px;
