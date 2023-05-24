@@ -6,7 +6,7 @@
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #43ccd6; /* Black */
+    background-color: #faebd3;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 0px;
   }
@@ -18,7 +18,8 @@
     font-size: 25px;
     color: #000000;
     display: block;
-    background: lightgreen
+    height: 5.5%;
+    background: #b79f94
   }
   
   /* The settings link at the bottom of the navigation menu*/
@@ -28,10 +29,12 @@
     font-size:  25px;
     color: #000000;
     display: block;
-    background: lightgreen;
+    background: #b79f94;
+    height: 4%;
     position: absolute;
     bottom: 0%;
     width: 100%;
+    cursor:pointer
   }
   
   .sidenav a3 {
@@ -40,21 +43,28 @@
     font-size:  25px;
     color: #000000;
     display: block;
-    background: lightgreen;
+    background: #b79f94;
     position: absolute;
+    height: 4%;
     bottom: 5.5%;
     width: 100%;
+    cursor:pointer
   }
   
   /* When you mouse over the navigation links, change their color */
   .sidenav a:hover {
-    color: #7d5411;
-    background-color: rgb(255, 244, 48); /* background highlight color*/
+    color: #000000;
+    background-color: #8a6c5f; /* background highlight color*/
   }
 
   .sidenav a2:hover {
-    color: #7d5411;
-    background-color: rgb(255, 244, 48);
+    color: #000000;
+    background-color: #8a6c5f;
+  }
+
+  .sidenav a3:hover {
+    color: #000000;
+    background-color: #8a6c5f;
   }
   
   /* Style page content */
@@ -136,17 +146,26 @@
     margin: 0.5%;
     padding: 6px;  
     border-radius: 4px;
-    box-shadow: 0px -4px 14px 8px rgba(0, 0, 0, 0.15)
+    box-shadow: 0px -4px 14px 0px rgba(0, 0, 0, 0.15);
   }
 
   h3{
     color: #000000;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 700;
+    margin-top: 36px;
+    margin-left: 9px;
+    font-family: Poppins,sans-serif;
   }
 
   .removeB{
-    background: #e0e0e0;;
+    background: #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .removeB:hover{
+    background: #b9b9b9;;
     border-radius: 5px
   }
 
@@ -177,6 +196,7 @@
   font-size: 20px;
   color: white;
   background: #ff5300;
+  border: #ff5300;
   font-family: Poppins,sans-serif;
   border-radius: 50px;
   text-align: center;
@@ -233,7 +253,7 @@
     left: 46%;
     color: black;
     font-size: 16px;
-    width: 12%;
+    width: 9%;
     border-radius: 5px;
   }
   .addFoodPopup-content .x:hover {
@@ -248,7 +268,7 @@
 
   .addedmsg{
     display: none;
-    color: rgb(117, 255, 158);
+    color: rgb(55 188 70);
   }
   .addFoodPopup-content .closeAddPopup { /* X */
     display: block;
@@ -271,6 +291,8 @@
     height: 30px;
     width: 110px;
     margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
   }
 
   .show {
@@ -294,20 +316,21 @@
     padding: 6px;
     margin-top: 2%;
     width: 75%;
-    border-radius: 5px;
-    height: 15px;
+    height: 36px;
     font-size: 20px;
-    border: 2px solid #000000;
+    border: 2px solid #ffffff;
+    border-radius: 50px;
+    box-shadow: -5px 0px 14px 0px rgba(0, 0, 0, 0.15);
   }
   
   .myFoodTop .search-container button {
     width: 8%;
     height: 65%;
     margin-top: 2%;
-    border: 2px solid #000000;
+    border: 2px solid #ffcf6f;
     position: absolute;
     margin-left: 0.5%;
-    border-radius: 10px;
+    border-radius: 30px;
     color: white;
     background-color: #ffcf6f;
     font-size: 20px;
@@ -316,7 +339,7 @@
 
   .search-container button:hover {
     color: #242424;
-    background-color: rgb(135, 143, 64); /* background highlight color*/
+    background-color: #ffe2a7; /* background highlight color*/
   }
 
   .mainContent{
@@ -369,6 +392,8 @@
   .rightcol select{
     font-size: 17px;
     margin-left: 25%;
+    cursor: pointer;
+    border-radius: 5px;
   }
 
   .rightcol .sortButton{
@@ -376,8 +401,11 @@
     width: 50%;
     color: white;
     background: #ffcf6f;
+    border: #ffcf6f;
+    height: 30px;
     font-family: Poppins,sans-serif;
     border-radius: 20px;
+    font-size: 20px;
     margin-top: 6%;
   }
 
@@ -390,6 +418,7 @@
     text-align: center;
     color: white;
     background: #ff5300;
+    border: #ff5300;
     font-family: Poppins,sans-serif;
     border-radius: 50px;
     font-weight: bold;
