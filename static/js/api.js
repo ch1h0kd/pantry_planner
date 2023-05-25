@@ -65,7 +65,7 @@ document.getElementById("Use_expiring_soon").addEventListener("click", function(
       });
       //console.log(sortedList, keyList);
       from = 0;
-      console.log("itemArray", itemArray)
+      //console.log("itemArray", itemArray)
 
       // Choose 3 ingredients from my food randomly
       if (itemArray.length < 3) {
@@ -84,7 +84,7 @@ document.getElementById("Use_expiring_soon").addEventListener("click", function(
         });
         var keyword = randomItems.join(' ');
       }
-      console.log("keyword ", keyword);
+      //console.log("keyword ", keyword);
       sendParam(keyword, from);
     }
   });
@@ -108,7 +108,7 @@ function foodHandler(snapshot){
         i++;
       });
       from = 0;
-      console.log("itemArray", itemArray)
+      //console.log("itemArray", itemArray)
 
       // Choose 3 ingredients from my food randomly
       if (itemArray.length < 3) {
@@ -175,11 +175,11 @@ function getData(){
       }
     })
     .then((data) => {
-      console.log(data);
+      //console.log(data);
       show(data);
     })
     .catch((error) => {
-      console.log('error: ' + error);
+      //console.log('error: ' + error);
     });
 }
 
@@ -191,7 +191,7 @@ const previous = document.getElementById("previous");
 const nextTx = document.createTextNode("Next≫");
 const prevTx = document.createTextNode("≪Previous");
 
-console.log("just once")
+//console.log("just once")
 next.appendChild(nextTx);
 previous.appendChild(prevTx);
 
@@ -199,7 +199,7 @@ var storedKeyword;
 var storedFrom;
 
 function show(data) {
-  console.log(data.result);
+  //console.log(data.result);
   const list = document.getElementById("recipes-list");
   list.innerHTML = "";
 
@@ -283,7 +283,7 @@ function show(data) {
 //when previous button is clicked
 document.getElementById("previous").addEventListener("click", clickPrevious);
 function clickPrevious(event){
-  console.log("from before from-40 = ", storedFrom);
+  //console.log("from before from-40 = ", storedFrom);
   sendParam(storedKeyword, storedFrom-40);
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;

@@ -141,10 +141,10 @@ function initialize(snapshot){
       snapshot.forEach(element =>{
         var today = new Date();
         var expDate = new Date(element.val().exp)
-        console.log("working: ", element.val().exp)
+        //console.log("working: ", element.val().exp)
 
         //if element expires in three days;
-        console.log(expDate - today < 259200000, expDate - today)
+        //console.log(expDate - today < 259200000, expDate - today)
         if(expDate - today < 259200000){
           sortedList.push(element.val())//{exp: '2023-05-28', item: 'milk'}
           keyList.push(element.key)// -NV0x9xV8KKgAGfbjuYN
@@ -220,7 +220,7 @@ function initialize(snapshot){
     const keys = Object.keys(keyList); //-NUSIz-AfjvoCJ7y0Htb,-NUSJ16BoyBtw933wrZs,-NUSJ2f6u2gvIT8KgOKc
     //keys[0]: -NUSIz-AfjvoCJ7y0Htb
     var i = 0;
-    console.log("trip", trip)
+    //console.log("trip", trip)
     trip.forEach(element => {
         //element.item: beans
         //element.exp: 2023-05-31
@@ -241,13 +241,13 @@ function initialize(snapshot){
         //expPara.textContent = expDate;
 
         const expiring = document.createTextNode(element.exp);
-        console.log("not working : ", expiring)
+        //console.log("not working : ", expiring)
         var expDate = new Date(expiring);
-        console.log("ok?   ", expDate)
+        //console.log("ok?   ", expDate)
         var today = new Date();
         expPara.appendChild(expiring);
 
-        datePickerId.max = new Date().toISOString().split("T")[0];
+        //datePickerId.max = new Date().toISOString().split("T")[0];
         // console.log(expDate)
         // //when it's already expired
         // if(expDate - today < -86400000){
