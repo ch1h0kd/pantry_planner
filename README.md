@@ -14,6 +14,7 @@ This application is implemented using Flask, Javascript, Python, HTML, CSS, Fire
 ### Recipes Page
 ![](https://github.com/ch1h0kd/pantry_planner/blob/main/images/recipes.gif)
 
+
 ![](https://github.com/ch1h0kd/pantry_planner/blob/main/images/multiple%20pages.gif)
 
 ## Contributors
