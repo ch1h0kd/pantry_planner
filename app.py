@@ -38,12 +38,12 @@ app.register_blueprint(create_auth_blueprint(oauth))
 
 @app.route('/')
 def index() -> str:
-    return render_template('homepage.html', session=session.get('user'),nickname=getnickname())
+    return render_template('index.html', session=session.get('user'),nickname=getnickname())
 
 # this is a temporary fix hopefully for the button not working
 @app.route('/pantry_planner')
 def pantry_planner() -> str:
-    return render_template('homepage.html', session=session.get('user'),nickname=getnickname())
+    return render_template('index.html', session=session.get('user'),nickname=getnickname())
 
 @app.route('/settings')
 @login_required()
@@ -72,12 +72,12 @@ foodNames = None # Initialize global variable
 @app.route('/login')
 @login_required()
 def login() -> str:
-    return render_template('homepage.html', session=session.get('user'),nickname=getnickname())
+    return render_template('index.html', session=session.get('user'),nickname=getnickname())
 
 @app.route('/logout')
 @login_required()
 def logout() -> str:
-    return render_template('homepage.html')
+    return render_template('index.html')
 
 @app.route('/myFoodArray/<string:itemArray>', methods=['POST'])
 def myFoodArray(itemArray):
